@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:app/screens/home_screen/components/home_screen.dart';
 
 class Nav extends StatefulWidget {
   const Nav({Key? key}) :  super(key: key);
@@ -10,7 +11,7 @@ class Nav extends StatefulWidget {
 class _NavState extends State<Nav> {
   int _selectedIndex = 0;
   static List<Widget> _widgetOptions = <Widget>[
-    Text("WOTD"),
+    Home(),
     Text("Hola"),
   ];
 

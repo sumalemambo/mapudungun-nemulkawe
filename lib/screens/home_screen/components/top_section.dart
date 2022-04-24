@@ -23,7 +23,7 @@ class TopSection extends StatelessWidget {
               style: const TextStyle(color: Colors.grey, fontSize: 13.0),
             ),
             const Text(
-                'Today',
+                'Palabra del Día',
                   style: TextStyle(fontSize: 33.0),
             ),
           ],

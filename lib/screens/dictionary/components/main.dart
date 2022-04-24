@@ -17,13 +17,13 @@ class _MainState extends State<Main> {
           margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
           elevation: 4.0,
           child: ListView.builder(
-            itemCount: data['harmelink']!.length - 1,
+            itemCount: data['mapuzuguletuain']!.length - 1,
             itemBuilder: (context, i) {
               return Card(
                 child: ListTile(
-                  leading: Text(data['harmelink']![i+1][0].toString()),
-                  title: Text(data['harmelink']![i+1][2].toString()),
-                  subtitle: Text(data['harmelink']![i+1][3].toString()),
+                  leading: Text(data['mapuzuguletuain']![i+1][0].toString()),
+                  title: Text(data['mapuzuguletuain']![i+1][2].toString()),
+                  subtitle: Text(data['mapuzuguletuain']![i+1][3].toString()),
                   trailing: Icon(Icons.favorite),
                 ),
               );

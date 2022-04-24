@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:app/screens/home_screen/components/home_screen.dart';
-
+import 'package:app/global_var.dart';
 
 class Nav extends StatefulWidget {
   const Nav({Key? key}) :  super(key: key);

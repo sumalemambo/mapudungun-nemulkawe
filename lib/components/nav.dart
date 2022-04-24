@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:app/screens/home_screen/components/home_screen.dart';
 
+
 class Nav extends StatefulWidget {
   const Nav({Key? key}) :  super(key: key);
 
@@ -12,7 +13,7 @@ class _NavState extends State<Nav> {
   int _selectedIndex = 0;
   static List<Widget> _widgetOptions = <Widget>[
     Home(),
-    Text("Hola"),
+    Text("hola"),
   ];
 
   void _onItemTapped(int index) {
@@ -34,7 +35,7 @@ class _NavState extends State<Nav> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite),
-            label: 'Inicio'
+            label: 'Favoritos'
           ),
         ],
         // _onItemTapped will receive the index of the selected item in the row

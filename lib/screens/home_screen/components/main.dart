@@ -6,12 +6,6 @@ import 'package:csv/csv_settings_autodetection.dart';
 import 'dart:math';
 import 'package:app/global_var.dart';
 
-Future<String> fetchWord() async {
-  final _rawData = await rootBundle.loadString("csv/Mapuzuguletuain_2019.csv");
-  List<List<dynamic>> _listData =
-  const CsvToListConverter(fieldDelimiter: ';').convert(_rawData);
-  return _listData[1][2];
-}
 
 class Main extends StatefulWidget {
   @override
@@ -21,7 +15,7 @@ class Main extends StatefulWidget {
 class _MainState extends State<Main> {
   final int randint = Random(
       DateTime.now().millisecondsSinceEpoch ~/ 86400000
-  ).nextInt(data['harmelink']!.length - 1) + 1;
+  ).nextInt(data['mapuzuguletuain']!.length - 1) + 1;
 
   @override
   Widget build(BuildContext context) {
@@ -37,8 +31,44 @@ class _MainState extends State<Main> {
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text(data['harmelink']![randint][2]),
-                Text(data['harmelink']![randint][3]),
+                Row(
+                  children: [
+                    Text(
+                      data['mapuzuguletuain']![randint][2][0].toUpperCase()
+                          + data['mapuzuguletuain']![randint][2].substring(1),
+                      style: const TextStyle(
+                          fontSize: 45,
+                          fontFamily: 'Roboto',
+                          color: Colors.black
+                      ),
+                    )
+                  ]
+                ),
+                Text(
+                    data['mapuzuguletuain']![randint][0],
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontFamily: 'Roboto',
+                      color: Colors.grey,
+                      fontStyle: FontStyle.italic,
+                    ),
+                ),
+                const SizedBox(
+                  height: 10.0,
+                ),
+                Row(
+                  children: [
+                    const Text(
+                      "Definicion: ",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold
+                      ),
+                    ),
+                    Text(
+                      data['mapuzuguletuain']![randint][3],
+                    )
+                  ],
+                ),
               ],
             ),
           ),

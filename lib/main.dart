@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter/services.dart' show ByteData, rootBundle;
 import 'package:csv/csv.dart';
-
 import 'package:app/global_var.dart';
-
 import 'package:app/components/nav.dart';
+
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();

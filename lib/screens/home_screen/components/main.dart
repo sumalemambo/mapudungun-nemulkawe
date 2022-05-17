@@ -1,7 +1,6 @@
 import 'package:app/models/word_model.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
-import 'package:app/global_var.dart';
 import 'package:app/models/database_helper.dart';
 
 
@@ -18,19 +17,17 @@ class _MainState extends State<Main> {
   void initState() {
     super.initState();
 
-    insertTest();
+    wordOfTheDay();
   }
 
-  void insertTest() async {
-    setState(() => isLoading = true);
-    word = await DatabaseHelper.instance.readWord(1);
+  void wordOfTheDay() async {
+    final int nrows = await DatabaseHelper.instance.count(Word.table);
+    final int randint = Random(
+        DateTime.now().millisecondsSinceEpoch ~/ 86400000
+    ).nextInt(nrows - 1) + 1;
+    word = await DatabaseHelper.instance.readWord(randint);
     setState(() => isLoading = false);
   }
-
-
-  final int randint = Random(
-      DateTime.now().millisecondsSinceEpoch ~/ 86400000
-  ).nextInt(data['mapuzuguletuain']!.length - 1) + 1;
 
   @override
   Widget build(BuildContext context) {
@@ -45,12 +42,13 @@ class _MainState extends State<Main> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.start,
-              children: [
+              children: isLoading
+              ? [const Center(child: CircularProgressIndicator(),)]
+              : [
                 Row(
                   children: [
                     Text(
-                      data['mapuzuguletuain']![randint][2][0].toUpperCase()
-                          + data['mapuzuguletuain']![randint][2].substring(1),
+                      word.word[0].toUpperCase() + word.word.substring(1),
                       style: const TextStyle(
                           fontSize: 45,
                           fontFamily: 'Roboto',
@@ -60,7 +58,7 @@ class _MainState extends State<Main> {
                   ]
                 ),
                 Text(
-                    data['mapuzuguletuain']![randint][0],
+                    word.theme,
                     style: const TextStyle(
                       fontSize: 18,
                       fontFamily: 'Roboto',
@@ -80,22 +78,10 @@ class _MainState extends State<Main> {
                       ),
                     ),
                     Text(
-                      data['mapuzuguletuain']![randint][3],
-                    )
-                  ],
-                ),
-                Row(
-                  children: isLoading
-                  ? [const Center(child: CircularProgressIndicator(),)]
-                  : [
-                    Text(
-                      word.theme,
-                    ),
-                    Text(
                       word.translation,
                     )
                   ],
-                )
+                ),
               ],
             ),
           ),

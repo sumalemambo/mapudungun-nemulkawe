@@ -1,26 +1,27 @@
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:app/models/word_model.dart';
 import 'package:flutter/services.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:sqflite/utils/utils.dart';
 
 class DatabaseHelper {
-  static final DatabaseHelper instance = DatabaseHelper._init();
-  static Database? _database;
+  // Singleton class (unique instance)
+  DatabaseHelper._privateConstructor();
+  static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
 
-  DatabaseHelper._init();
+  static Database? _database;
 
   Future<Database> get database async {
     if (_database != null) {
       return _database!;
     }
-    _database = await _initDB('database.db');
+    _database = await _initDb('database.db');
     return _database!;
   }
 
-  Future<Database> _initDB(String filePath) async {
+  Future<Database> _initDb(String filePath) async {
     var databasesPath = await getDatabasesPath();
     var path = join(databasesPath, "database.db");
 
@@ -57,7 +58,7 @@ class DatabaseHelper {
     const textType = 'TEXT';
 
     await db.execute('''
-    CREATE TABLE $tableWords (
+    CREATE TABLE $Word.table (
     ${WordFields.id} $idType,
     ${WordFields.theme} $textType,
     ${WordFields.isUnderTheme} $textType,
@@ -78,6 +79,16 @@ class DatabaseHelper {
     final id = await db.insert(Word.table, word.toJson());
 
     return word.copy(id: id);
+  }
+
+  Future<int> count(String table) async {
+    final db = await instance.database;
+    final rows = await db.rawQuery('SELECT COUNT(*) FROM $table');
+    final nrows = firstIntValue(rows);
+    if (nrows != null) {
+      return nrows;
+    }
+    return 0;
   }
 
   Future<Word> readWord(int id) async {

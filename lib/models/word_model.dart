@@ -1,8 +1,5 @@
 import 'package:app/models/model.dart';
 
-
-final String tableWords = 'Words';
-
 class WordFields {
   static final List<String> values = [
     // Add all fields
@@ -96,17 +93,20 @@ class Word extends Model {
   }
 
   @override
-  Map<String, Object?> toJson() => {
-    WordFields.id: id,
-    WordFields.theme: theme,
-    WordFields.isUnderTheme: isUnderTheme,
-    WordFields.word: word,
-    WordFields.translation: translation,
-    WordFields.image: image,
-    WordFields.definition: definition,
-    WordFields.conjugation: conjugation,
-    WordFields.declensions: declensions,
-    WordFields.examples: examples,
-    WordFields.pronunciation: pronunciation
-  };
+  Map<String, Object?> toJson() {
+    Map<String, Object?> map = {
+      WordFields.id: id,
+      WordFields.theme: theme,
+      WordFields.isUnderTheme: isUnderTheme,
+      WordFields.word: word,
+      WordFields.translation: translation,
+      WordFields.image: image,
+      WordFields.definition: definition,
+      WordFields.conjugation: conjugation,
+      WordFields.declensions: declensions,
+      WordFields.examples: examples,
+      WordFields.pronunciation: pronunciation
+    };
+    return map;
+  }
 }

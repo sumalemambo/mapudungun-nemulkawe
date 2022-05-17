@@ -15,6 +15,7 @@ class Main extends StatefulWidget {
 
 class _MainState extends State<Main> {
   late Word word;
+  bool isLoading = true;
   @override
   void initState() {
     super.initState();
@@ -31,8 +32,9 @@ class _MainState extends State<Main> {
 
     Word d = await DatabaseHelper.instance.create(word);
     print(d.id);
-    this.word = await DatabaseHelper.instance.readWord(7);
-    print(word.translation);
+    setState(() => isLoading = true);
+    this.word = await DatabaseHelper.instance.readWord(1);
+    setState(() => isLoading = false);
   }
 
 
@@ -93,7 +95,9 @@ class _MainState extends State<Main> {
                   ],
                 ),
                 Row(
-                  children: [
+                  children: isLoading
+                  ? [const Center(child: CircularProgressIndicator(),)]
+                  : [
                     Text(
                       word.theme,
                     ),

@@ -6,7 +6,7 @@ class WordFields {
   static final List<String> values = [
     // Add all fields
     id, theme, isUnderTheme, word, translation, image, definition, conjugation,
-    declensions, examples, pronunciation, old
+    declensions, examples, pronunciation
   ];
 
   static final String id = '_id';
@@ -20,7 +20,6 @@ class WordFields {
   static final String declensions = 'declensions';
   static final String examples = 'examples';
   static final String pronunciation = 'pronunciation';
-  static final String old = 'old';
 }
 
 class Word {
@@ -35,7 +34,6 @@ class Word {
   final String declensions;
   final String examples;
   final String pronunciation;
-  final String old;
 
   const Word({
     this.id,
@@ -49,7 +47,6 @@ class Word {
     required this.declensions,
     required this.examples,
     required this.pronunciation,
-    required this.old,
   });
 
   Word copy({
@@ -63,8 +60,7 @@ class Word {
     String? conjugation,
     String? declensions,
     String? examples,
-    String? pronunciation,
-    String? old,
+    String? pronunciation
   }) =>
       Word(
         id: id ?? this.id,
@@ -77,8 +73,7 @@ class Word {
         conjugation: conjugation ?? this.conjugation,
         declensions: declensions ?? this.declensions,
         examples: examples ?? this.examples,
-        pronunciation: pronunciation ?? this.pronunciation,
-        old: old  ?? this.old,
+        pronunciation: pronunciation ?? this.pronunciation
       );
 
   static Word fromJson(Map<String, Object?> json) => Word(
@@ -92,8 +87,7 @@ class Word {
     conjugation: json[WordFields.conjugation] as String,
     declensions: json[WordFields.declensions] as String,
     examples: json[WordFields.examples] as String,
-    pronunciation: json[WordFields.pronunciation] as String,
-    old: json[WordFields.old] as String,
+    pronunciation: json[WordFields.pronunciation] as String
   );
 
   Map<String, Object?> toJson() => {
@@ -107,7 +101,6 @@ class Word {
     WordFields.conjugation: conjugation,
     WordFields.declensions: declensions,
     WordFields.examples: examples,
-    WordFields.pronunciation: pronunciation,
-    WordFields.old: old,
+    WordFields.pronunciation: pronunciation
   };
 }

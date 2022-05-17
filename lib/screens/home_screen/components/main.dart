@@ -1,8 +1,5 @@
 import 'package:app/models/word_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show rootBundle;
-import 'package:csv/csv.dart';
-import 'package:csv/csv_settings_autodetection.dart';
 import 'dart:math';
 import 'package:app/global_var.dart';
 import 'package:app/models/database_helper.dart';
@@ -24,14 +21,6 @@ class _MainState extends State<Main> {
   }
 
   void insertTest() async {
-    Word word = Word(theme: 'hola', isUnderTheme: 'hola',
-        word: 'hola', translation: 'holanda, adios',
-        image: 'hola', definition: 'hola',
-        conjugation: 'hola', declensions: 'hola', examples: 'hola',
-        pronunciation: 'hola', old: 'hola');
-
-    Word d = await DatabaseHelper.instance.create(word);
-    print(d.id);
     setState(() => isLoading = true);
     this.word = await DatabaseHelper.instance.readWord(1);
     setState(() => isLoading = false);

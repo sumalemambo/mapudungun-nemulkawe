@@ -13,6 +13,7 @@ class Main extends StatefulWidget {
 class _MainState extends State<Main> {
   late Word word;
   bool isLoading = true;
+
   @override
   void initState() {
     super.initState();
@@ -22,7 +23,7 @@ class _MainState extends State<Main> {
 
   void insertTest() async {
     setState(() => isLoading = true);
-    this.word = await DatabaseHelper.instance.readWord(1);
+    word = await DatabaseHelper.instance.readWord(1);
     setState(() => isLoading = false);
   }
 

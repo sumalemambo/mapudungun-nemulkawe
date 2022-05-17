@@ -1,5 +1,6 @@
-//Theme,Is Under The Theme,Word,Translation,Image,Definition,Conjugation,
-// Declensions,Examples,Pronunciation,OLD
+import 'package:app/models/model.dart';
+
+
 final String tableWords = 'Words';
 
 class WordFields {
@@ -22,8 +23,9 @@ class WordFields {
   static final String pronunciation = 'pronunciation';
 }
 
-class Word {
-  final int? id;
+class Word extends Model {
+  static String table = 'Words';
+
   final String theme;
   final String isUnderTheme;
   final String word;
@@ -35,8 +37,8 @@ class Word {
   final String examples;
   final String pronunciation;
 
-  const Word({
-    this.id,
+  Word({
+    int? id,
     required this.theme,
     required this.isUnderTheme,
     required this.word,
@@ -47,7 +49,7 @@ class Word {
     required this.declensions,
     required this.examples,
     required this.pronunciation,
-  });
+  }) : super(id);
 
   Word copy({
     int? id,
@@ -76,20 +78,24 @@ class Word {
         pronunciation: pronunciation ?? this.pronunciation
       );
 
-  static Word fromJson(Map<String, Object?> json) => Word(
-    id: json[WordFields.id] as int?,
-    theme: json[WordFields.theme] as String,
-    isUnderTheme: json[WordFields.isUnderTheme] as String,
-    word: json[WordFields.word] as String,
-    translation: json[WordFields.translation] as String,
-    image: json[WordFields.image] as String,
-    definition: json[WordFields.definition] as String,
-    conjugation: json[WordFields.conjugation] as String,
-    declensions: json[WordFields.declensions] as String,
-    examples: json[WordFields.examples] as String,
-    pronunciation: json[WordFields.pronunciation] as String
-  );
+  /// Create Word object using {String: Object} dictionary
+  static Word fromMap(Map<String, Object?> json) {
+    return Word(
+      id: json[WordFields.id] as int?,
+      theme: json[WordFields.theme] as String,
+      isUnderTheme: json[WordFields.isUnderTheme] as String,
+      word: json[WordFields.word] as String,
+      translation: json[WordFields.translation] as String,
+      image: json[WordFields.image] as String,
+      definition: json[WordFields.definition] as String,
+      conjugation: json[WordFields.conjugation] as String,
+      declensions: json[WordFields.declensions] as String,
+      examples: json[WordFields.examples] as String,
+      pronunciation: json[WordFields.pronunciation] as String
+    );
+  }
 
+  @override
   Map<String, Object?> toJson() => {
     WordFields.id: id,
     WordFields.theme: theme,

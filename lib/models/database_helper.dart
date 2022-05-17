@@ -75,7 +75,7 @@ class DatabaseHelper {
   Future<Word> create(Word word) async {
     final db = await instance.database;
 
-    final id = await db.insert(tableWords, word.toJson());
+    final id = await db.insert(Word.table, word.toJson());
 
     return word.copy(id: id);
   }
@@ -84,14 +84,14 @@ class DatabaseHelper {
     final db = await instance.database;
 
     final maps = await db.query(
-      tableWords,
+      Word.table,
       columns: WordFields.values,
       where: '${WordFields.id} = ?',
       whereArgs: [id],
     );
 
     if (maps.isNotEmpty) {
-      return Word.fromJson(maps.first);
+      return Word.fromMap(maps.first);
     } else {
       throw Exception('ID NOT FOUND');
     }

@@ -8,6 +8,7 @@ import 'package:app/components/nav.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await readData();
+
   runApp(const App());
 }
 

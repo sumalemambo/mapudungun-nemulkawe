@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite/utils/utils.dart';
+import 'package:app/models/model.dart';
 
 /// Helper class to handle database transactions
 class DatabaseHelper {
@@ -51,7 +52,7 @@ class DatabaseHelper {
     }
     // open the database
 
-    return await openDatabase(path, readOnly: true);
+    return await openDatabase(path, readOnly: false);
   }
 
   Future _createDB(Database db, int version) async {
@@ -82,10 +83,16 @@ class DatabaseHelper {
   static Future<void> insert(String table, dynamic obj) async {
     // Get [database] instance
     final db = await instance.database;
-    // Transform [obj] to dictionary and insert on [table]
+    // Check if [obj] implements toMap() method, Dart is strongly typed so
+    // we can do this
+    if (obj is Model) {
+      // Transform [obj] to dictionary
+      obj = obj.toMap();
+    }
+    // Insert [obj] into [table]
     await db.insert(
         table,
-        obj.toMap(),
+        obj,
         conflictAlgorithm: ConflictAlgorithm.replace
     );
   }
@@ -104,7 +111,7 @@ class DatabaseHelper {
   static Future<List<Map<String, dynamic>>> selectById(
       String table,
       String columnId,
-      List<String> ids
+      List<int> ids
       ) async {
 
       // Get [database] instance

@@ -31,13 +31,20 @@ class _MainState extends State<Main> {
     ).nextInt(nrows - 1) + 1;
     word = await DatabaseHelper.instance.readWord(randint);
 
+    /* This code is for testing purposes
     var test = await DatabaseHelper.selectById(Word.table, WordFields.id,
-        ["1", "2"]);
+        [1, 2]);
     for (final e in test) {
       Word t = Word.fromMap(e);
       print(t.translation);
     }
-    Favorites test2 = Favorites(id: 1);
+    var _ids = await DatabaseHelper.selectAll("Favorites");
+    List<int> _idsList = [];
+    for (final e in _ids) {
+      _idsList.add(e['_id']);
+    }
+    print(_idsList);
+     */
     setState(() => isLoading = false);
   }
 

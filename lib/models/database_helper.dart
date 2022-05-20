@@ -6,6 +6,7 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite/utils/utils.dart';
 
+/// Helper class to handle database transactions
 class DatabaseHelper {
   // Singleton class (unique instance)
   DatabaseHelper._privateConstructor();
@@ -58,31 +59,76 @@ class DatabaseHelper {
     const textType = 'TEXT';
 
     await db.execute('''
-    CREATE TABLE $Word.table (
+    CREATE TABLE ${Word.table} (
     ${WordFields.id} $idType,
     ${WordFields.theme} $textType,
     ${WordFields.isUnderTheme} $textType,
     ${WordFields.word} $textType,
     ${WordFields.translation} $textType,
-    ${WordFields.image} $textType,
     ${WordFields.definition} $textType,
     ${WordFields.conjugation} $textType,
     ${WordFields.declensions} $textType,
     ${WordFields.examples} $textType,
     ${WordFields.pronunciation} $textType)
     ''');
+
+    await db.execute('''
+    CREATE TABLE Favorites (
+    ${WordFields.id} INTEGER PRIMARY KEY
+    )
+    ''');
+  }
+
+  static Future<void> insert(String table, dynamic obj) async {
+    // Get [database] instance
+    final db = await instance.database;
+    // Transform [obj] to dictionary and insert on [table]
+    await db.insert(
+        table,
+        obj.toMap(),
+        conflictAlgorithm: ConflictAlgorithm.replace
+    );
+  }
+
+  static Future<List<Map<String, dynamic>>> selectAll(
+      String table,
+      ) async {
+
+    // Get [database] instance
+    final db = await instance.database;
+    // Select all the rows in [table]
+    List<Map<String, dynamic>> rows = await db.query(table);
+    return rows;
+  }
+
+  static Future<List<Map<String, dynamic>>> selectById(
+      String table,
+      String columnId,
+      List<String> ids
+      ) async {
+
+      // Get [database] instance
+      final db = await instance.database;
+      // Select all the rows in [table] where [columnId] is in [ids]
+      var rows = db.query(
+        table,
+        // Handle variable length of [ids] list (id1, id2, ...)
+        where: '$columnId IN (${List.filled(ids.length, '?').join(',')})',
+        whereArgs: ids
+      );
+      return rows;
   }
 
   Future<Word> create(Word word) async {
     final db = await instance.database;
 
-    final id = await db.insert(Word.table, word.toJson());
-
+    final id = await db.insert(Word.table, word.toMap());
     return word.copy(id: id);
   }
 
   Future<int> count(String table) async {
     final db = await instance.database;
+
     final rows = await db.rawQuery('SELECT COUNT(*) FROM $table');
     final nrows = firstIntValue(rows);
     if (nrows != null) {

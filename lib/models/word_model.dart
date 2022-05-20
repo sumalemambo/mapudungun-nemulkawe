@@ -3,7 +3,7 @@ import 'package:app/models/model.dart';
 class WordFields {
   static final List<String> values = [
     // Add all fields
-    id, theme, isUnderTheme, word, translation, image, definition, conjugation,
+    id, theme, isUnderTheme, word, translation, definition, conjugation,
     declensions, examples, pronunciation
   ];
 
@@ -12,7 +12,6 @@ class WordFields {
   static final String isUnderTheme = 'isUnderTheme';
   static final String word = 'word';
   static final String translation = 'translation';
-  static final String image = 'image';
   static final String definition = 'definition';
   static final String conjugation = 'conjugation';
   static final String declensions = 'declensions';
@@ -27,7 +26,6 @@ class Word extends Model {
   final String isUnderTheme;
   final String word;
   final String translation;
-  final String image;
   final String definition;
   final String conjugation;
   final String declensions;
@@ -40,7 +38,6 @@ class Word extends Model {
     required this.isUnderTheme,
     required this.word,
     required this.translation,
-    required this.image,
     required this.definition,
     required this.conjugation,
     required this.declensions,
@@ -54,7 +51,6 @@ class Word extends Model {
     String? isUnderTheme,
     String? word,
     String? translation,
-    String? image,
     String? definition,
     String? conjugation,
     String? declensions,
@@ -67,7 +63,6 @@ class Word extends Model {
         isUnderTheme: isUnderTheme ?? this.isUnderTheme,
         word: word ?? this.word,
         translation: translation ?? this.translation,
-        image: image ?? this.image,
         definition: definition ?? this.definition,
         conjugation: conjugation ?? this.conjugation,
         declensions: declensions ?? this.declensions,
@@ -83,7 +78,6 @@ class Word extends Model {
       isUnderTheme: json[WordFields.isUnderTheme] as String,
       word: json[WordFields.word] as String,
       translation: json[WordFields.translation] as String,
-      image: json[WordFields.image] as String,
       definition: json[WordFields.definition] as String,
       conjugation: json[WordFields.conjugation] as String,
       declensions: json[WordFields.declensions] as String,
@@ -93,14 +87,13 @@ class Word extends Model {
   }
 
   @override
-  Map<String, Object?> toJson() {
+  Map<String, Object?> toMap() {
     Map<String, Object?> map = {
       WordFields.id: id,
       WordFields.theme: theme,
       WordFields.isUnderTheme: isUnderTheme,
       WordFields.word: word,
       WordFields.translation: translation,
-      WordFields.image: image,
       WordFields.definition: definition,
       WordFields.conjugation: conjugation,
       WordFields.declensions: declensions,

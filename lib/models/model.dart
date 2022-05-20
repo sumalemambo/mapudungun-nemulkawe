@@ -8,5 +8,5 @@ abstract class Model {
   static fromMap() {}
 
   /// Create Map (dictionary) from extended class parameters
-  toJson() {}
+  toMap() {}
 }

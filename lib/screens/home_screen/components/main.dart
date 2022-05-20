@@ -2,9 +2,13 @@ import 'package:app/models/word_model.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:app/models/database_helper.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:app/models/favorites.dart';
 
 
 class Main extends StatefulWidget {
+  const Main({Key? key}) : super(key: key);
+
   @override
   _MainState createState() => _MainState();
 }
@@ -26,15 +30,24 @@ class _MainState extends State<Main> {
         DateTime.now().millisecondsSinceEpoch ~/ 86400000
     ).nextInt(nrows - 1) + 1;
     word = await DatabaseHelper.instance.readWord(randint);
+
+    var test = await DatabaseHelper.selectById(Word.table, WordFields.id,
+        ["1", "2"]);
+    for (final e in test) {
+      Word t = Word.fromMap(e);
+      print(t.translation);
+    }
+    Favorites test2 = Favorites(id: 1);
     setState(() => isLoading = false);
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 500.0,
+        height: 200.0,
         child: Card(
           margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
+          color: Colors.red[50],
           elevation: 4.0,
           child: Padding(
             padding: EdgeInsets.all(12.0),
@@ -49,19 +62,18 @@ class _MainState extends State<Main> {
                   children: [
                     Text(
                       word.word[0].toUpperCase() + word.word.substring(1),
-                      style: const TextStyle(
+                      style: GoogleFonts.openSans(
                           fontSize: 45,
-                          fontFamily: 'Roboto',
-                          color: Colors.black
+                          color: Colors.black,
                       ),
+                      textAlign: TextAlign.center,
                     )
                   ]
                 ),
                 Text(
                     word.theme,
-                    style: const TextStyle(
+                    style: GoogleFonts.openSans(
                       fontSize: 18,
-                      fontFamily: 'Roboto',
                       color: Colors.grey,
                       fontStyle: FontStyle.italic,
                     ),
@@ -79,13 +91,19 @@ class _MainState extends State<Main> {
                     ),
                     Text(
                       word.translation,
+                        style: GoogleFonts.openSans()
                     )
                   ],
                 ),
+                Row(
+
+                )
               ],
             ),
           ),
         )
     );
   }
+
+
 }

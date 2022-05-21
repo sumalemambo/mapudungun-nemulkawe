@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:app/models/favorites.dart';
+import 'package:app/providers/favorites_provider.dart';
 
 class Main extends StatefulWidget {
   const Main({Key? key}) : super(key: key);

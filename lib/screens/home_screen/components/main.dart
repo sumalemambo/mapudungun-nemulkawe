@@ -1,9 +1,8 @@
 import 'package:app/models/word_model.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
-import 'package:app/models/database_helper.dart';
+import 'package:app/database/database_helper.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:app/models/favorites.dart';
 
 
 class Main extends StatefulWidget {

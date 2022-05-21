@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:app/models/word_model.dart';
-import 'package:app/models/database_helper.dart';
+import 'package:app/database/database_helper.dart';
 
 class FavoritesProvider extends ChangeNotifier {
   static const String table = 'Favorites';

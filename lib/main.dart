@@ -1,4 +1,4 @@
-import 'package:app/models/favorites.dart';
+import 'package:app/providers/favorites_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:app/components/nav.dart';
 import 'package:provider/provider.dart';

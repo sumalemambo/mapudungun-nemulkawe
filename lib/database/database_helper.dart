@@ -9,7 +9,7 @@ import 'package:app/models/model.dart';
 
 /// Helper class to handle database transactions
 class DatabaseHelper {
-  // Singleton class (unique instance)
+  // Singleton class constructor (unique instance)
   DatabaseHelper._privateConstructor();
   static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
 
@@ -124,13 +124,6 @@ class DatabaseHelper {
         whereArgs: ids
       );
       return rows;
-  }
-
-  Future<Word> create(Word word) async {
-    final db = await instance.database;
-
-    final id = await db.insert(Word.table, word.toMap());
-    return word.copy(id: id);
   }
 
   Future<int> count(String table) async {

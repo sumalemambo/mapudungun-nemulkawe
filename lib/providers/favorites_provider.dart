@@ -7,14 +7,19 @@ class FavoritesProvider extends ChangeNotifier {
   static const String id = '_id';
 
   List<Word> _item = [];
+  List<int> _itemIds = [];
+  List<int> get itemIds => _itemIds;
   List<Word> get item => _item;
+
+  Future<void> selectFavoritesIds() async {
+    var _ids = await DatabaseHelper.selectAll(table);
+    _itemIds = _ids.map((item) => item['_id'] as int).toList();
+    notifyListeners();
+  }
 
   Future<void> selectFavorites() async {
     var _ids = await DatabaseHelper.selectAll(table);
-    List<int> _idsList = [];
-    for (final e in _ids) {
-      _idsList.add(e[id]);
-    }
+    List<int> _idsList = _ids.map((item) => item['_id'] as int).toList();
     var dataList = await DatabaseHelper.selectById(
         Word.table,
         WordFields.id,
@@ -34,5 +39,10 @@ class FavoritesProvider extends ChangeNotifier {
         pronunciation: item['pronunciation']
         )).toList();
     notifyListeners();
+  }
+
+  void add(int id) {
+    _itemIds.add(id);
+    DatabaseHelper.insert(table, id);
   }
 }

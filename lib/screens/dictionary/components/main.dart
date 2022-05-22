@@ -4,7 +4,6 @@ import 'package:app/global_var.dart';
 class Main extends StatefulWidget {
   const Main({Key? key}) : super(key: key);
 
-
   @override
   State<Main> createState() => _MainState();
 }

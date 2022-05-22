@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:app/screens/home_screen/components/home_screen.dart';
 import 'package:app/screens/dictionary/components/dictionary.dart';
 import 'package:app/screens/favorites/components/favorites.dart';
+import 'package:app/screens/test/components/test.dart';
 
 class Nav extends StatefulWidget {
   const Nav({Key? key}) :  super(key: key);
@@ -15,8 +16,8 @@ class _NavState extends State<Nav> {
 
   static const List<Widget> _widgetOptions = <Widget>[
     Home(),
-    Dictionary(),
     Favorites(),
+    Test(),
   ];
 
   void _onItemTapped(int index) {
@@ -54,7 +55,7 @@ class _NavState extends State<Nav> {
           BottomNavigationBarItem(
               icon: Icon(Icons.favorite),
               label: 'Favoritos'
-          )
+          ),
         ],
         // _onItemTapped will receive the index of the selected item in the row
         currentIndex: _selectedIndex,

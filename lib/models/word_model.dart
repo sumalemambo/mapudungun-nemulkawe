@@ -1,5 +1,7 @@
 import 'package:app/models/model.dart';
 
+/// Class that helps us map between the Word parameters and the
+/// database columns
 class WordFields {
   static final List<String> values = [
     // Add all fields
@@ -7,20 +9,22 @@ class WordFields {
     declensions, examples, pronunciation
   ];
 
-  static final String id = '_id';
-  static final String theme = 'theme';
-  static final String isUnderTheme = 'isUnderTheme';
-  static final String word = 'word';
-  static final String translation = 'translation';
-  static final String definition = 'definition';
-  static final String conjugation = 'conjugation';
-  static final String declensions = 'declensions';
-  static final String examples = 'examples';
-  static final String pronunciation = 'pronunciation';
+  // Database columns mapping
+  static const String id = '_id';
+  static const String theme = 'theme';
+  static const String isUnderTheme = 'isUnderTheme';
+  static const String word = 'word';
+  static const String translation = 'translation';
+  static const String definition = 'definition';
+  static const String conjugation = 'conjugation';
+  static const String declensions = 'declensions';
+  static const String examples = 'examples';
+  static const String pronunciation = 'pronunciation';
 }
 
+/// App model for words
 class Word extends Model {
-  static String table = 'Words';
+  static const String table = 'Words';
 
   final String theme;
   final String isUnderTheme;
@@ -32,6 +36,7 @@ class Word extends Model {
   final String examples;
   final String pronunciation;
 
+  // Class constructor
   Word({
     int? id,
     required this.theme,
@@ -45,50 +50,26 @@ class Word extends Model {
     required this.pronunciation,
   }) : super(id);
 
-  Word copy({
-    int? id,
-    String? theme,
-    String? isUnderTheme,
-    String? word,
-    String? translation,
-    String? definition,
-    String? conjugation,
-    String? declensions,
-    String? examples,
-    String? pronunciation
-  }) =>
-      Word(
-        id: id ?? this.id,
-        theme: theme ?? this.theme,
-        isUnderTheme: isUnderTheme ?? this.isUnderTheme,
-        word: word ?? this.word,
-        translation: translation ?? this.translation,
-        definition: definition ?? this.definition,
-        conjugation: conjugation ?? this.conjugation,
-        declensions: declensions ?? this.declensions,
-        examples: examples ?? this.examples,
-        pronunciation: pronunciation ?? this.pronunciation
-      );
-
-  /// Create Word object using {String: Object} dictionary
-  static Word fromMap(Map<String, Object?> json) {
+  /// Create Word object using map ({String: Object} dictionary)
+  static Word fromMap(Map<String, Object?> map) {
     return Word(
-      id: json[WordFields.id] as int?,
-      theme: json[WordFields.theme] as String,
-      isUnderTheme: json[WordFields.isUnderTheme] as String,
-      word: json[WordFields.word] as String,
-      translation: json[WordFields.translation] as String,
-      definition: json[WordFields.definition] as String,
-      conjugation: json[WordFields.conjugation] as String,
-      declensions: json[WordFields.declensions] as String,
-      examples: json[WordFields.examples] as String,
-      pronunciation: json[WordFields.pronunciation] as String
+      id: map[WordFields.id] as int?,
+      theme: map[WordFields.theme] as String,
+      isUnderTheme: map[WordFields.isUnderTheme] as String,
+      word: map[WordFields.word] as String,
+      translation: map[WordFields.translation] as String,
+      definition: map[WordFields.definition] as String,
+      conjugation: map[WordFields.conjugation] as String,
+      declensions: map[WordFields.declensions] as String,
+      examples: map[WordFields.examples] as String,
+      pronunciation: map[WordFields.pronunciation] as String
     );
   }
 
   @override
-  Map<String, Object?> toMap() {
-    Map<String, Object?> map = {
+  /// Transform a Word instance into a map object ({String: Object} dictionary)
+  Map<String, dynamic> toMap() {
+    Map<String, dynamic> map = {
       WordFields.id: id,
       WordFields.theme: theme,
       WordFields.isUnderTheme: isUnderTheme,

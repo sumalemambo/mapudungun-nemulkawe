@@ -1,7 +1,9 @@
 import 'package:app/providers/favorites_provider.dart';
+import 'package:app/screens/test/components/main.dart';
 import 'package:flutter/material.dart';
 import 'package:app/components/nav.dart';
 import 'package:provider/provider.dart';
+import 'package:app/screens/test/components/test.dart';
 
 /*
 import 'package:flutter/services.dart' show ByteData, rootBundle;
@@ -31,6 +33,12 @@ void main() async{
       MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (context) => FavoritesProvider()),
+          ChangeNotifierProvider<Greet>(
+              create: (context) => Greet()
+          ),
+          ProxyProvider<Greet, Dgreet>(
+              update: (context, myGreet, anotherModel) => Dgreet(myGreet),
+          ),
         ],
         child: const App(),
       )

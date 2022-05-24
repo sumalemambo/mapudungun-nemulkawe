@@ -24,11 +24,15 @@ class _MainState extends State<Main> {
   }
 
   void wordOfTheDay() async {
-    final int nrows = await DatabaseHelper.instance.count(Word.table);
+    final int nrows = await DatabaseHelper.count(Word.table);
     final int randint = Random(
         DateTime.now().millisecondsSinceEpoch ~/ 86400000
     ).nextInt(nrows - 1) + 1;
-    word = await DatabaseHelper.instance.readWord(randint);
+    var row = await DatabaseHelper.selectById(
+        Word.table,
+        WordFields.id,
+        [randint]);
+    word = Word.fromMap(row[0]);
 
     /* This code is for testing purposes
     var test = await DatabaseHelper.selectById(Word.table, WordFields.id,

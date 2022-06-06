@@ -1,9 +1,9 @@
 import 'package:app/models/word_model.dart';
+import 'package:app/providers/favorites_provider.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:app/database/database_helper.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 
 class Main extends StatefulWidget {
   const Main({Key? key}) : super(key: key);
@@ -13,47 +13,86 @@ class Main extends StatefulWidget {
 }
 
 class _MainState extends State<Main> {
-  late Word word;
-  bool isLoading = true;
+  late Future<Map<String, dynamic>> _wordData;
 
   @override
   void initState() {
+    _wordData = _fetchWordOfTheDay();
     super.initState();
-
-    wordOfTheDay();
   }
 
-  void wordOfTheDay() async {
+  Future<Map<String, dynamic>> _fetchWordOfTheDay() async {
     final int nrows = await DatabaseHelper.count(Word.table);
     final int randint = Random(
         DateTime.now().millisecondsSinceEpoch ~/ 86400000
     ).nextInt(nrows - 1) + 1;
+
     var row = await DatabaseHelper.selectById(
         Word.table,
         WordFields.id,
         [randint]);
-    word = Word.fromMap(row[0]);
 
-    /* This code is for testing purposes
-    var test = await DatabaseHelper.selectById(Word.table, WordFields.id,
-        [1, 2]);
-    for (final e in test) {
-      Word t = Word.fromMap(e);
-      print(t.translation);
-    }
-    var _ids = await DatabaseHelper.selectAll("Favorites");
-    List<int> _idsList = [];
-    for (final e in _ids) {
-      _idsList.add(e['_id']);
-    }
-    print(_idsList);
-     */
-    setState(() => isLoading = false);
+    return row.first;
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
+      height: 200.0,
+      child: FutureBuilder<Map<String, dynamic>>(
+        future: _wordData,
+        builder: (
+            BuildContext context,
+            AsyncSnapshot<Map<String, dynamic>> snapshot
+            ) {
+          if (snapshot.hasData) {
+            var word = snapshot.data![WordFields.word];
+            var theme = snapshot.data![WordFields.theme];
+            var definition = snapshot.data![WordFields.definition];
+            return Card(
+                margin: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+                color: Colors.red[50],
+                elevation: 4.0,
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            word,
+                            style: GoogleFonts.openSans(
+                              fontSize: 45,
+                              color: Colors.black,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                          Text(
+                            theme,
+                            style: GoogleFonts.openSans(
+                              fontSize: 18,
+                              color: Colors.grey,
+                              fontStyle: FontStyle.italic,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                )
+            );
+          } else {
+            return const Center(child: CircularProgressIndicator(),);
+          }
+        },
+      ),
+    );
+
+
+    /* return Container(
         height: 200.0,
         child: Card(
           margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
@@ -113,7 +152,7 @@ class _MainState extends State<Main> {
           ),
         )
     );
+
+     */
   }
-
-
 }

@@ -1,7 +1,7 @@
 import 'package:app/models/model.dart';
 
-/// We'll use this class to map between the Word fields and the corresponding
-/// columns names
+/// We'll use this class to map between the fields of the Word class
+/// and the corresponding columns names in the database table.
 class WordFields {
   static final List<String> values = [
     // Add all fields
@@ -9,6 +9,7 @@ class WordFields {
     declensions, examples, pronunciation
   ];
 
+  // Each field is associated with its corresponding column name
   static const String id = '_id';
   static const String theme = 'theme';
   static const String isUnderTheme = 'isUnderTheme';

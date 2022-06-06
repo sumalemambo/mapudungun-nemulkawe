@@ -6,9 +6,36 @@ class FavoritesProvider extends ChangeNotifier {
   static const String table = 'Favorites';
   static const String id = '_id';
 
+  List<int> _itemIds = [];
+  List<int> get itemIds => _itemIds;
   List<Word> _item = [];
   List<Word> get item => _item;
 
+  void add(int id) {
+    _itemIds.add(id);
+    addFavorite(id);
+
+    notifyListeners();
+  }
+
+  void remove(int id) {
+    _itemIds.remove(id);
+    removeFavorite(id);
+
+    notifyListeners();
+  }
+
+  Future<void> removeFavorite(int id) async {
+    DatabaseHelper.delete(table, id);
+  }
+
+  Future<void> addFavorite(int id) async {
+    Map<String, dynamic> map = {
+      WordFields.id: id,
+    };
+    DatabaseHelper.insert(table, map);
+  }
+  
   Future<void> selectFavorites() async {
     var _ids = await DatabaseHelper.selectAll(table);
     List<int> _idsList = [];

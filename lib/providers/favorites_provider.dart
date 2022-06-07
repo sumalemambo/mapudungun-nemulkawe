@@ -6,8 +6,10 @@ class FavoritesProvider extends ChangeNotifier {
   static const String table = 'Favorites';
   static const String id = '_id';
 
+
   List<int> _itemIds = [];
   List<int> get itemIds => _itemIds;
+
   List<Word> _item = [];
   List<Word> get item => _item;
 
@@ -23,6 +25,11 @@ class FavoritesProvider extends ChangeNotifier {
     removeFavorite(id);
 
     notifyListeners();
+  }
+
+  Future<void> loadFavoriteIds() async {
+    var _ids = await DatabaseHelper.selectAll(table);
+    _itemIds = (_ids.map((item) => item['_id']).toList()).cast<int>();
   }
 
   Future<void> removeFavorite(int id) async {

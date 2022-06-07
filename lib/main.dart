@@ -43,8 +43,21 @@ class App extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Nav(),
+    return  MaterialApp(
+      home: FutureBuilder(
+        future: Provider.of<FavoritesProvider>(context, listen: false).
+        loadFavoriteIds(),
+        builder: (
+            BuildContext context,
+            AsyncSnapshot<void> snapshot
+        ) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            return const Nav();
+          } else {
+            return const Center(child: CircularProgressIndicator(),);
+          }
+        }
+      ),
     );
   }
 }

@@ -32,7 +32,6 @@ class _MainState extends State<Main> {
         WordFields.id,
         [randint]);
 
-    print(await DatabaseHelper.selectAll(FavoritesProvider.table));
     return row.first;
   }
 

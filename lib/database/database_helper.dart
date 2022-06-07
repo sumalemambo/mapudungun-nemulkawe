@@ -116,6 +116,23 @@ class DatabaseHelper {
       return rows;
   }
 
+  static Future<List<Map<String, dynamic>>> fetchInterval(
+      String table,
+      String columnId,
+      int offset,
+      int limit
+      ) async {
+
+    // Get [database] instance
+    final db = await instance.database;
+    var rows = db.query(
+      table,
+      where: '$columnId >= ? AND $columnId < ?',
+      whereArgs: [offset, limit]
+    );
+    return rows;
+  }
+
   /// Method to get the numbers of rows in the [table] table
   static Future<int> count(String table) async {
     // Get [database] instance

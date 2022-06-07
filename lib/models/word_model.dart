@@ -67,6 +67,21 @@ class Word extends Model {
     );
   }
 
+  static List<Word> fromList(List<Map<String, dynamic>> list) {
+    return list.map((item) => Word(
+        id: item[WordFields.id] as int?,
+        theme: item[WordFields.theme] as String,
+        isUnderTheme: item[WordFields.isUnderTheme] as String,
+        word: item[WordFields.word] as String,
+        translation: item[WordFields.translation] as String,
+        definition: item[WordFields.definition] as String,
+        conjugation: item[WordFields.conjugation] as String,
+        declensions: item[WordFields.declensions] as String,
+        examples: item[WordFields.examples] as String,
+        pronunciation: item[WordFields.pronunciation] as String
+    )).toList();
+  }
+
   @override
   /// Create map ({String: object} dictionary) from a Word instance fields
   Map<String, dynamic> toMap() {

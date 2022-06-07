@@ -29,6 +29,7 @@ class FavoritesProvider extends ChangeNotifier {
 
   Future<void> loadFavoriteIds() async {
     var _ids = await DatabaseHelper.selectAll(table);
+
     _itemIds = (_ids.map((item) => item['_id']).toList()).cast<int>();
   }
 

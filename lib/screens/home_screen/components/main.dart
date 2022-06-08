@@ -21,16 +21,21 @@ class _MainState extends State<Main> {
     super.initState();
   }
 
+  int todayToInt() {
+    var now = DateTime.now();
+    int today = now.year * 10000 + now.month * 100 + now.day;
+    return today;
+  }
+
   Future<Map<String, dynamic>> _fetchWordOfTheDay() async {
     final int nrows = await DatabaseHelper.count(Word.table);
-    final int randint = Random(
-        DateTime.now().millisecondsSinceEpoch ~/ 86400000
-    ).nextInt(nrows - 1) + 1;
+    final int numberOfTheDay = Random(todayToInt()).nextInt(nrows);
 
     var row = await DatabaseHelper.selectById(
         Word.table,
         WordFields.id,
-        [randint]);
+        [numberOfTheDay]
+    );
 
     return row.first;
   }

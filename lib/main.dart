@@ -45,6 +45,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return  MaterialApp(
       home: FutureBuilder(
+        // Here we load the favorites ids into the provider
         future: Provider.of<FavoritesProvider>(context, listen: false).
         loadFavoriteIds(),
         builder: (

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:app/providers/favorites_provider.dart';
+import '../../../database/database_helper.dart';
+import '../../../models/word_model.dart';
 
 class Main extends StatefulWidget {
   const Main({Key? key}) : super(key: key);
@@ -10,41 +12,96 @@ class Main extends StatefulWidget {
 }
 
 class _MainState extends State<Main> {
+  late Future<List<Word>> _wordData;
+
+  @override
+  void initState() {
+    _wordData = _fetchFavorites();
+    super.initState();
+  }
+
+  Future<List<Word>> _fetchFavorites() async {
+    final _ids = await DatabaseHelper.selectAll(FavoritesProvider.table);
+    var favorites_ids = (_ids.map((item) => item['_id']).toList()).cast<int>();
+    final rows = await DatabaseHelper.selectById(
+        Word.table,
+        WordFields.id,
+        favorites_ids);
+
+    return Word.fromList(rows);
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: FutureBuilder(
-        future: Provider.of<FavoritesProvider>(context, listen: false)
-            .selectFavorites(),
-        builder: (context, snapshot) => snapshot.connectionState ==
-                ConnectionState.waiting
-        ? const Center(child: CircularProgressIndicator(),)
-        : Consumer<FavoritesProvider>(
-          child: const Center(
-            child: Text(
-              'No se han añadido favoritos',
-              textAlign: TextAlign.center,
-            ),
-          ),
-          builder: (context, favoritesProvider, child) => favoritesProvider.
-                  item.isEmpty
-          ? child!
-          : ListView.builder(
-              itemCount: favoritesProvider.item.length,
-              itemBuilder: (context, i) {
-                return Card(
-                  child: ListTile(
-                    leading: Text(favoritesProvider.item[i].theme),
-                    title: Text(favoritesProvider.item[i].word),
-                    subtitle: Text(favoritesProvider.item[i].translation),
-                    trailing: const Icon(Icons.favorite),
-                  ),
-                );
-              }
-          )
-        )
-      ),
+    return FutureBuilder<List<Word>>(
+      future: _wordData,
+      builder: (
+          BuildContext context,
+          AsyncSnapshot<List<Word>> snapshot
+      ) {
+        if (snapshot.hasData) {
+          var favorites_list = snapshot.data!;
+          return Container(
+              height: 500.0,
+              child: Card(
+                  margin: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+                  elevation: 4.0,
+                  child: ListView.builder(
+                    itemCount: favorites_list.length,
+                    itemBuilder: (context, i) {
+                      return Card(
+                        child: ListTile(
+                          leading: Text(favorites_list[i].theme),
+                          title: Text(favorites_list[i].word),
+                          subtitle: Text(favorites_list[i].translation),
+                          trailing: _FavoriteButton(word: favorites_list[i]),
+                        ),
+                      );
+                    },
+                  )
+              )
+          );
+        } else {
+          return const Center(child: CircularProgressIndicator(),);
+        }
+      }
+    );
+  }
+}
+
+class _FavoriteButton extends StatelessWidget {
+  final Word word;
+
+  const _FavoriteButton({required this.word});
+
+  @override
+  Widget build(BuildContext context) {
+
+    var isInFavorites = context.select<FavoritesProvider, bool>(
+            (favorites) => favorites.itemIds.contains(word.id)
+    );
+
+    return IconButton(
+      onPressed: isInFavorites
+          ?  () {
+        var favorites = context.read<FavoritesProvider>();
+        favorites.remove(word.id!);
+      }
+          : () {
+        // If the item is not in cart, we let the user add it.
+        // We are using context.read() here because the callback
+        // is executed whenever the user taps the button. In other
+        // words, it is executed outside the build method.
+        var favorites = context.read<FavoritesProvider>();
+        favorites.add(word.id!);
+      },
+      icon: isInFavorites
+          ? const Icon(
+          Icons.favorite,
+          color: Colors.pink,
+          semanticLabel: 'ADDED'
+      )
+          : const Icon(Icons.favorite, color: Colors.grey,),
     );
   }
 }

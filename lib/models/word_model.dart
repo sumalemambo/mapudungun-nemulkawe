@@ -67,6 +67,7 @@ class Word extends Model {
     );
   }
 
+  /// Create a list of words objects from map (n: {String: object} dictionary)
   static List<Word> fromList(List<Map<String, dynamic>> list) {
     return list.map((item) => Word(
         id: item[WordFields.id] as int?,

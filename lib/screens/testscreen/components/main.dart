@@ -21,9 +21,8 @@ class _MainState extends State<Main> {
   }
 
   Future<List<Word>> _fetchWords() async {
-    final rows = await DatabaseHelper.fetchInterval(
+    final rows = await DatabaseHelper.fetchRange(
         Word.table,
-        WordFields.id,
         0,
         15
     );
@@ -33,34 +32,38 @@ class _MainState extends State<Main> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: FutureBuilder<List<Word>>(
-        future: _wordData,
-        builder: (
-            BuildContext context,
-            AsyncSnapshot<List<Word>> snapshot
-        ) {
-          if (snapshot.hasData) {
-            var wordList = snapshot.data!;
-            return ListView.builder(
-              itemCount: wordList.length,
-              shrinkWrap: true,
-              itemBuilder: (context, i) {
-                return Card(
-                  child: ListTile(
-                    leading: Text(wordList[i].theme),
-                    title: Text(wordList[i].word),
-                    subtitle: Text(wordList[i].translation),
-                    trailing: _FavoriteButton(word: wordList[i]),
-                  ),
-                );
-              },
-            );
-          } else {
-            return const Center(child: CircularProgressIndicator(),);
-          }
+    return FutureBuilder<List<Word>>(
+      future: _wordData,
+      builder: (
+          BuildContext context,
+          AsyncSnapshot<List<Word>> snapshot
+      ) {
+        if (snapshot.hasData) {
+          var wordList = snapshot.data!;
+          return Container(
+              height: 500.0,
+              child: Card(
+                  margin: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+                  elevation: 4.0,
+                  child: ListView.builder(
+                    itemCount: wordList.length,
+                    itemBuilder: (context, i) {
+                      return Card(
+                        child: ListTile(
+                          leading: Text(wordList[i].theme),
+                          title: Text(wordList[i].word),
+                          subtitle: Text(wordList[i].translation),
+                          trailing: _FavoriteButton(word: wordList[i]),
+                        ),
+                      );
+                    },
+                  )
+              )
+          );
+        } else {
+          return const Center(child: CircularProgressIndicator(),);
         }
-      ),
+      }
     );
   }
 }
@@ -81,6 +84,8 @@ class _FavoriteButton extends StatelessWidget {
       onPressed: isInFavorites
           ?  () {
         var favorites = context.read<FavoritesProvider>();
+        print(favorites.item);
+        print(favorites.itemIds);
         favorites.remove(word.id!);
       }
           : () {

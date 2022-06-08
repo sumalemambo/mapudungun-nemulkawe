@@ -116,19 +116,23 @@ class DatabaseHelper {
       return rows;
   }
 
-  static Future<List<Map<String, dynamic>>> fetchInterval(
+  /// Method to select rows from [table] in the range [offset, limit]
+  static Future<List<Map<String, dynamic>>> fetchRange(
       String table,
-      String columnId,
       int offset,
       int limit
       ) async {
 
     // Get [database] instance
     final db = await instance.database;
-    var rows = db.query(
-      table,
-      where: '$columnId >= ? AND $columnId < ?',
-      whereArgs: [offset, limit]
+    var rows = db.rawQuery(
+      '''
+      SELECT * FROM $table WHERE ROWID IN (
+        SELECT ROWID FROM $table LIMIT ? OFFSET ?
+      )
+      ''',
+      // Arguments
+      [limit, offset]
     );
     return rows;
   }

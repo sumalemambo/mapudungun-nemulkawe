@@ -13,6 +13,7 @@ class Main extends StatefulWidget {
 
 class _MainState extends State<Main> {
   late Future<List<Word>> _wordData;
+  late var favorites;
 
   @override
   void initState() {
@@ -21,12 +22,13 @@ class _MainState extends State<Main> {
   }
 
   Future<List<Word>> _fetchFavorites() async {
-    final _ids = await DatabaseHelper.selectAll(FavoritesProvider.table);
-    var favorites_ids = (_ids.map((item) => item['_id']).toList()).cast<int>();
+    var favorites = context.read<FavoritesProvider>();
+
+    final _ids = favorites.itemIds;
     final rows = await DatabaseHelper.selectById(
         Word.table,
         WordFields.id,
-        favorites_ids);
+        _ids);
 
     return Word.fromList(rows);
   }

@@ -12,6 +12,7 @@ class Main extends StatefulWidget {
 }
 
 class _MainState extends State<Main> {
+  //final wordList = [];
   late Future<List<Word>> _wordData;
 
   @override
@@ -21,11 +22,14 @@ class _MainState extends State<Main> {
   }
 
   Future<List<Word>> _fetchWords() async {
+    final rows = await DatabaseHelper.selectAll(Word.table);
+    /*
     final rows = await DatabaseHelper.fetchRange(
         Word.table,
         0,
-        15
+        20
     );
+    */
 
     return Word.fromList(rows);
   }
@@ -34,10 +38,7 @@ class _MainState extends State<Main> {
   Widget build(BuildContext context) {
     return FutureBuilder<List<Word>>(
       future: _wordData,
-      builder: (
-          BuildContext context,
-          AsyncSnapshot<List<Word>> snapshot
-      ) {
+      builder: (context, snapshot) {
         if (snapshot.hasData) {
           var wordList = snapshot.data!;
           return Container(
@@ -48,6 +49,19 @@ class _MainState extends State<Main> {
                   child: ListView.builder(
                     itemCount: wordList.length,
                     itemBuilder: (context, i) {
+                      /*
+                      if (i >= wordList.length - 25) {
+                        DatabaseHelper.fetchRange(
+                          Word.table,
+                          wordList.length,
+                          wordList.length + 50,
+                        ).then(
+                          (rows) {
+                            wordList.addAll(Word.fromList(rows));
+                          }
+                        );
+                      }
+                      */
                       return Card(
                         child: ListTile(
                           leading: Text(wordList[i].theme),

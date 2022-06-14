@@ -47,6 +47,8 @@ class _MainState extends State<Main> {
                   margin: const EdgeInsets.fromLTRB(16, 16, 16, 0),
                   elevation: 4.0,
                   child: ListView.builder(
+                    // La PageStorageKey almacena la ScrollPosition de la lista
+                    key: PageStorageKey<String>('Diccionario'),
                     itemCount: wordList.length,
                     itemBuilder: (context, i) {
                       /*

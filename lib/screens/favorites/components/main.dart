@@ -49,6 +49,8 @@ class _MainState extends State<Main> {
                   margin: const EdgeInsets.fromLTRB(16, 16, 16, 0),
                   elevation: 4.0,
                   child: ListView.builder(
+                    // La PageStorageKey almacena la Scroll Position de la lista
+                    key: PageStorageKey<String>('Favoritos'),
                     itemCount: favorites_list.length,
                     itemBuilder: (context, i) {
                       return Card(

@@ -28,7 +28,7 @@ void loadDict() async {
 // Este Bucket almacena la Scroll Position del Diccionario y los Favoritos
 final bucket = PageStorageBucket();
 
-void main() async{
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
       MultiProvider(

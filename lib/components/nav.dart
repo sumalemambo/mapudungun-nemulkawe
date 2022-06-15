@@ -3,6 +3,7 @@ import 'package:app/screens/home_screen/components/home_screen.dart';
 //import 'package:app/screens/dictionary/components/dictionary.dart';
 import 'package:app/screens/favorites/components/favorites.dart';
 import 'package:app/screens/testscreen/components/testscreen.dart';
+import 'package:app/screens/sliver_screen/components/sliver_screen.dart';
 /*TODO
 Cambiar "testscreen" a "dictionary"
  */
@@ -19,6 +20,7 @@ class _NavState extends State<Nav> {
 
   static const List<Widget> _widgetOptions = <Widget>[
     Home(),
+    //SliverScreen(),
     TestScreen(),
     Favorites(),
   ];

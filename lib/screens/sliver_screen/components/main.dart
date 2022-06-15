@@ -17,12 +17,20 @@ class _MainState extends State<Main> {
 
   @override
   void initState() {
-    super.initState();
     _wordData = _fetchWords();
+    super.initState();
   }
 
   Future<List<Word>> _fetchWords() async {
     final rows = await DatabaseHelper.selectAll(Word.table);
+    /*
+    final rows = await DatabaseHelper.fetchRange(
+        Word.table,
+        0,
+        20
+    );
+    */
+
     return Word.fromList(rows);
   }
 

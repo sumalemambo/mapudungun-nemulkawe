@@ -11,9 +11,12 @@ class Main extends StatefulWidget {
   _MainState createState() => _MainState();
 }
 
-class _MainState extends State<Main> {
+class _MainState extends State<Main> with AutomaticKeepAliveClientMixin {
   late Future<List<Word>> _wordData;
   late var favorites;
+
+  @override
+  bool get wantKeepAlive => false;
 
   @override
   void initState() {

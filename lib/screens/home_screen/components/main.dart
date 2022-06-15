@@ -12,8 +12,11 @@ class Main extends StatefulWidget {
   _MainState createState() => _MainState();
 }
 
-class _MainState extends State<Main> {
+class _MainState extends State<Main> with AutomaticKeepAliveClientMixin {
   late Future<Map<String, dynamic>> _wordData;
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   void initState() {

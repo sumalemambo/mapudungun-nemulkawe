@@ -11,9 +11,11 @@ class Main extends StatefulWidget {
   _MainState createState() => _MainState();
 }
 
-class _MainState extends State<Main> {
-  //final wordList = [];
+class _MainState extends State<Main> with AutomaticKeepAliveClientMixin {
   late Future<List<Word>> _wordData;
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   void initState() {
@@ -43,19 +45,6 @@ class _MainState extends State<Main> {
                     key: PageStorageKey<String>('Diccionario'),
                     itemCount: wordList.length,
                     itemBuilder: (context, i) {
-                      /*
-                      if (i >= wordList.length - 25) {
-                        DatabaseHelper.fetchRange(
-                          Word.table,
-                          wordList.length,
-                          wordList.length + 50,
-                        ).then(
-                          (rows) {
-                            wordList.addAll(Word.fromList(rows));
-                          }
-                        );
-                      }
-                      */
                       return Card(
                         child: ListTile(
                           leading: Text(wordList[i].theme),

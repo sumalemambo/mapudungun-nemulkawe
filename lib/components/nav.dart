@@ -18,6 +18,8 @@ class Nav extends StatefulWidget {
 class _NavState extends State<Nav> {
   int _selectedIndex = 0;
 
+  late PageController pageController;
+
   static const List<Widget> _widgetOptions = <Widget>[
     Home(),
     //SliverScreen(),
@@ -25,7 +27,26 @@ class _NavState extends State<Nav> {
     Favorites(),
   ];
 
+  @override
+  void initState() {
+    super.initState();
+    pageController = PageController();
+  }
+
+  @override
+  void dispose() {
+    pageController.dispose();
+    super.dispose();
+  }
+
   void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+    pageController.jumpToPage(index);
+  }
+
+  void onPageChanged(int index) {
     setState(() {
       _selectedIndex = index;
     });
@@ -45,7 +66,13 @@ class _NavState extends State<Nav> {
         ],
       ),
       */
-      body: Center(child: _widgetOptions[_selectedIndex]),
+      body: Center(
+        child: PageView(
+          children: _widgetOptions,
+          controller: pageController,
+          onPageChanged: onPageChanged,
+        ),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         // items is a list of BottomNavigationBarItem
         items: const <BottomNavigationBarItem>[

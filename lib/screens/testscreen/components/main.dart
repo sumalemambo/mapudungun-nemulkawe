@@ -3,6 +3,8 @@ import 'package:app/models/word_model.dart';
 import 'package:flutter/material.dart';
 import 'package:app/widgets/favorite_button.dart';
 
+import '../../details_screen/components/main.dart';
+
 class Main extends StatefulWidget {
   const Main({Key? key}) : super(key: key);
 
@@ -37,7 +39,7 @@ class _MainState extends State<Main> with AutomaticKeepAliveClientMixin {
           return SizedBox(
               height: 500.0,
               child: Card(
-                  margin: const EdgeInsets.fromLTRB(16, 16, 16, 16),
+                  margin: const EdgeInsets.fromLTRB(16, 16, 16, 0),
                   elevation: 4.0,
                   child: ListView.builder(
                     // La PageStorageKey almacena la ScrollPosition de la lista
@@ -50,6 +52,14 @@ class _MainState extends State<Main> with AutomaticKeepAliveClientMixin {
                           title: Text(wordList[i].word),
                           subtitle: Text(wordList[i].translation),
                           trailing: FavoriteButton(word: wordList[i]),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => DetailScreen(word: wordList[i])
+                                ),
+                            );
+                          },
                         ),
                       );
                     },

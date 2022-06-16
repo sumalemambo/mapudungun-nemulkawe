@@ -3,6 +3,8 @@ import 'package:app/models/word_model.dart';
 import 'package:flutter/material.dart';
 import 'package:app/widgets/favorite_button.dart';
 
+import '../../details_screen/components/main.dart';
+
 class Main extends StatefulWidget {
   const Main({Key? key}) : super(key: key);
 
@@ -47,6 +49,11 @@ class _MainState extends State<Main> {
                           title: Text(wordList[i].word),
                           subtitle: Text(wordList[i].translation),
                           trailing: FavoriteButton(word: wordList[i]),
+                          onTap: () {
+                            MaterialPageRoute(
+                                builder: (context) => DetailScreen(word: wordList[i])
+                            );
+                          },
                         ),
                       );
                     },

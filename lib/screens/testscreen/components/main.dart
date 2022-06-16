@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:app/providers/favorites_provider.dart';
 
+import '../../details_screen/components/main.dart';
+
 class Main extends StatefulWidget {
   const Main({Key? key}) : super(key: key);
 
@@ -51,6 +53,14 @@ class _MainState extends State<Main> with AutomaticKeepAliveClientMixin {
                           title: Text(wordList[i].word),
                           subtitle: Text(wordList[i].translation),
                           trailing: _FavoriteButton(word: wordList[i]),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => DetailScreen(word: wordList[i])
+                                ),
+                            );
+                          },
                         ),
                       );
                     },

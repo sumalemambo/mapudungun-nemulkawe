@@ -8,13 +8,11 @@ class Dictionary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: ListView(
-        children: const [
-          TopSection(),
-          Main(),
-        ],
-      ),
+    return ListView(
+      children: const [
+        TopSection(),
+        Main(),
+      ],
     );
   }
 }

@@ -1,5 +1,4 @@
 import 'package:app/models/word_model.dart';
-import 'package:app/providers/favorites_provider.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:app/database/database_helper.dart';
@@ -31,8 +30,8 @@ class _MainState extends State<Main> with AutomaticKeepAliveClientMixin {
   }
 
   Future<Map<String, dynamic>> _fetchWordOfTheDay() async {
-    final int nrows = await DatabaseHelper.count(Word.table);
-    final int numberOfTheDay = Random(todayToInt()).nextInt(nrows);
+    final int nRows = await DatabaseHelper.count(Word.table);
+    final int numberOfTheDay = Random(todayToInt()).nextInt(nRows);
 
     var row = await DatabaseHelper.selectById(
         Word.table,
@@ -93,74 +92,10 @@ class _MainState extends State<Main> with AutomaticKeepAliveClientMixin {
                 )
             );
           } else {
-            return const Center(child: CircularProgressIndicator(),);
+            return const Center(child: CircularProgressIndicator());
           }
         },
       ),
     );
-
-
-    /* return Container(
-        height: 200.0,
-        child: Card(
-          margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
-          color: Colors.red[50],
-          elevation: 4.0,
-          child: Padding(
-            padding: EdgeInsets.all(12.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: isLoading
-              ? [const Center(child: CircularProgressIndicator(),)]
-              : [
-                Row(
-                  children: [
-                    Text(
-                      word.word[0].toUpperCase() + word.word.substring(1),
-                      style: GoogleFonts.openSans(
-                          fontSize: 45,
-                          color: Colors.black,
-                      ),
-                      textAlign: TextAlign.center,
-                    )
-                  ]
-                ),
-                Text(
-                    word.theme,
-                    style: GoogleFonts.openSans(
-                      fontSize: 18,
-                      color: Colors.grey,
-                      fontStyle: FontStyle.italic,
-                    ),
-                ),
-                const SizedBox(
-                  height: 10.0,
-                ),
-                Row(
-                  children: [
-                    const Text(
-                      "Definicion: ",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold
-                      ),
-                    ),
-                    Text(
-                      word.translation,
-                        style: GoogleFonts.openSans()
-                    )
-                  ],
-                ),
-                Row(
-
-                )
-              ],
-            ),
-          ),
-        )
-    );
-
-     */
   }
 }

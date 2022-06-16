@@ -23,7 +23,7 @@ class _NavState extends State<Nav> {
   static const List<Widget> _widgetOptions = <Widget>[
     Home(),
     SliverScreen(),
-    //TestScreen(),
+    TestScreen(),
     Favorites(),
   ];
 
@@ -82,6 +82,10 @@ class _NavState extends State<Nav> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.book),
+            label: 'Diccionario 2',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.book),
             label: 'Diccionario',
           ),
           BottomNavigationBarItem(
@@ -101,7 +105,7 @@ class CustomShapeBorder extends ContinuousRectangleBorder {
   @override
   Path getOuterPath(Rect rect, {TextDirection? textDirection}) {
 
-    final double innerCircleRadius = 150.0;
+    const double innerCircleRadius = 150.0;
 
     Path path = Path();
     path.lineTo(0, rect.height);

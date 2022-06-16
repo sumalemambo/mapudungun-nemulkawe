@@ -7,13 +7,11 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: ListView(
-        children: [
-          TopSection(),
-          Main(),
-        ],
-      )
+    return ListView(
+      children: const [
+        TopSection(),
+        Main(),
+      ],
     );
   }
 }

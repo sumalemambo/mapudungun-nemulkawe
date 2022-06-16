@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:app/models/word_model.dart';
-import 'package:sqflite/sqflite.dart';
 
 var now = DateTime.now();
 var formatter = DateFormat.yMMMd('en_US');
@@ -14,21 +12,19 @@ class TopSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(20.0, 10.0, 0.0, 0.0),
-      child: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              today,
-              style: const TextStyle(color: Colors.grey, fontSize: 13.0),
-            ),
-            const Text(
-                'Palabra del Día',
-                  style: TextStyle(fontSize: 33.0),
-            ),
-          ],
-        ),
-      )
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            today,
+            style: const TextStyle(color: Colors.grey, fontSize: 13.0),
+          ),
+          const Text(
+              'Palabra del Día',
+                style: TextStyle(fontSize: 33.0),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -12,10 +12,10 @@ class _MainState extends State<Main> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
         height: 500.0,
         child: Card(
-          margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
+          margin: const EdgeInsets.fromLTRB(16, 16, 16, 0),
           elevation: 4.0,
           child: ListView.builder(
             itemCount: data['mapuzuguletuain']!.length - 1,
@@ -25,7 +25,7 @@ class _MainState extends State<Main> {
                   leading: Text(data['mapuzuguletuain']![i+1][0].toString()),
                   title: Text(data['mapuzuguletuain']![i+1][2].toString()),
                   subtitle: Text(data['mapuzuguletuain']![i+1][3].toString()),
-                  trailing: Icon(Icons.favorite),
+                  trailing: const Icon(Icons.favorite),
                 ),
               );
             },

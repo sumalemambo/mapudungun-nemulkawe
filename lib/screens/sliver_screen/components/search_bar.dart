@@ -1,10 +1,7 @@
 import 'package:app/database/database_helper.dart';
 import 'package:app/models/word_model.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:app/providers/favorites_provider.dart';
 import 'package:app/screens/testscreen/components/search_word.dart';
-import 'main.dart';
 
 class SearchBar extends StatefulWidget {
   const SearchBar({Key? key}) : super(key: key);
@@ -46,9 +43,15 @@ class _SearchBar extends State<SearchBar> {
                 automaticallyImplyLeading: false,
                 title: ListTile(
                   onTap: (){
-                    showSearch(context: context, delegate: SearchWordDelegate(wordList));
+                    showSearch(
+                        context: context,
+                        delegate: SearchWordDelegate(wordList),
+                    );
                   },
-                  title: Text("Buscar",style: TextStyle(color: Colors.white),),
+                  title: const Text(
+                      "Buscar",
+                      style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ),
             );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:app/providers/favorites_provider.dart';
+import 'package:app/widgets/favorite_button.dart';
 import '../../../database/database_helper.dart';
 import '../../../models/word_model.dart';
 
@@ -13,7 +14,6 @@ class Main extends StatefulWidget {
 
 class _MainState extends State<Main> with AutomaticKeepAliveClientMixin {
   late Future<List<Word>> _wordData;
-  late var favorites;
 
   @override
   bool get wantKeepAlive => false;
@@ -45,23 +45,23 @@ class _MainState extends State<Main> with AutomaticKeepAliveClientMixin {
           AsyncSnapshot<List<Word>> snapshot
       ) {
         if (snapshot.hasData) {
-          var favorites_list = snapshot.data!;
-          return Container(
+          var favoritesList = snapshot.data!;
+          return SizedBox(
               height: 500.0,
               child: Card(
                   margin: const EdgeInsets.fromLTRB(16, 16, 16, 0),
                   elevation: 4.0,
                   child: ListView.builder(
                     // La PageStorageKey almacena la Scroll Position de la lista
-                    key: PageStorageKey<String>('Favoritos'),
-                    itemCount: favorites_list.length,
+                    key: const PageStorageKey<String>('Favoritos'),
+                    itemCount: favoritesList.length,
                     itemBuilder: (context, i) {
                       return Card(
                         child: ListTile(
-                          leading: Text(favorites_list[i].theme),
-                          title: Text(favorites_list[i].word),
-                          subtitle: Text(favorites_list[i].translation),
-                          trailing: _FavoriteButton(word: favorites_list[i]),
+                          leading: Text(favoritesList[i].theme),
+                          title: Text(favoritesList[i].word),
+                          subtitle: Text(favoritesList[i].translation),
+                          trailing: FavoriteButton(word: favoritesList[i]),
                         ),
                       );
                     },
@@ -72,43 +72,6 @@ class _MainState extends State<Main> with AutomaticKeepAliveClientMixin {
           return const Center(child: CircularProgressIndicator(),);
         }
       }
-    );
-  }
-}
-
-class _FavoriteButton extends StatelessWidget {
-  final Word word;
-
-  const _FavoriteButton({required this.word});
-
-  @override
-  Widget build(BuildContext context) {
-
-    var isInFavorites = context.select<FavoritesProvider, bool>(
-            (favorites) => favorites.itemIds.contains(word.id)
-    );
-
-    return IconButton(
-      onPressed: isInFavorites
-          ?  () {
-        var favorites = context.read<FavoritesProvider>();
-        favorites.remove(word.id!);
-      }
-          : () {
-        // If the item is not in cart, we let the user add it.
-        // We are using context.read() here because the callback
-        // is executed whenever the user taps the button. In other
-        // words, it is executed outside the build method.
-        var favorites = context.read<FavoritesProvider>();
-        favorites.add(word.id!);
-      },
-      icon: isInFavorites
-          ? const Icon(
-          Icons.favorite,
-          color: Colors.pink,
-          semanticLabel: 'ADDED'
-      )
-          : const Icon(Icons.favorite, color: Colors.grey,),
     );
   }
 }

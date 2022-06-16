@@ -3,14 +3,13 @@ import 'package:app/models/word_model.dart';
 import 'package:provider/provider.dart';
 import 'package:app/providers/favorites_provider.dart';
 
-class _FavoriteButton extends StatelessWidget {
+class FavoriteButton extends StatelessWidget {
   final Word word;
 
-  const _FavoriteButton({required this.word});
+  const FavoriteButton({required this.word, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     var isInFavorites = context.select<FavoritesProvider, bool>(
             (favorites) => favorites.itemIds.contains(word.id)
     );

@@ -22,8 +22,8 @@ class _NavState extends State<Nav> {
 
   static const List<Widget> _widgetOptions = <Widget>[
     Home(),
-    //SliverScreen(),
-    TestScreen(),
+    SliverScreen(),
+    //TestScreen(),
     Favorites(),
   ];
 
@@ -82,12 +82,12 @@ class _NavState extends State<Nav> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.book),
-            label: 'Diccionario'
+            label: 'Diccionario',
           ),
           BottomNavigationBarItem(
               icon: Icon(Icons.favorite),
-              label: 'Favoritos'
-          )
+              label: 'Favoritos',
+          ),
         ],
         // _onItemTapped will receive the index of the selected item in the row
         currentIndex: _selectedIndex,

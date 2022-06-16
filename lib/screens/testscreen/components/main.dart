@@ -3,7 +3,7 @@ import 'package:app/models/word_model.dart';
 import 'package:flutter/material.dart';
 import 'package:app/widgets/favorite_button.dart';
 
-import '../../details_screen/components/main.dart';
+import 'package:app/screens/details_screen/components/main.dart';
 
 class Main extends StatefulWidget {
   const Main({Key? key}) : super(key: key);

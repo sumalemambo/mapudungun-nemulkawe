@@ -1,47 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:app/database/database_helper.dart';
 import 'package:app/models/word_model.dart';
-import 'package:app/widgets/favorite_button.dart';
-import 'main.dart';
-import 'search_bar.dart';
+import 'my_sliver_app_bar.dart';
+import 'my_sliver_list.dart';
 
 
-class SliverScreen extends StatelessWidget {
+class SliverScreen extends StatefulWidget {
   const SliverScreen({Key? key}) : super(key: key);
 
   @override
+  _SliverScreenState createState() => _SliverScreenState();
+}
+
+class _SliverScreenState extends State<SliverScreen> with AutomaticKeepAliveClientMixin {
+  late Future<List<Word>> _wordData;
+
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
+  void initState() {
+    super.initState();
+    _wordData = _fetchWords();
+  }
+
+  Future<List<Word>> _fetchWords() async {
+    final rows = await DatabaseHelper.selectAll(Word.table);
+    return Word.fromList(rows);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: DatabaseHelper.selectAll(Word.table),
+    return FutureBuilder<List<Word>>(
+      future: _wordData,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          final list = snapshot.data! as List<Map<String, dynamic>>;
-          final wordList = Word.fromList(list);
+          var wordList = snapshot.data!;
           return Card(
             margin: const EdgeInsets.fromLTRB(16, 16, 16, 0),
             elevation: 4.0,
             child: CustomScrollView(
               slivers: [
-                const SliverAppBar(
-                  pinned: true,
-                  floating: true,
-                  expandedHeight: 160.0,
-
-                ),
-                SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                      (context, i) {
-                        return Card(
-                          child: ListTile(
-                            leading: Text(wordList[i].theme),
-                            title: Text(wordList[i].word),
-                            subtitle: Text(wordList[i].translation),
-                            trailing: FavoriteButton(word: wordList[i]),
-                          ),
-                        );
-                      }
-                  )
-                ),
+                MySliverAppBar(wordList: wordList),
+                MySliverList(wordList: wordList),
               ],
             ),
           );

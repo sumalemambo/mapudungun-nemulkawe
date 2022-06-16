@@ -23,7 +23,6 @@ class _NavState extends State<Nav> {
   static const List<Widget> _widgetOptions = <Widget>[
     Home(),
     SliverScreen(),
-    TestScreen(),
     Favorites(),
   ];
 
@@ -79,10 +78,6 @@ class _NavState extends State<Nav> {
           BottomNavigationBarItem(
             icon: Icon(Icons.home_filled),
             label: 'Palabra del Día',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.book),
-            label: 'Diccionario 2',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.book),

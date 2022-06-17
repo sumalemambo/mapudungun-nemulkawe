@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../models/word_model.dart';
+import 'package:app/models/word_model.dart';
 
 class DetailScreen extends StatefulWidget {
   final Word word;
@@ -26,12 +26,12 @@ class _MainState extends State<DetailScreen> {
       body: ListView(
         children: [
           const SizedBox(height: 40.0),
-          _ImageAvatar(imageSrc: 'assets/azum6.png'),
+          const _ImageAvatar(imageSrc: 'assets/azum6.png'),
           const SizedBox(height: 25.0),
           Text(
             word.word,
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 30.0),
+            style: const TextStyle(fontSize: 30.0),
           ),
           _WordDetails(word: word)
         ],
@@ -83,7 +83,7 @@ class _WordDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return const Card(
     );
   }
 }

@@ -12,24 +12,27 @@ class MySliverList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverList(
-      delegate: SliverChildBuilderDelegate((context, i) {
-        return Card(
-          child: ListTile(
-            leading: Text(wordList[i].theme),
-            title: Text(wordList[i].word),
-            subtitle: Text(wordList[i].translation),
-            trailing: FavoriteButton(word: wordList[i]),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => DetailScreen(word: wordList[i])
-                ),
-              );
-            },
-          ),
-        );
-      })
+      delegate: SliverChildBuilderDelegate(
+        (context, i) {
+          return Card(
+            child: ListTile(
+              leading: Text(wordList[i].theme),
+              title: Text(wordList[i].word),
+              subtitle: Text(wordList[i].translation),
+              trailing: FavoriteButton(word: wordList[i]),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => DetailScreen(word: wordList[i])
+                  ),
+                );
+              },
+            ),
+          );
+        },
+        childCount: wordList.length,
+      )
     );
   }
 }

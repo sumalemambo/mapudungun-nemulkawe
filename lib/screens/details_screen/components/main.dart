@@ -20,6 +20,8 @@ class _MainState extends State<DetailScreen> {
     final double width = MediaQuery.of(context).size.width;
     // Screen height
     final double height = MediaQuery.of(context).size.height;
+    // fontSize multiplier
+    const double fontMultiplier = 20.0;
 
     return Scaffold(
       appBar: AppBar(
@@ -36,12 +38,13 @@ class _MainState extends State<DetailScreen> {
           Text(
             word.word,
             textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 30.0),
+            style: TextStyle(fontSize: fontMultiplier * height * 0.00205),
           ),
           _WordDetails(
               height: height,
               width: width,
-              word: word
+              word: word,
+              fontMultiplier: fontMultiplier,
           )
         ],
       ),
@@ -89,17 +92,17 @@ class _WordDetails extends StatelessWidget {
   final Word word;
   final double height;
   final double width;
+  final double fontMultiplier;
 
   const _WordDetails({
     required this.word,
     required this.height,
-    required this.width
+    required this.width,
+    required this.fontMultiplier
   });
 
   @override
   Widget build(BuildContext context) {
-    const double fontMultiplier = 20.0;
-
     return Container(
       constraints: BoxConstraints(
           minHeight: height * 0.45,
@@ -171,7 +174,7 @@ class _WordDetails extends StatelessWidget {
                     )
                 ),
                 SizedBox(
-                  height: height * 0.1,
+                  height: height * 0.065,
                 ),
                 Center(
                   child: FavoriteButton(word: word,),

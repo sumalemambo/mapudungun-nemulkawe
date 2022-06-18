@@ -16,6 +16,10 @@ class _MainState extends State<DetailScreen> {
   @override
   Widget build(BuildContext context) {
     final Word word = widget.word;
+    // Screen width
+    final double width = MediaQuery.of(context).size.width;
+    // Screen height
+    final double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
       appBar: AppBar(
@@ -26,15 +30,19 @@ class _MainState extends State<DetailScreen> {
       ),
       body: ListView(
         children: [
-          const SizedBox(height: 40.0),
+          SizedBox(height: height * 0.055),
           const _ImageAvatar(imageSrc: 'assets/azum6.png'),
-          const SizedBox(height: 25.0),
+          SizedBox(height: height * 0.035),
           Text(
             word.word,
             textAlign: TextAlign.center,
             style: const TextStyle(fontSize: 30.0),
           ),
-          _WordDetails(word: word)
+          _WordDetails(
+              height: height,
+              width: width,
+              word: word
+          )
         ],
       ),
     );
@@ -79,86 +87,99 @@ class _TitleRow extends StatelessWidget {
 
 class _WordDetails extends StatelessWidget {
   final Word word;
+  final double height;
+  final double width;
 
-  const _WordDetails({required this.word});
+  const _WordDetails({
+    required this.word,
+    required this.height,
+    required this.width
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
-      color: Colors.white,
-      elevation: 4.0,
-      child: Padding(
-        padding: EdgeInsets.all(12.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              word.theme,
-              style: const TextStyle(
-                  fontStyle: FontStyle.italic,
-                  color: Colors.grey
-              ),
-            ),
-            const SizedBox(
-              height: 10.0,
-            ),
-            Row(
-              children: const [
-                Text(
-                  "Definición ",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20.0
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 7.0,
-            ),
-            Row(
-              children: [
-                Text(
-                  word.translation,
-                ),
-              ],
-            ),
-            const SizedBox(
-                height: 12.0,
-            ),
-            Row(
-              children: const [
-                Text(
-                  "Ejemplos",
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 7.0,
-            ),
-            Row(
-              children: [
-                Text(
-                    word.examples,
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 15.0,
-            ),
-            Center(
-              child: FavoriteButton(word: word,),
-            ),
-          ],
-        ),
+    const double fontMultiplier = 20.0;
+
+    return Container(
+      constraints: BoxConstraints(
+          minHeight: height * 0.45,
+          minWidth: double.infinity,
+          maxHeight: double.infinity
       ),
+       child: Card(
+          margin: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 16.0),
+          color: Colors.white,
+          elevation: 4.0,
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  word.theme,
+                  style: const TextStyle(
+                      fontStyle: FontStyle.italic,
+                      color: Colors.grey
+                  ),
+                ),
+                SizedBox(
+                  height: height * 0.0165,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      "Definición ",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: fontMultiplier * height * 0.0015,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: height * 0.01,
+                ),
+                Flexible(
+                    child: Text(
+                        word.translation,
+                        style: TextStyle(fontSize: fontMultiplier * height * 0.001)
+                    )
+                ),
+                SizedBox(
+                    height: height * 0.0165,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      "Ejemplos",
+                      style: TextStyle(
+                        fontSize: fontMultiplier * height * 0.0015,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: height * 0.01,
+                ),
+                Flexible(
+                    child: Text(
+                      word.examples,
+                      style: TextStyle(fontSize: fontMultiplier * height * 0.001),
+                    )
+                ),
+                SizedBox(
+                  height: height * 0.1,
+                ),
+                Center(
+                  child: FavoriteButton(word: word,),
+                ),
+              ],
+            ),
+          ),
+       ),
     );
   }
 }

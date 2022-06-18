@@ -54,22 +54,26 @@ class _NavState extends State<Nav> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      /*
-      appBar: AppBar(
-        title: Image.asset('assets/azum6.png', fit: BoxFit.cover),
-        backgroundColor: Colors.blue,
-        shape: CustomShapeBorder(),
-        leading: Icon(Icons.menu),
-        actions: <Widget>[
-          IconButton(icon: Icon(Icons.notifications),onPressed: (){},)
-        ],
-      ),
-      */
       body: Center(
-        child: PageView(
-          children: _widgetOptions,
-          controller: pageController,
-          onPageChanged: onPageChanged,
+        child: WillPopScope(
+          // Función para redirigir el botón de regreso
+          onWillPop: () async {
+            print("Hey");
+            if (_selectedIndex == 0) {
+              return true;
+            }
+            else {
+              setState(() {
+                _onItemTapped(0);
+              });
+              return false;
+            }
+          },
+          child: PageView(
+            children: _widgetOptions,
+            controller: pageController,
+            onPageChanged: onPageChanged,
+          ),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(

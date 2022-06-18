@@ -83,7 +83,42 @@ class _WordDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Card(
+    return Card(
+      margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
+      color: Colors.white,
+      elevation: 4.0,
+      child: Padding(
+        padding: EdgeInsets.all(12.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              word.theme,
+            ),
+            const SizedBox(
+              height: 10.0,
+            ),
+            Row(
+              children: [
+                const Text(
+                  "Definicion: ",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold
+                  ),
+                ),
+                Text(
+                    word.translation,
+                )
+              ],
+            ),
+            Row(
+
+            )
+          ],
+        ),
+      ),
     );
   }
 }

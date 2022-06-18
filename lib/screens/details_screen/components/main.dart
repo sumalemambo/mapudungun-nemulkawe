@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:app/models/word_model.dart';
 import 'package:app/widgets/favorite_button.dart';
+import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/services.dart';
+import 'dart:typed_data';
 
 class DetailScreen extends StatefulWidget {
   final Word word;
@@ -23,6 +26,8 @@ class _MainState extends State<DetailScreen> {
     // fontSize multiplier
     const double fontMultiplier = 20.0;
 
+
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -40,6 +45,7 @@ class _MainState extends State<DetailScreen> {
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: fontMultiplier * height * 0.00205),
           ),
+          _TitleRow(word: word),
           _WordDetails(
               height: height,
               width: width,
@@ -78,13 +84,23 @@ class _ImageAvatar extends StatelessWidget {
 }
 
 class _TitleRow extends StatelessWidget {
-  final String word;
-
+  final Word word;
   const _TitleRow({required this.word});
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    final player = AudioPlayer();
+    return Container(
+      child: TextButton(
+          onPressed:() async{
+            String audioasset = "assets/sounds/test.mp3";
+            ByteData bytes = await rootBundle.load(audioasset); //load audio from assets
+            Uint8List audiobytes = bytes.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes);
+            await player.playBytes(audiobytes);
+          },
+          child: Icon(Icons.volume_up),
+      ),
+    );
   }
 }
 

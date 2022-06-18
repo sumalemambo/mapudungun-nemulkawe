@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:app/models/word_model.dart';
+import 'package:app/widgets/favorite_button.dart';
 
 class DetailScreen extends StatefulWidget {
   final Word word;
@@ -96,26 +97,65 @@ class _WordDetails extends StatelessWidget {
           children: [
             Text(
               word.theme,
+              style: const TextStyle(
+                  fontStyle: FontStyle.italic,
+                  color: Colors.grey
+              ),
             ),
             const SizedBox(
               height: 10.0,
             ),
             Row(
-              children: [
-                const Text(
-                  "Definicion: ",
+              children: const [
+                Text(
+                  "Definición ",
                   style: TextStyle(
-                      fontWeight: FontWeight.bold
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20.0
                   ),
                 ),
-                Text(
-                    word.translation,
-                )
               ],
             ),
+            const SizedBox(
+              height: 7.0,
+            ),
             Row(
-
-            )
+              children: [
+                Text(
+                  word.translation,
+                ),
+              ],
+            ),
+            const SizedBox(
+                height: 12.0,
+            ),
+            Row(
+              children: const [
+                Text(
+                  "Ejemplos",
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 7.0,
+            ),
+            Row(
+              children: [
+                Text(
+                    word.examples,
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 15.0,
+            ),
+            Center(
+              child: FavoriteButton(word: word,),
+            ),
           ],
         ),
       ),

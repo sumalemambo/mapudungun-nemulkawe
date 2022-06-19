@@ -88,7 +88,7 @@ class SearchWordDelegate extends SearchDelegate<List<Word>>{
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => DetailScreen(word: wordList[i])
+                    builder: (context) => DetailScreen(word: _filter[i])
                 ),
               );
             },

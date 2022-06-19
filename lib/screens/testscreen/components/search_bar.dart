@@ -42,14 +42,12 @@ class _SearchBar extends State<SearchBar> {
               child: AppBar(
                 automaticallyImplyLeading: false,
                 title: ListTile(
-                  onTap: (){
+                  title: const Text("Buscar"),
+                  onTap: () {
                     showSearch(context: context, delegate: SearchWordDelegate(wordList));
                   },
-                  title: const Text(
-                    "Buscar",
-                    style: TextStyle(color: Colors.white),
-                  ),
                 ),
+                backgroundColor: Colors.green,
               ),
             );
           } else {

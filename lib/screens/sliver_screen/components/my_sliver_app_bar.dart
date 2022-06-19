@@ -13,6 +13,7 @@ class MySliverAppBar extends StatelessWidget {
       pinned: true,
       floating: true,
       expandedHeight: 160.0,
+      backgroundColor: Colors.green,
       flexibleSpace: FlexibleSpaceBar(
         title: Center(
           child: ElevatedButton(
@@ -26,6 +27,10 @@ class MySliverAppBar extends StatelessWidget {
                 delegate: SearchWordDelegate(wordList),
               );
             },
+            style: ElevatedButton.styleFrom(
+              primary: Colors.green,
+              onPrimary: Colors.white,
+            ),
           ),
         ),
       ),

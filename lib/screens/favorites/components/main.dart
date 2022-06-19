@@ -47,25 +47,44 @@ class _MainState extends State<Main> with AutomaticKeepAliveClientMixin {
         if (snapshot.hasData) {
           var favoritesList = snapshot.data!;
           return SizedBox(
-              height: 500.0,
+              height: 400.0,
               child: Card(
                   margin: const EdgeInsets.fromLTRB(16, 16, 16, 0),
                   elevation: 4.0,
-                  child: ListView.builder(
-                    // La PageStorageKey almacena la Scroll Position de la lista
-                    key: const PageStorageKey<String>('Favoritos'),
-                    itemCount: favoritesList.length,
-                    itemBuilder: (context, i) {
-                      return Card(
-                        child: ListTile(
-                          leading: Text(favoritesList[i].theme),
-                          title: Text(favoritesList[i].word),
-                          subtitle: Text(favoritesList[i].translation),
-                          trailing: FavoriteButton(word: favoritesList[i]),
+                  child: Column(
+                    children: [
+                      Container(
+                        color: Colors.red,
+                        child: const ListTile(
+                          title: Text(
+                            "Favoritos",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.w600,
+                            )
+                          ),
                         ),
-                      );
-                    },
-                  )
+                      ),
+                      Expanded(
+                        child: ListView.builder(
+                          // La PageStorageKey almacena la Scroll Position de la lista
+                          key: const PageStorageKey<String>('Favoritos'),
+                          itemCount: favoritesList.length,
+                          itemBuilder: (context, i) {
+                            return Card(
+                              child: ListTile(
+                                leading: Text(favoritesList[i].theme),
+                                title: Text(favoritesList[i].word),
+                                subtitle: Text(favoritesList[i].translation),
+                                trailing: FavoriteButton(word: favoritesList[i]),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
               )
           );
         } else {

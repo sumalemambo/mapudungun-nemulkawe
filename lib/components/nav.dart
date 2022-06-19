@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:app/screens/home_screen/components/home_screen.dart';
+import 'package:app/screens/home_screen_2/components/home_screen.dart';
 //import 'package:app/screens/dictionary/components/dictionary.dart';
 import 'package:app/screens/favorites/components/favorites.dart';
 import 'package:app/screens/testscreen/components/testscreen.dart';
@@ -77,6 +77,7 @@ class _NavState extends State<Nav> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: [Colors.blue, Colors.green, Colors.red][_selectedIndex],
         // items is a list of BottomNavigationBarItem
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -88,8 +89,8 @@ class _NavState extends State<Nav> {
             label: 'Diccionario',
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.favorite),
-              label: 'Favoritos',
+            icon: Icon(Icons.favorite),
+            label: 'Favoritos',
           ),
         ],
         // _onItemTapped will receive the index of the selected item in the row

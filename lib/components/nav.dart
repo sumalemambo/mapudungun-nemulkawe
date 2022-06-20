@@ -58,7 +58,6 @@ class _NavState extends State<Nav> {
         child: WillPopScope(
           // Función para redirigir el botón de regreso
           onWillPop: () async {
-            print("Hey");
             if (_selectedIndex == 0) {
               return true;
             }

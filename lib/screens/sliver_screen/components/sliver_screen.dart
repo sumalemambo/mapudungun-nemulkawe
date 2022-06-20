@@ -13,6 +13,11 @@ class SliverScreen extends StatefulWidget {
 }
 
 class _SliverScreenState extends State<SliverScreen> with AutomaticKeepAliveClientMixin {
+  /* TODO
+  Actualmente no se está usando _wordData y el FutureBuilder se debería sacar.
+  Pero no se puede sacar directamente porque causa error (se referencia un null)
+  Algo se debe hacer, quizás esperar a obtenr wordList en lib/main.dart
+   */
   late Future<List<Word>> _wordData;
 
   @override
@@ -41,8 +46,9 @@ class _SliverScreenState extends State<SliverScreen> with AutomaticKeepAliveClie
             elevation: 4.0,
             child: CustomScrollView(
               slivers: [
-                MySliverAppBar(wordList: wordList),
-                MySliverList(wordList: wordList),
+                // Widgets personalizados
+                CustomSliverAppBar(),
+                MySliverList(),
               ],
             ),
           );

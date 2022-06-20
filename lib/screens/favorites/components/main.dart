@@ -38,6 +38,7 @@ class _MainState extends State<Main> with AutomaticKeepAliveClientMixin {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return FutureBuilder<List<Word>>(
       future: _wordData,
       builder: (

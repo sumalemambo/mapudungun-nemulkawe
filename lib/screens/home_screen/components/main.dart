@@ -44,6 +44,7 @@ class _MainState extends State<Main> with AutomaticKeepAliveClientMixin {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return SizedBox(
       height: 200.0,
       child: FutureBuilder<Map<String, dynamic>>(

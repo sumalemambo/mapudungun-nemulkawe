@@ -44,6 +44,7 @@ class _MainState extends State<Main> with AutomaticKeepAliveClientMixin {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return SizedBox(
       height: 550.0,
       child: FutureBuilder<Map<String, dynamic>>(
@@ -60,7 +61,7 @@ class _MainState extends State<Main> with AutomaticKeepAliveClientMixin {
                   children: [
                     Container(
                       color: Colors.blue,
-                      child: ListTile(
+                      child: const ListTile(
                         title: Text(
                           "Palabra del día",
                           style: TextStyle(

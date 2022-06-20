@@ -3,35 +3,37 @@ import 'package:app/models/word_model.dart';
 import 'package:app/screens/details_screen/components/main.dart';
 import 'package:app/widgets/favorite_button.dart';
 
+import 'package:provider/provider.dart';
+import 'package:app/providers/search_provider.dart';
+
 
 class MySliverList extends StatelessWidget {
-  final List<Word> wordList;
-
-  const MySliverList({Key? key, required this.wordList}) : super(key: key);
+  const MySliverList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var _filter = context.watch<SearchProvider>().filter;
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (context, i) {
           return Card(
             child: ListTile(
-              leading: Text(wordList[i].theme),
-              title: Text(wordList[i].word),
-              subtitle: Text(wordList[i].translation),
-              trailing: FavoriteButton(word: wordList[i]),
+              leading: Text(_filter[i].theme),
+              title: Text(_filter[i].word),
+              subtitle: Text(_filter[i].translation),
+              trailing: FavoriteButton(word: _filter[i]),
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => DetailScreen(word: wordList[i])
+                      builder: (context) => DetailScreen(word: _filter[i])
                   ),
                 );
               },
             ),
           );
         },
-        childCount: wordList.length,
+        childCount: _filter.length,
       )
     );
   }

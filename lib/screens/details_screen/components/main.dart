@@ -1,32 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:app/models/word_model.dart';
-import 'package:app/widgets/favorite_button.dart';
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/services.dart';
 import 'dart:typed_data';
 
-class DetailScreen extends StatefulWidget {
+import 'package:audioplayers/audioplayers.dart';
+
+import 'package:app/models/word_model.dart';
+
+import 'details_card.dart';
+
+// fontSize multiplier
+const double fontMultiplier = 20.0;
+
+
+class DetailScreen extends StatelessWidget {
   final Word word;
 
   const DetailScreen({Key? key, required this.word}) : super(key: key);
 
   @override
-  _MainState createState() => _MainState();
-}
-
-class _MainState extends State<DetailScreen> {
-
-  @override
   Widget build(BuildContext context) {
-    final Word word = widget.word;
-    // Screen width
-    final double width = MediaQuery.of(context).size.width;
-    // Screen height
-    final double height = MediaQuery.of(context).size.height;
-    // fontSize multiplier
-    const double fontMultiplier = 20.0;
-
-
+    final height = MediaQuery.of(context).size.height;
 
     return Scaffold(
       appBar: AppBar(
@@ -38,38 +31,20 @@ class _MainState extends State<DetailScreen> {
       body: ListView(
         children: [
           SizedBox(height: height * 0.055),
-          const _ImageAvatar(imageSrc: 'assets/azum6.png'),
+          const ImageAvatar(imageSrc: 'assets/azum6.png'),
           SizedBox(height: height * 0.035),
-          Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children:[
-              Text(
-                word.word,
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: fontMultiplier * height * 0.00205),
-              ),
-              _TitleRow(word: word),
-            ]
-                    )
-          ),
-          _WordDetails(
-              height: height,
-              width: width,
-              word: word,
-              fontMultiplier: fontMultiplier,
-          )
+          TitleRow(word: word),
+          DetailsCard(word: word)
         ],
       ),
     );
   }
 }
 
-class _ImageAvatar extends StatelessWidget {
+class ImageAvatar extends StatelessWidget {
   final String imageSrc;
 
-  const _ImageAvatar({required this.imageSrc});
+  const ImageAvatar({Key? key, required this.imageSrc}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -91,15 +66,25 @@ class _ImageAvatar extends StatelessWidget {
   }
 }
 
-class _TitleRow extends StatelessWidget {
+class TitleRow extends StatelessWidget {
   final Word word;
-  const _TitleRow({required this.word});
+
+  const TitleRow({Key? key, required this.word}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final player = AudioPlayer();
-    return Container(
-      child: TextButton(
+    final height = MediaQuery.of(context).size.height;
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text(
+          word.word,
+          textAlign: TextAlign.center,
+          style: TextStyle(fontSize: fontMultiplier * height * 0.00205),
+        ),
+        TextButton(
           onPressed: () async {
             String audioasset = "assets/sounds/test.mp3";
             ByteData bytes = await rootBundle.load(audioasset); //load audio from assets
@@ -107,106 +92,8 @@ class _TitleRow extends StatelessWidget {
             await player.playBytes(audiobytes);
           },
           child: const Icon(Icons.volume_up),
-      ),
-    );
-  }
-}
-
-class _WordDetails extends StatelessWidget {
-  final Word word;
-  final double height;
-  final double width;
-  final double fontMultiplier;
-
-  const _WordDetails({
-    required this.word,
-    required this.height,
-    required this.width,
-    required this.fontMultiplier
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      constraints: BoxConstraints(
-          minHeight: height * 0.45,
-          minWidth: double.infinity,
-          maxHeight: double.infinity
-      ),
-       child: Card(
-          margin: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 16.0),
-          color: Colors.white,
-          elevation: 4.0,
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  word.theme,
-                  style: const TextStyle(
-                      fontStyle: FontStyle.italic,
-                      color: Colors.grey
-                  ),
-                ),
-                SizedBox(
-                  height: height * 0.0165,
-                ),
-                Row(
-                  children: [
-                    Text(
-                      "Definición ",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: fontMultiplier * height * 0.0015,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: height * 0.01,
-                ),
-                Flexible(
-                    child: Text(
-                        word.translation,
-                        style: TextStyle(fontSize: fontMultiplier * height * 0.001)
-                    )
-                ),
-                SizedBox(
-                    height: height * 0.0165,
-                ),
-                Row(
-                  children: [
-                    Text(
-                      "Ejemplos",
-                      style: TextStyle(
-                        fontSize: fontMultiplier * height * 0.0015,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: height * 0.01,
-                ),
-                Flexible(
-                    child: Text(
-                      word.examples,
-                      style: TextStyle(fontSize: fontMultiplier * height * 0.001),
-                    )
-                ),
-                SizedBox(
-                  height: height * 0.065,
-                ),
-                Center(
-                  child: FavoriteButton(word: word,),
-                ),
-              ],
-            ),
-          ),
-       ),
+        ),
+      ],
     );
   }
 }

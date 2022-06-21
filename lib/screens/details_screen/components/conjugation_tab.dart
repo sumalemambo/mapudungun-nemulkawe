@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:app/models/word_model.dart';
 
 final persons = ["iñche", "iñchiw", "iñchiñ", "eymi", "eymu", "eymün", "fey", "fey egu", "fey egün"];
 
@@ -39,8 +40,11 @@ final endingsConsonant = [
   "i egün", "le egün", "pe egün",
 ];
 
-class VerbConjugator extends StatelessWidget {
-  const VerbConjugator({Key? key}) : super(key: key);
+
+class ConjugationTab extends StatelessWidget {
+  final Word word;
+
+  const ConjugationTab({Key? key, required this.word}) : super(key: key);
 
   List<String> conjugate(String s) {
     s = s.substring(0, s.length-1);

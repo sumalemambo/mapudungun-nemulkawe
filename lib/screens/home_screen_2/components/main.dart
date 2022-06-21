@@ -2,6 +2,7 @@ import 'package:app/models/word_model.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:app/database/database_helper.dart';
+import 'package:app/screens/details_screen/components/main.dart';
 
 class Main extends StatefulWidget {
   const Main({Key? key}) : super(key: key);
@@ -44,11 +45,12 @@ class _MainState extends State<Main> with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 300,
+      height: 320,
       child: FutureBuilder<Map<String, dynamic>>(
         future: _wordData,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
+            var data = Word.fromMap(snapshot.data!);
             var word = snapshot.data![WordFields.word];
             var theme = snapshot.data![WordFields.theme];
             var definition = snapshot.data![WordFields.translation];
@@ -84,7 +86,7 @@ class _MainState extends State<Main> with AutomaticKeepAliveClientMixin {
                       textAlign: TextAlign.left,
                     ),
                     Text(
-                      'Definición: '+definition,
+                      'Traducción: '+definition,
                       style: const TextStyle(
                           fontFamily: 'Avenir',
                           fontSize: 16,
@@ -92,7 +94,14 @@ class _MainState extends State<Main> with AutomaticKeepAliveClientMixin {
                           fontWeight: FontWeight.w500
                       ),
                       textAlign: TextAlign.left,
-                    )
+                    ),
+                    ElevatedButton(onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (
+                                context) => DetailScreen(
+                                word: data)),);}, child: Text('Más información...'))
                   ],
                 ),
               )

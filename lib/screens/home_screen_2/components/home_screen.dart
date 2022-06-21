@@ -86,7 +86,8 @@ class Home extends StatelessWidget {
                 ),
 
               ),
-              const Main()
+              const Main(),
+
             ],
           )
       ),

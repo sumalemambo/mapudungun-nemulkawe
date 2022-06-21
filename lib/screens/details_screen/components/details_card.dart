@@ -4,6 +4,7 @@ import 'package:app/models/word_model.dart';
 
 import 'definition_tab.dart';
 import 'conjugation_tab.dart';
+import 'notes_tab.dart';
 
 // fontSize multiplier
 const double fontMultiplier = 20.0;
@@ -56,11 +57,11 @@ class DetailsCard extends StatelessWidget {
                       ? [
                         DefinitionTab(word: word),
                         ConjugationTab(word: word),
-                        DefinitionTab(word: word),
+                        NotesTab(word: word),
                       ]
                       : [
                         DefinitionTab(word: word),
-                        DefinitionTab(word: word),
+                        NotesTab(word: word),
                       ],
                   ),
                 ),

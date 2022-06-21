@@ -71,6 +71,7 @@ flutter:
     - assets/db/database.db
     - assets/azum6.png
     - assets/sounds/
+    - lib/assets/day.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

@@ -2,7 +2,6 @@ import 'package:app/models/word_model.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:app/database/database_helper.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class Main extends StatefulWidget {
   const Main({Key? key}) : super(key: key);
@@ -44,68 +43,60 @@ class _MainState extends State<Main> with AutomaticKeepAliveClientMixin {
 
   @override
   Widget build(BuildContext context) {
-    super.build(context);
     return SizedBox(
-      height: 550.0,
+      height: 300,
       child: FutureBuilder<Map<String, dynamic>>(
         future: _wordData,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             var word = snapshot.data![WordFields.word];
             var theme = snapshot.data![WordFields.theme];
-            var definition = snapshot.data![WordFields.definition];
+            var definition = snapshot.data![WordFields.translation];
             return Card(
-                margin: const EdgeInsets.fromLTRB(16, 16, 16, 0),
-                elevation: 4.0,
+              elevation: 8,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              color: Colors.white,
+              child: Padding(
+                padding: const EdgeInsets.all(32.0),
                 child: Column(
-                  children: [
-                    Container(
-                      color: Colors.blue,
-                      child: const ListTile(
-                        title: Text(
-                          "Palabra del día",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        )
+                  children: <Widget>[
+                    Image.asset('lib/assets/day.png',height: 100,width: 100),
+                    Text(
+                      word,
+                      style: const TextStyle(
+                        fontFamily: 'Avenir',
+                        fontSize: 44,
+                        color: Color(0xff47455f),
+                        fontWeight: FontWeight.w900,
                       ),
+                      textAlign: TextAlign.left,
                     ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Column(
-                          //crossAxisAlignment: CrossAxisAlignment.stretch,
-                          //mainAxisSize: MainAxisSize.min,
-                          //mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Text(
-                                  word,
-                                  style: GoogleFonts.openSans(
-                                    fontSize: 45,
-                                    color: Colors.black,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                                Text(
-                                  theme,
-                                  style: GoogleFonts.openSans(
-                                    fontSize: 18,
-                                    color: Colors.grey,
-                                    fontStyle: FontStyle.italic,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
+                    Text(
+                      theme,
+                      style: const TextStyle(
+                        fontFamily: 'Avenir',
+                        fontSize: 23,
+                        color: Colors.blue,
+                        fontWeight: FontWeight.w500
                       ),
+                      textAlign: TextAlign.left,
                     ),
+                    Text(
+                      'Definición: '+definition,
+                      style: const TextStyle(
+                          fontFamily: 'Avenir',
+                          fontSize: 16,
+                          color: Colors.grey,
+                          fontWeight: FontWeight.w500
+                      ),
+                      textAlign: TextAlign.left,
+                    )
                   ],
                 ),
+              )
+              
             );
           }
           else {

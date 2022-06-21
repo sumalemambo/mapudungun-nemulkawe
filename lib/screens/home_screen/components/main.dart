@@ -54,9 +54,7 @@ class _MainState extends State<Main> with AutomaticKeepAliveClientMixin {
             AsyncSnapshot<Map<String, dynamic>> snapshot
             ) {
           if (snapshot.hasData) {
-            var word = snapshot.data![WordFields.word];
-            var theme = snapshot.data![WordFields.theme];
-            var definition = snapshot.data![WordFields.definition];
+            var data = Word.fromMap(snapshot.data!);
             return Card(
                 margin: const EdgeInsets.fromLTRB(16, 16, 16, 0),
                 color: Colors.red[50],
@@ -71,7 +69,7 @@ class _MainState extends State<Main> with AutomaticKeepAliveClientMixin {
                       Row(
                         children: [
                           Text(
-                            word,
+                            data.word,
                             style: GoogleFonts.openSans(
                               fontSize: 45,
                               color: Colors.black,
@@ -79,7 +77,15 @@ class _MainState extends State<Main> with AutomaticKeepAliveClientMixin {
                             textAlign: TextAlign.center,
                           ),
                           Text(
-                            theme,
+                            data.theme,
+                            style: GoogleFonts.openSans(
+                              fontSize: 18,
+                              color: Colors.grey,
+                              fontStyle: FontStyle.italic,
+                            ),
+                          ),
+                          Text(
+                            data.translation,
                             style: GoogleFonts.openSans(
                               fontSize: 18,
                               color: Colors.grey,

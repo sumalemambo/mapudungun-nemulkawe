@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:csv/csv.dart';
 
@@ -25,3 +26,4 @@ Future<List<List<dynamic>>> loadCSV(String path) async {
   final _rawData = await rootBundle.loadString(path);
   return const CsvToListConverter(fieldDelimiter: ';').convert(_rawData);
 }
+*/

@@ -44,6 +44,7 @@ class _MainState extends State<Main> with AutomaticKeepAliveClientMixin {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return SizedBox(
       height: 320,
       child: FutureBuilder<Map<String, dynamic>>(
@@ -51,9 +52,6 @@ class _MainState extends State<Main> with AutomaticKeepAliveClientMixin {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             var data = Word.fromMap(snapshot.data!);
-            var word = snapshot.data![WordFields.word];
-            var theme = snapshot.data![WordFields.theme];
-            var definition = snapshot.data![WordFields.translation];
             return Card(
               elevation: 8,
               shape: RoundedRectangleBorder(
@@ -64,9 +62,9 @@ class _MainState extends State<Main> with AutomaticKeepAliveClientMixin {
                 padding: const EdgeInsets.all(32.0),
                 child: Column(
                   children: <Widget>[
-                    Image.asset('lib/assets/day.png',height: 100,width: 100),
+                    Image.asset('assets/day.png',height: 100,width: 100),
                     Text(
-                      word,
+                      data.word,
                       style: const TextStyle(
                         fontFamily: 'Avenir',
                         fontSize: 44,
@@ -76,7 +74,7 @@ class _MainState extends State<Main> with AutomaticKeepAliveClientMixin {
                       textAlign: TextAlign.left,
                     ),
                     Text(
-                      theme,
+                      data.theme,
                       style: const TextStyle(
                         fontFamily: 'Avenir',
                         fontSize: 23,
@@ -86,7 +84,7 @@ class _MainState extends State<Main> with AutomaticKeepAliveClientMixin {
                       textAlign: TextAlign.left,
                     ),
                     Text(
-                      'Traducción: '+definition,
+                      'Traducción: ' + data.translation,
                       style: const TextStyle(
                           fontFamily: 'Avenir',
                           fontSize: 16,
@@ -95,13 +93,17 @@ class _MainState extends State<Main> with AutomaticKeepAliveClientMixin {
                       ),
                       textAlign: TextAlign.left,
                     ),
-                    ElevatedButton(onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (
-                                context) => DetailScreen(
-                                word: data)),);}, child: Text('Más información...'))
+                    ElevatedButton(
+                      child: const Text("Detalles..."),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => DetailScreen(word: data)
+                          ),
+                        );
+                      },
+                    )
                   ],
                 ),
               )

@@ -92,13 +92,13 @@ class _TitleRow extends StatelessWidget {
     final player = AudioPlayer();
     return Container(
       child: TextButton(
-          onPressed:() async{
+          onPressed: () async {
             String audioasset = "assets/sounds/test.mp3";
             ByteData bytes = await rootBundle.load(audioasset); //load audio from assets
             Uint8List audiobytes = bytes.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes);
             await player.playBytes(audiobytes);
           },
-          child: Icon(Icons.volume_up),
+          child: const Icon(Icons.volume_up),
       ),
     );
   }

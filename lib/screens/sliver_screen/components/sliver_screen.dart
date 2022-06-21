@@ -36,11 +36,11 @@ class _SliverScreenState extends State<SliverScreen> with AutomaticKeepAliveClie
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return FutureBuilder<List<Word>>(
       future: _wordData,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          var wordList = snapshot.data!;
           return const Card(
             margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
             elevation: 4.0,

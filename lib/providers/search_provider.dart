@@ -25,7 +25,13 @@ class SearchProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  // Buscar palabras
+  // Obtener todas las palabras
+  List<Word> get wordList => _wordList;
+
+  // Obtener las categorías
+  List<String> get categories => _wordList.map((data) => data.theme).toSet().toList();
+
+  // Obtener filtro de pantallas
   List<Word> get filter {
     var _filter = _wordList;
 

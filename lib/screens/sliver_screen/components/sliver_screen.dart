@@ -41,8 +41,8 @@ class _SliverScreenState extends State<SliverScreen> with AutomaticKeepAliveClie
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           var wordList = snapshot.data!;
-          return Card(
-            margin: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+          return const Card(
+            margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
             elevation: 4.0,
             child: CustomScrollView(
               slivers: [

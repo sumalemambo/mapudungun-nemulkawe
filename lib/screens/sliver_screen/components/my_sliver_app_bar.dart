@@ -4,7 +4,47 @@ import 'dart:math' as math;
 import 'package:provider/provider.dart';
 import 'package:app/providers/search_provider.dart';
 
+class CustomSliverAppBar extends StatelessWidget {
+  const CustomSliverAppBar({Key? key}) : super(key: key);
 
+  @override
+  Widget build(BuildContext context) {
+    return SliverAppBar(
+      pinned: true,
+      snap: true,
+      floating: true,
+      expandedHeight: 290.0,
+      backgroundColor: Colors.green,
+      flexibleSpace: FlexibleSpaceBar(
+        background: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Text(
+                'Diccionario',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            Padding(
+                padding: EdgeInsets.all(16.0),
+                child: SimpleSearchBar(),
+            ),
+            Padding(
+                padding: EdgeInsets.all(16.0),
+                child: AdvancedSearchBar(),
+            ),
+          ],
+        )
+      ),
+    );
+  }
+}
+
+/*
 class CustomSliverAppBar extends StatelessWidget {
   const CustomSliverAppBar({Key? key}) : super(key: key);
 
@@ -14,12 +54,13 @@ class CustomSliverAppBar extends StatelessWidget {
       pinned: true,
       snap: true,
       floating: true,
-      expandedHeight: 200.0,
+      expandedHeight: 320.0,
       backgroundColor: Colors.green,
       flexibleSpace: CustomFlexibleSpaceBar(),
     );
   }
 }
+*/
 
 class CustomFlexibleSpaceBar extends StatelessWidget {
   const CustomFlexibleSpaceBar({Key? key}) : super(key: key);
@@ -83,19 +124,19 @@ class CustomFlexibleSpaceBar extends StatelessWidget {
 }
 
 class SimpleSearchBar extends StatelessWidget {
-  //final textEditingController = TextEditingController();
-
   const SimpleSearchBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const Card(
+    return Card(
       child: TextField(
-        decoration: InputDecoration(
-          //controller: textEditingController,
+        decoration: const InputDecoration(
           hintText: "Buscar...",
           prefixIcon: Icon(Icons.search),
         ),
+        onChanged: (input) {
+          context.read<SearchProvider>().setQuery(input);
+        },
       )
     );
   }
@@ -107,8 +148,6 @@ class AdvancedSearchBar extends StatefulWidget {
   @override
   _AdvancedSearchBarState createState() => _AdvancedSearchBarState();
 }
-
-
 
 class _AdvancedSearchBarState extends State<AdvancedSearchBar> {
   final List<String> letters = const [
@@ -122,6 +161,7 @@ class _AdvancedSearchBarState extends State<AdvancedSearchBar> {
 
   @override
   Widget build(BuildContext context) {
+    var categories = context.watch<SearchProvider>().categories;
     return Column(
       children: [
         // Filtro por grafema inicial
@@ -144,6 +184,9 @@ class _AdvancedSearchBarState extends State<AdvancedSearchBar> {
                   );
                 }).toList(),
                 onChanged: (String? newInitialLetter) {
+                  setState(() {
+                    _initialLetter = newInitialLetter;
+                  });
                   context.read<SearchProvider>().setInitialLetter(newInitialLetter);
                 },
               ),
@@ -164,14 +207,17 @@ class _AdvancedSearchBarState extends State<AdvancedSearchBar> {
             Card(
               child: DropdownButton(
                 value: _category,
-                items: letters.map((letter) {
+                items: categories.map((category) {
                   return DropdownMenuItem(
-                    child: Text(letter),
-                    value: letter.toLowerCase(),
+                    child: Text(category),
+                    value: category,
                   );
                 }).toList(),
-                onChanged: (String? newInitialLetter) {
-                  context.read<SearchProvider>().setInitialLetter(newInitialLetter);
+                onChanged: (String? newCategory) {
+                  setState(() {
+                    _category = newCategory;
+                  });
+                  context.read<SearchProvider>().setCategory(newCategory);
                 },
               ),
             ),

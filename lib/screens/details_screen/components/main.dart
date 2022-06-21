@@ -40,12 +40,20 @@ class _MainState extends State<DetailScreen> {
           SizedBox(height: height * 0.055),
           const _ImageAvatar(imageSrc: 'assets/azum6.png'),
           SizedBox(height: height * 0.035),
-          Text(
-            word.word,
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: fontMultiplier * height * 0.00205),
+          Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children:[
+              Text(
+                word.word,
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: fontMultiplier * height * 0.00205),
+              ),
+              _TitleRow(word: word),
+            ]
+                    )
           ),
-          _TitleRow(word: word),
           _WordDetails(
               height: height,
               width: width,

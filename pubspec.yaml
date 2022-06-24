@@ -40,6 +40,7 @@ dependencies:
   # path:
   # csv: ^5.0.1
   audioplayers: ^0.20.1
+  expandable: ^5.0.1
 
 dev_dependencies:
   flutter_test:

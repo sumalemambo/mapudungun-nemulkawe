@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:app/database/database_helper.dart';
 import 'package:app/models/word_model.dart';
-import 'my_sliver_app_bar.dart';
-import 'my_sliver_list.dart';
+import 'dictionary_header.dart';
+import 'dictionary_list.dart';
 
 
 class DictionaryScreen extends StatefulWidget {
@@ -41,14 +41,13 @@ class _DictionaryScreenState extends State<DictionaryScreen> with AutomaticKeepA
       future: _wordData,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return const Card(
-            margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
-            elevation: 4.0,
-            child: CustomScrollView(
-              slivers: [
-                // Widgets personalizados
-                CustomSliverAppBar(),
-                MySliverList(),
+          return Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: const [
+                DictionaryHeader(),
+                SizedBox(height: 8.0),
+                DictionaryList(),
               ],
             ),
           );

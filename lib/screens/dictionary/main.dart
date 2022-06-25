@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:app/database/database_helper.dart';
 import 'package:app/models/word_model.dart';
-import 'dictionary_header.dart';
-import 'dictionary_list.dart';
+import 'components/dictionary_header.dart';
+import 'components/dictionary_list.dart';
 
 
 class DictionaryScreen extends StatefulWidget {
@@ -16,7 +16,7 @@ class _DictionaryScreenState extends State<DictionaryScreen> with AutomaticKeepA
   /* TODO
   Actualmente no se está usando _wordData y el FutureBuilder se debería sacar.
   Pero no se puede sacar directamente porque causa error (se referencia un null)
-  Algo se debe hacer, quizás esperar a obtener wordList en lib/main.dart
+  Algo se debe hacer, quizás esperar a obtener wordList en lib/word_of_the_day_card.dart
    */
   late Future<List<Word>> _wordData;
 

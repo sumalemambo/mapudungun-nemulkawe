@@ -6,7 +6,7 @@ import 'package:audioplayers/audioplayers.dart';
 
 import 'package:app/models/word_model.dart';
 
-import 'details_card.dart';
+import 'components/details_card.dart';
 
 // fontSize multiplier
 const double fontMultiplier = 20.0;

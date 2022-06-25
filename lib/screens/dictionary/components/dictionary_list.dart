@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:app/screens/details_screen/components/main.dart';
+import 'package:app/screens/details_screen/main.dart';
 import 'package:app/widgets/favorite_button.dart';
 
 import 'package:provider/provider.dart';

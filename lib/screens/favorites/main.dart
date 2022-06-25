@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:app/providers/favorites_provider.dart';
 
-import '../../../database/database_helper.dart';
-import '../../../models/word_model.dart';
+import '../../database/database_helper.dart';
+import '../../models/word_model.dart';
 
-import 'favorites_header.dart';
-import 'favorites_list.dart';
+import 'components/favorites_header.dart';
+import 'components/favorites_list.dart';
 
 
 class FavoritesScreen extends StatefulWidget {

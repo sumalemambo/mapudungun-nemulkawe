@@ -18,7 +18,7 @@ class _InitialLetterFilterState extends State<InitialLetterFilter> {
     'Ll', 'P', 'U', 'W', 'L', 'N',
   ];
 
-  String? _initialLetter;
+  String _initialLetter = '';
 
   @override
   Widget build(BuildContext context) {

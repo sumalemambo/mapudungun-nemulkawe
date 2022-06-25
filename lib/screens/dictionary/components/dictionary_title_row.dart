@@ -10,6 +10,7 @@ class DictionaryTitleRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
+        // Título
         const Text(
           'Diccionario',
           style: TextStyle(
@@ -20,21 +21,24 @@ class DictionaryTitleRow extends StatelessWidget {
           ),
         ),
         const Expanded(child: SizedBox()),
+        // Botón que expande o contrae el header con un ExpandableController
         Builder(
-            builder: (context) {
-              var controller = ExpandableController.of(context, required: true)!;
-              return ElevatedButton(
-                  child: Row(
-                    children: const [
-                      Icon(Icons.search),
-                      Text("Buscar..."),
-                    ],
-                  ),
-                  onPressed: () {
-                    controller.toggle();
-                  }
-              );
-            }
+          builder: (context) {
+            var controller = ExpandableController.of(context, required: true)!;
+            return ElevatedButton(
+              onPressed: () {controller.toggle();},
+              child: Row(
+                children: const [
+                  Icon(Icons.search),
+                  Text("Buscar..."),
+                ],
+              ),
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Colors.white),
+                foregroundColor: MaterialStateProperty.all(Colors.blue),
+              ),
+            );
+          },
         ),
       ],
     );

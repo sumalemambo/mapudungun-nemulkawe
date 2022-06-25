@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:expandable/expandable.dart';
 
 import 'dictionary_title_row.dart';
-import 'simple_search_bar.dart';
-import 'advanced_search_bar.dart';
+import 'search_bar.dart';
+import 'initial_letter_filter.dart';
+import 'category_filter.dart';
 
 class DictionaryHeader extends StatefulWidget {
   const DictionaryHeader({Key? key}) : super(key: key);
@@ -38,8 +39,9 @@ class _DictionaryHeaderState extends State<DictionaryHeader> {
                 collapsed: Container(),
                 expanded: Column(
                   children: const <Widget>[
-                    SimpleSearchBar(),
-                    AdvancedSearchBar(),
+                    SearchBar(),
+                    InitialLetterFilter(),
+                    CategoryFilter(),
                   ],
                 ),
               )

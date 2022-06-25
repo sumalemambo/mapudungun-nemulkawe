@@ -4,23 +4,23 @@ import 'package:app/models/word_model.dart';
 class SearchProvider with ChangeNotifier {
   final List<Word> _wordList;
 
-  String? _query;
-  String? _initialLetter;
-  String? _category;
+  String _query = '';
+  String _initialLetter = '';
+  String _category = '';
 
   SearchProvider(this._wordList);
 
-  void setQuery(String? newQuery) {
-    _query = newQuery?.toLowerCase();
+  void setQuery(String newQuery) {
+    _query = newQuery.toLowerCase();
     notifyListeners();
   }
 
-  void setInitialLetter(String? newInitialLetter) {
-    _initialLetter = newInitialLetter?.toLowerCase();
+  void setInitialLetter(String newInitialLetter) {
+    _initialLetter = newInitialLetter.toLowerCase();
     notifyListeners();
   }
 
-  void setCategory(String? newCategory) {
+  void setCategory(String newCategory) {
     _category = newCategory;
     notifyListeners();
   }
@@ -36,12 +36,12 @@ class SearchProvider with ChangeNotifier {
     var _filter = _wordList;
 
     // Filtro por categoría
-    if (_category != null) {
+    if (_category != '') {
       _filter = _filter.where((data) => data.theme == _category).toList();
     }
 
     // Filtro por letra inicial
-    if (_initialLetter != null) {
+    if (_initialLetter != '') {
       if (_initialLetter == 'l') {
         _filter = _filter.where((data) {
           var word = data.word.toLowerCase();
@@ -70,25 +70,25 @@ class SearchProvider with ChangeNotifier {
       else {
         _filter = _filter.where((data) {
           var word = data.word.toLowerCase();
-          return word.startsWith(_initialLetter!);
+          return word.startsWith(_initialLetter);
         }).toList();
       }
     }
 
     // Filtro por búsqueda
-    if (_query != null) {
+    if (_query != '') {
       var beginning = _filter.where((data) {
         var word = data.word.toLowerCase();
-        return word.startsWith(_query!);
+        return word.startsWith(_query);
       }).toList();
       var containing = _filter.where((data) {
         var word = data.word.toLowerCase();
-        return word.contains(_query!) && !word.startsWith(_query!);
+        return word.contains(_query) && !word.startsWith(_query);
       }).toList();
       var translationContaining = _filter.where((data) {
         var word = data.word.toLowerCase();
         var translation = data.translation.toLowerCase();
-        return translation.contains(_query!) && !word.contains(_query!);
+        return translation.contains(_query) && !word.contains(_query);
       }).toList();
 
       // Retornar inmediatamente si hay una query

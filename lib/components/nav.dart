@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:app/screens/home_screen_2/components/home_screen.dart';
-import 'package:app/screens/dictionary/components/main.dart';
-import 'package:app/screens/favorites/components/main.dart';
+import 'package:app/screens/home/main.dart';
+import 'package:app/screens/dictionary/main.dart';
+import 'package:app/screens/favorites/main.dart';
 
 
 class Nav extends StatefulWidget {
@@ -18,7 +18,7 @@ class _NavState extends State<Nav> {
   late PageController pageController;
 
   static const List<Widget> _widgetOptions = <Widget>[
-    Home(),
+    HomeScreen(),
     DictionaryScreen(),
     FavoritesScreen(),
   ];

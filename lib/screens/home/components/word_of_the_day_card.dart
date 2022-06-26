@@ -70,8 +70,9 @@ class _WordOfTheDayCardState extends State<WordOfTheDayCard> with AutomaticKeepA
                       color: Color(0xff47455f),
                       fontWeight: FontWeight.w900,
                     ),
-                    textAlign: TextAlign.left,
+                    textAlign: TextAlign.center,
                   ),
+                  const SizedBox(height: 4.0),
                   Text(
                     data.theme,
                     style: const TextStyle(
@@ -80,8 +81,9 @@ class _WordOfTheDayCardState extends State<WordOfTheDayCard> with AutomaticKeepA
                       color: Colors.blue,
                       fontWeight: FontWeight.w500
                     ),
-                    textAlign: TextAlign.left,
+                    textAlign: TextAlign.center,
                   ),
+                  const SizedBox(height: 4.0),
                   Text(
                     data.translation,
                     maxLines: 3,
@@ -92,8 +94,9 @@ class _WordOfTheDayCardState extends State<WordOfTheDayCard> with AutomaticKeepA
                         color: Colors.grey,
                         fontWeight: FontWeight.w500
                     ),
-                    textAlign: TextAlign.left,
+                    textAlign: TextAlign.center,
                   ),
+                  const SizedBox(height: 4.0),
                   ElevatedButton(
                     child: const Text("Detalles..."),
                     onPressed: () {

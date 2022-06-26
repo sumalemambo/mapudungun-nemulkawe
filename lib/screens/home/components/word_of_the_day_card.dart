@@ -85,7 +85,7 @@ class _WordOfTheDayCardState extends State<WordOfTheDayCard> with AutomaticKeepA
                   ),
                   const SizedBox(height: 4.0),
                   Text(
-                    data.translation,
+                    'Significado: ' + data.translation,
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(

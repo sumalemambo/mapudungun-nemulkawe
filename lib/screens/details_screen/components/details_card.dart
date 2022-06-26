@@ -52,7 +52,7 @@ class DetailsCard extends StatelessWidget {
       Row(
         children: [
           Text(
-            "Definición",
+            "Significado",
             style: GoogleFonts.openSans(
               textStyle: TextStyle(
                   color: const Color(0xFF333333),

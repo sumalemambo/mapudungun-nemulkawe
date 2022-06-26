@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:app/models/word_model.dart';
 
@@ -23,10 +24,12 @@ class DetailsCard extends StatelessWidget {
         children: [
           Text(
             word.theme,
-            style: TextStyle(
-                fontSize: fontMultiplier * height * 0.001,
-                fontStyle: FontStyle.italic,
-                color: Colors.grey
+            style: GoogleFonts.openSans(
+              textStyle: TextStyle(
+                  color: Colors.grey,
+                  fontStyle: FontStyle.italic,
+                  fontSize: fontMultiplier * height * 0.001
+              ),
             ),
           ),
         ],
@@ -42,9 +45,11 @@ class DetailsCard extends StatelessWidget {
             Expanded(
                 child: Text(
                   word.translation,
-                  style: TextStyle(
-                      color: const Color(0xFF333333),
-                      fontSize: fontMultiplier * height * 0.001
+                  style: GoogleFonts.openSans(
+                    textStyle: TextStyle(
+                        color: const Color(0xFF333333),
+                        fontSize: fontMultiplier * height * 0.001
+                    ),
                   ),
                 )
             ),
@@ -57,10 +62,12 @@ class DetailsCard extends StatelessWidget {
         children: [
           Text(
             "Ejemplos",
-            style: TextStyle(
-              color: const Color(0xFF333333),
-              fontSize: fontMultiplier * height * 0.0015,
-              fontWeight: FontWeight.bold,
+            style: GoogleFonts.openSans(
+              textStyle: TextStyle(
+                  color: const Color(0xFF333333),
+                  fontSize: fontMultiplier * height * 0.0015,
+                  fontWeight: FontWeight.bold
+              ),
             ),
           ),
         ],
@@ -73,9 +80,12 @@ class DetailsCard extends StatelessWidget {
             Expanded(
                 child: Text(
                   word.examples,
-                  style: TextStyle(
-                      color: const Color(0xFF333333),
-                      fontSize: fontMultiplier * height * 0.001),
+                  style: GoogleFonts.openSans(
+                    textStyle: TextStyle(
+                        color: const Color(0xFF333333),
+                        fontSize: fontMultiplier * height * 0.001
+                    ),
+                  ),
                 )
             ),
           ]

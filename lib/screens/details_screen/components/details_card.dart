@@ -106,6 +106,26 @@ class DetailsCard extends StatelessWidget {
               SizedBox(
                 height: height * 0.01,
               ),
+
+              // Ejemplos
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      word.examples,
+                      style: GoogleFonts.openSans(
+                        textStyle: TextStyle(
+                            color: const Color(0xFF333333),
+                            fontSize: fontMultiplier * height * 0.001
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+
+              /*
+              // TODO: Comentado hasta arreglar el formato de ejemplos
               // Cada uno de los ejemplos
               Column(
                 children: List.generate(examples.length, (i) {
@@ -148,7 +168,7 @@ class DetailsCard extends StatelessWidget {
 
                 }),
               ),
-
+              */
             ]
           )
         : Container(),

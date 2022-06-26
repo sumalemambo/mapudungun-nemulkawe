@@ -6,6 +6,7 @@ import 'package:audioplayers/audioplayers.dart';
 
 import 'package:app/models/word_model.dart';
 
+import 'package:app/widgets/favorite_button.dart';
 import 'components/details_card.dart';
 
 // fontSize multiplier
@@ -37,6 +38,7 @@ class DetailScreen extends StatelessWidget {
                  const ImageAvatar(imageSrc: 'assets/azum6.png'),
                  SizedBox(height: height * 0.035),
                  TitleRow(word: word),
+                 FavoriteButton(word: word),
                  DetailsCard(word: word, height: height,)
                ],
              ),
@@ -88,7 +90,11 @@ class TitleRow extends StatelessWidget {
         Text(
           word.word,
           textAlign: TextAlign.center,
-          style: TextStyle(fontSize: fontMultiplier * height * 0.00205),
+          style: TextStyle(
+            fontFamily: 'Avenir',
+            fontSize: fontMultiplier * height * 0.00205,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         TextButton(
           onPressed: () async {

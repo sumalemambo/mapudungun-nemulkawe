@@ -83,7 +83,9 @@ class _WordOfTheDayCardState extends State<WordOfTheDayCard> with AutomaticKeepA
                     textAlign: TextAlign.left,
                   ),
                   Text(
-                    'Traducción: ' + data.translation,
+                    data.translation,
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
                         fontFamily: 'Avenir',
                         fontSize: 16,

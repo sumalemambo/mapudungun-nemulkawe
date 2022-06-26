@@ -28,15 +28,21 @@ class DetailScreen extends StatelessWidget {
           color: Colors.black, //change your color here
         ),
       ),
-      body: ListView(
+      body: Column(
         children: [
-          SizedBox(height: height * 0.055),
-          const ImageAvatar(imageSrc: 'assets/azum6.png'),
-          SizedBox(height: height * 0.035),
-          TitleRow(word: word),
-          DetailsCard(word: word)
-        ],
-      ),
+           Flexible(
+             child: ListView(
+               children: [
+                 SizedBox(height: height * 0.055),
+                 const ImageAvatar(imageSrc: 'assets/azum6.png'),
+                 SizedBox(height: height * 0.035),
+                 TitleRow(word: word),
+                 DetailsCard(word: word, height: height,)
+               ],
+             ),
+           )
+        ]
+      )
     );
   }
 }

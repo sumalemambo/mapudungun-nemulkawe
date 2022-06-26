@@ -34,27 +34,21 @@ class DetailsCard extends StatelessWidget {
       SizedBox(
         height: height * 0.0165,
       ),
-      Row(
-        children: [
-          Text(
-            "Definición",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: fontMultiplier * height * 0.0015,
-            ),
-          ),
-        ],
-      ),
       SizedBox(
         height: height * 0.01,
       ),
       Row(
           children: [
-            Text(
-              word.translation,
-              style: TextStyle(fontSize: fontMultiplier * height * 0.001)
-          )
-        ]
+            Expanded(
+                child: Text(
+                  word.translation,
+                  style: TextStyle(
+                      color: const Color(0xFF333333),
+                      fontSize: fontMultiplier * height * 0.001
+                  ),
+                )
+            ),
+          ]
       ),
       SizedBox(
         height: height * 0.0165,
@@ -64,6 +58,7 @@ class DetailsCard extends StatelessWidget {
           Text(
             "Ejemplos",
             style: TextStyle(
+              color: const Color(0xFF333333),
               fontSize: fontMultiplier * height * 0.0015,
               fontWeight: FontWeight.bold,
             ),
@@ -78,77 +73,9 @@ class DetailsCard extends StatelessWidget {
             Expanded(
                 child: Text(
                   word.examples,
-                  style: TextStyle(fontSize: fontMultiplier * height * 0.001),
-                )
-            ),
-          ]
-      ),
-      Row(
-          children: [
-            Expanded(
-                child: Text(
-                  word.examples,
-                  style: TextStyle(fontSize: fontMultiplier * height * 0.001),
-                )
-            ),
-          ]
-      ),
-      Row(
-          children: [
-            Expanded(
-                child: Text(
-                  word.examples,
-                  style: TextStyle(fontSize: fontMultiplier * height * 0.001),
-                )
-            ),
-          ]
-      ),
-      Row(
-          children: [
-            Expanded(
-                child: Text(
-                  word.examples,
-                  style: TextStyle(fontSize: fontMultiplier * height * 0.001),
-                )
-            ),
-          ]
-      ),
-      Row(
-          children: [
-            Expanded(
-                child: Text(
-                  word.examples,
-                  style: TextStyle(fontSize: fontMultiplier * height * 0.001),
-                )
-            ),
-          ]
-      ),
-      Row(
-          children: [
-            Expanded(
-                child: Text(
-                  word.examples,
-                  style: TextStyle(fontSize: fontMultiplier * height * 0.001),
-                )
-            ),
-          ]
-      ),
-      Row(
-          children: [
-            Expanded(
-                child: Text(
-                  word.examples,
-                  style: TextStyle(fontSize: fontMultiplier * height * 0.001),
-                )
-            ),
-          ]
-      ),
-      Row(
-          children: [
-            Expanded(
-                child: Text(
-                  word.examples,
-                  style: TextStyle(fontSize: fontMultiplier * height * 0.001),
+                  style: TextStyle(
+                      color: const Color(0xFF333333),
+                      fontSize: fontMultiplier * height * 0.001),
                 )
             ),
           ]

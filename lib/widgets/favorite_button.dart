@@ -15,6 +15,7 @@ class FavoriteButton extends StatelessWidget {
     );
 
     return IconButton(
+      padding: const EdgeInsets.all(4.0),
       onPressed: isInFavorites
           ?  () {
         var favorites = context.read<FavoritesProvider>();

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:app/screens/details_screen/main.dart';
-import 'package:app/widgets/favorite_button.dart';
+import 'package:app/widgets/word_tile.dart';
 
 import 'package:provider/provider.dart';
 import 'package:app/providers/search_provider.dart';
@@ -18,21 +17,11 @@ class DictionaryList extends StatelessWidget {
         child: ListView.builder(
           itemCount: _filter.length,
           itemBuilder: (context, i) {
-            return Card(
-              child: ListTile(
-                leading: Text(_filter[i].theme),
-                title: Text(_filter[i].word),
-                subtitle: Text(_filter[i].translation),
-                trailing: FavoriteButton(word: _filter[i]),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => DetailScreen(word: _filter[i])
-                    ),
-                  );
-                },
-              ),
+            return Column(
+              children: [
+                WordTile(word: _filter[i]),
+                const Divider(height: 0.0),
+              ]
             );
           },
         ),
@@ -40,3 +29,4 @@ class DictionaryList extends StatelessWidget {
     );
   }
 }
+

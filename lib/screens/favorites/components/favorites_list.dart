@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:app/models/word_model.dart';
 
-import 'package:app/widgets/favorite_button.dart';
-import '../../../models/word_model.dart';
+import 'package:app/widgets/word_tile.dart';
 
 
 class FavoritesList extends StatefulWidget {
@@ -25,17 +25,13 @@ class _FavoritesListState extends State<FavoritesList> with AutomaticKeepAliveCl
       child: Card(
         elevation: 4.0,
         child: ListView.builder(
-          // La PageStorageKey almacena la Scroll Position de la lista
-          key: const PageStorageKey<String>('Favoritos'),
           itemCount: favoritesList.length,
           itemBuilder: (context, i) {
-            return Card(
-              child: ListTile(
-                leading: Text(favoritesList[i].theme),
-                title: Text(favoritesList[i].word),
-                subtitle: Text(favoritesList[i].translation),
-                trailing: FavoriteButton(word: favoritesList[i]),
-              ),
+            return Column(
+              children: [
+                WordTile(word: favoritesList[i]),
+                const Divider(height: 0.0),
+              ]
             );
           },
         ),

@@ -42,21 +42,18 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
   Widget build(BuildContext context) {
     return FutureBuilder<List<Word>>(
       future: _wordData,
-      builder: (
-          BuildContext context,
-          AsyncSnapshot<List<Word>> snapshot
-      ) {
+      builder: (context, snapshot) {
         if (snapshot.hasData) {
           var favoritesList = snapshot.data!;
           return Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                children: [
-                  const FavoritesHeader(),
-                  const SizedBox(height: 8.0),
-                  FavoritesList(favoritesList: favoritesList),
-                ],
-              )
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                const FavoritesHeader(),
+                const SizedBox(height: 8.0),
+                FavoritesList(favoritesList: favoritesList),
+              ],
+            ),
           );
         }
         else {

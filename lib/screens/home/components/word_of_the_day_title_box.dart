@@ -8,8 +8,6 @@ class WordOfTheDayTitleBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        width: 250,
-        height: 80,
         decoration: BoxDecoration(
           color: Colors.blue,
           borderRadius: BorderRadius.circular(8),
@@ -21,16 +19,31 @@ class WordOfTheDayTitleBox extends StatelessWidget {
             ),
           ],
         ),
-        child: const Align(
-          alignment: Alignment.center,
-          child: Text(
-            'Palabra del día',
-            style: TextStyle(
-              fontFamily: 'Avenir',
-              fontSize: 32,
-              color: Colors.white,
-              fontWeight: FontWeight.w900,
-            ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: const [
+              Text(
+                'Fachiantüchi nhemül',
+                style: TextStyle(
+                  fontFamily: 'Avenir',
+                  fontSize: 28,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+              Text(
+                'Palabra del día',
+                style: TextStyle(
+                  fontFamily: 'Avenir',
+                  fontSize: 24,
+                  color: Colors.white,
+                  //fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
           ),
         ),
       ),

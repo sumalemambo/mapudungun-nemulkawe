@@ -1,11 +1,13 @@
 import 'dart:io';
 
+import 'package:app/models/abstract_model.dart';
 import 'package:app/models/word_model.dart';
 import 'package:flutter/services.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite/utils/utils.dart';
 import 'package:app/models/model.dart';
+import 'package:app/models/wordModel.dart';
 
 /// Helper class to handle database transactions
 class DatabaseHelper {
@@ -169,12 +171,43 @@ class DatabaseHelper {
     ${WordFields.examples} $textType,
     ${WordFields.pronunciation} $textType)
     ''');
+  }
+
+  static Future<void> insert_test(String table, dynamic obj) async {
+    // Get [database] instance
+    final db = await instance.database;
+    // Check if [obj] implements toMap() method, Dart is strongly typed so
+    // we can do this
+    if (obj is AbstractModel) {
+      // Transform [obj] to dictionary
+      obj = obj.toMap();
+    }
+    // Insert [obj] into [table]
+    await db.insert(
+        table,
+        obj,
+        conflictAlgorithm: ConflictAlgorithm.replace
+    );
+  }
+
+  static Future<int> createDB2() async {
+    final db = await instance.database;
+
+    const idType = 'TEXT PRIMARY KEY';
+    const textType = 'TEXT';
 
     await db.execute('''
-    CREATE TABLE Favorites (
-    ${WordFields.id} INTEGER PRIMARY KEY
-    )
+    CREATE TABLE ${WordModel.table} (
+    ${WordModelFields.id} $idType,
+    ${WordModelFields.title} $textType,
+    ${WordModelFields.chillka} $textType,
+    ${WordModelFields.grammar} $textType,
+    ${WordModelFields.gram} $textType,
+    ${WordModelFields.definition} $textType,
+    ${WordFields.examples} $textType)
     ''');
+
+    return 1;
   }
 
   /// Method to close the database

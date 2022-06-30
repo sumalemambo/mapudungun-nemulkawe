@@ -38,7 +38,7 @@ dependencies:
   provider: ^6.0.2
   sqflite:
   # path:
-  # csv: ^5.0.1
+  csv: ^5.0.1
   audioplayers: ^0.20.1
   expandable: ^5.0.1
 

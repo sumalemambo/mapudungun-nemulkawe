@@ -16,19 +16,15 @@ import 'models/wordModel.dart';
 
 void loadDict() async {
 
-  String path = 'csv/diccionario_2022.csv';
+  await DatabaseHelper.dropTable(WordModel.table);
+
+  await DatabaseHelper.createDB2();
+  String path = 'csv/nuevo_diccionario2.csv';
   final _rawData = await rootBundle.loadString(path);
   List<List<String>> rowsAsListOfValues = const CsvToListConverter(shouldParseNumbers: false).convert(_rawData);
-  rowsAsListOfValues = rowsAsListOfValues.sublist(1, rowsAsListOfValues.length);
+  //rowsAsListOfValues = rowsAsListOfValues.sublist(1, rowsAsListOfValues.length);
   for (final e in rowsAsListOfValues) {
-    WordModel word = WordModel(
-        id: e[0],
-        title: e[1],
-        chillka: e[3],
-        grammar: e[4],
-        gram: e[5],
-        definition: e[6],
-        examples: e[7]);
+    WordModel word = WordModel(id: e[0],mapudungun: e[1], gramatica: e[2], castellano: e[3], ejemplo: e[4]);
 
     await DatabaseHelper.insert_test(WordModel.table, word);
   }

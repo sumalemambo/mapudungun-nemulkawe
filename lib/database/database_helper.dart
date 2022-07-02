@@ -199,15 +199,25 @@ class DatabaseHelper {
     await db.execute('''
     CREATE TABLE ${WordModel.table} (
     ${WordModelFields.id} $idType,
-    ${WordModelFields.title} $textType,
-    ${WordModelFields.chillka} $textType,
-    ${WordModelFields.grammar} $textType,
-    ${WordModelFields.gram} $textType,
-    ${WordModelFields.definition} $textType,
-    ${WordFields.examples} $textType)
+    ${WordModelFields.mapudungun} $textType,
+    ${WordModelFields.gramatica} $textType,
+    ${WordModelFields.castellano} $textType,
+    ${WordModelFields.ejemplo} $textType)
     ''');
 
     return 1;
+  }
+
+  static Future <void> deleteTable(String tableName) async {
+    final db = await instance.database;
+
+    await db.delete(tableName);
+  }
+
+  static Future <void> dropTable(String tableName) async {
+    final db = await instance.database;
+
+    await db.execute('DROP TABLE IF EXISTS $tableName');
   }
 
   /// Method to close the database

@@ -7,31 +7,31 @@ import 'package:app/models/word_model.dart';
 final persons = [
   "iñche", "iñchiw", "iñchiñ",
   "eymi", "eymu", "eymün",
-  "fey", "feyegu", "feyegün"
+  "fey", "feyengu", "feyengün"
 ];
 
 final endingsVowel = [
-  ["n", "yu", "iñ", "ymi", "ymu", "ymün", "y", "ygu", "ygün"],
-  ["li", "liyu", "liyiñ", "lmi", "lmu", "lmün", "le", "le egu", "le egün"],
-  ["chi", "yu", "iñ", "ge", "mu", "mün", "pe", "pe egu", "pe egün"]
+  ["n", "yu", "iñ", "ymi", "ymu", "ymün", "y", "yngu", "yngün"],
+  ["li", "liyu", "liyiñ", "lmi", "lmu", "lmün", "le", "le engu", "le engün"],
+  ["chi", "yu", "iñ", "nge", "mu", "mün", "pe", "pe engu", "pe engün"]
 ];
 
 final endingsI = [
-  ["n", "yu", "yiñ", "mi", "mu", "mün", "", "gu", "gün"],
-  ["li", "liyu", "liyiñ", "lmi", "lmu", "lmün", "le", "le egu", "le egün"],
-  ["chi", "yu", "yiñ", "ge", "mu", "mün", "pe", "pe egu", "pe egün"]
+  ["n", "yu", "yiñ", "mi", "mu", "mün", "", "ngu", "ngün"],
+  ["li", "liyu", "liyiñ", "lmi", "lmu", "lmün", "le", "le engu", "le engün"],
+  ["chi", "yu", "yiñ", "nge", "mu", "mün", "pe", "pe engu", "pe engün"]
 ];
 
 final endingsL = [
-  ["ün", "iyu", "iyiñ", "imi", "imu", "imün", "i", "igu", "igün"],
-  ["-li", "-liyu", "-liyiñ", "ülmi", "ülmu", "ülmün", "-le", "-le egu", "-le egün"],
-  ["chi", "yu", "iñ", "ge", "mu", "mün", "pe", "pe egu", "pe egün"]
+  ["ün", "iyu", "iyiñ", "imi", "imu", "imün", "i", "ingu", "ingün"],
+  ["-li", "-liyu", "-liyiñ", "ülmi", "ülmu", "ülmün", "-le", "-le engu", "-le engün"],
+  ["chi", "yu", "iñ", "nge", "mu", "mün", "pe", "pe engu", "pe engün"]
 ];
 
 final endingsConsonant = [
-  ["ün", "iyu", "iyiñ", "imi", "imu", "imün", "i", "igu", "igün"],
-  ["li", "liyu", "liyiñ", "ülmi", "ülmu", "ülmün", "le", "le egu", "le egün"],
-  ["chi", "yu", "iñ", "ge", "mu", "mün", "pe", "pe egu", "pe egün"]
+  ["ün", "iyu", "iyiñ", "imi", "imu", "imün", "i", "ingu", "ingün"],
+  ["li", "liyu", "liyiñ", "ülmi", "ülmu", "ülmün", "le", "le engu", "le engün"],
+  ["chi", "yu", "iñ", "nge", "mu", "mün", "pe", "pe engu", "pe engün"]
 ];
 
 // fontSize multiplier

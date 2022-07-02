@@ -26,7 +26,7 @@ class WordOfTheDayTitleBox extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: const [
               Text(
-                'Fachiantüchi nhemül',
+                'Fachiantüchi n\'emül',
                 style: TextStyle(
                   fontFamily: 'Avenir',
                   fontSize: 28,

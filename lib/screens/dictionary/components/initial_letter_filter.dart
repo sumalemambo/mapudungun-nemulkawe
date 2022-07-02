@@ -13,9 +13,9 @@ class InitialLetterFilter extends StatefulWidget {
 
 class _InitialLetterFilterState extends State<InitialLetterFilter> {
   final List<String> letters = const [
-    'A', 'Z', 'Ü', 'M', 'Ch', 'E', 'F', 'I', 'K', 'T',
-    'Nh', 'Tx', 'O', 'Y', 'Q', 'G', 'Lh', 'Ñ', 'R', 'S',
-    'Ll', 'P', 'U', 'W', 'L', 'N',
+    'A', 'Ch', 'D', 'E', 'F', 'G', 'I', 'K', 'L', 'L\'',
+    'Ll', 'M', 'N', 'N\'', 'Ñ', 'Ng', 'O', 'P', 'R', 'S',
+    'Sh', 'T', 'T\'', 'Tr', 'U', 'Ü', 'W', 'Y',
   ];
 
   String _initialLetter = '';

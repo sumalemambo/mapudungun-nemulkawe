@@ -22,7 +22,7 @@ void loadDict() async {
   String path = 'csv/nuevo_diccionario2.csv';
   final _rawData = await rootBundle.loadString(path);
   List<List<String>> rowsAsListOfValues = const CsvToListConverter(shouldParseNumbers: false).convert(_rawData);
-  //rowsAsListOfValues = rowsAsListOfValues.sublist(1, rowsAsListOfValues.length);
+  rowsAsListOfValues = rowsAsListOfValues.sublist(1, rowsAsListOfValues.length);
   for (final e in rowsAsListOfValues) {
     WordModel word = WordModel(id: e[0],mapudungun: e[1], gramatica: e[2], castellano: e[3], ejemplo: e[4]);
 

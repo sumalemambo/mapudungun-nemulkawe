@@ -44,7 +44,7 @@ Future<void> main() async {
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
-  final wordList = Word.fromList(await DatabaseHelper.selectAll(Word.table));
+  final wordList = WordModel.fromList(await DatabaseHelper.selectAll(WordModel.table));
 
   runApp(
     MultiProvider(

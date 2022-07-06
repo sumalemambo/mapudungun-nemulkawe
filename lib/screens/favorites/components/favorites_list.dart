@@ -29,7 +29,7 @@ class _FavoritesListState extends State<FavoritesList> with AutomaticKeepAliveCl
           itemBuilder: (context, i) {
             return Column(
               children: [
-                WordTile(word: favoritesList[i]),
+                //WordTile(word: favoritesList[i]),
                 const Divider(height: 0.0),
               ]
             );

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:app/models/word_model.dart';
+import 'package:app/models/wordModel.dart';
 
 class SearchProvider with ChangeNotifier {
-  final List<Word> _wordList;
+  final List<WordModel> _wordList;
 
   String _query = '';
   String _initialLetter = '';
@@ -26,25 +26,29 @@ class SearchProvider with ChangeNotifier {
   }
 
   // Obtener todas las palabras
-  List<Word> get wordList => _wordList;
+  List<WordModel> get wordList => _wordList;
 
   // Obtener las categorías
-  List<String> get categories => _wordList.map((data) => data.theme).toSet().toList();
+  List<String> get categories {
+    var cat = _wordList.map((data) => data.gramatica).toSet().toList();
+    cat.remove('');
+    return cat;
+  }
 
   // Obtener filtro de pantallas
-  List<Word> get filter {
+  List<WordModel> get filter {
     var _filter = _wordList;
 
     // Filtro por categoría
     if (_category != '') {
-      _filter = _filter.where((data) => data.theme == _category).toList();
+      _filter = _filter.where((data) => data.gramatica == _category).toList();
     }
 
     // Filtro por letra inicial
     if (_initialLetter != '') {
       if (_initialLetter == 'l') {
         _filter = _filter.where((data) {
-          var word = data.word.toLowerCase();
+          var word = data.mapudungun.toLowerCase();
           var condition = word.startsWith('l');
           condition = condition && !word.startsWith('ll');
           condition = condition && !word.startsWith('lh');
@@ -53,7 +57,7 @@ class SearchProvider with ChangeNotifier {
       }
       else if (_initialLetter == 'n') {
         _filter = _filter.where((data) {
-          var word = data.word.toLowerCase();
+          var word = data.mapudungun.toLowerCase();
           var condition = word.startsWith('n');
           condition = condition && !word.startsWith('nh');
           return condition;
@@ -61,7 +65,7 @@ class SearchProvider with ChangeNotifier {
       }
       else if (_initialLetter == 't') {
         _filter = _filter.where((data) {
-          var word = data.word.toLowerCase();
+          var word = data.mapudungun.toLowerCase();
           var condition = word.startsWith('t');
           condition = condition && !word.startsWith('tx');
           return condition;
@@ -69,7 +73,7 @@ class SearchProvider with ChangeNotifier {
       }
       else {
         _filter = _filter.where((data) {
-          var word = data.word.toLowerCase();
+          var word = data.mapudungun.toLowerCase();
           return word.startsWith(_initialLetter);
         }).toList();
       }
@@ -78,16 +82,16 @@ class SearchProvider with ChangeNotifier {
     // Filtro por búsqueda
     if (_query != '') {
       var beginning = _filter.where((data) {
-        var word = data.word.toLowerCase();
+        var word = data.mapudungun.toLowerCase();
         return word.startsWith(_query);
       }).toList();
       var containing = _filter.where((data) {
-        var word = data.word.toLowerCase();
+        var word = data.mapudungun.toLowerCase();
         return word.contains(_query) && !word.startsWith(_query);
       }).toList();
       var translationContaining = _filter.where((data) {
-        var word = data.word.toLowerCase();
-        var translation = data.translation.toLowerCase();
+        var word = data.mapudungun.toLowerCase();
+        var translation = data.castellano.toLowerCase();
         return translation.contains(_query) && !word.contains(_query);
       }).toList();
 

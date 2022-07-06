@@ -19,7 +19,7 @@ class DictionaryList extends StatelessWidget {
           itemBuilder: (context, i) {
             return Column(
               children: [
-                WordTile(word: _filter[i]),
+                //WordTile(word: _filter[i]),
                 const Divider(height: 0.0),
               ]
             );

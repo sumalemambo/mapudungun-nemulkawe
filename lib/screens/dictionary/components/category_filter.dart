@@ -17,6 +17,8 @@ class _CategoryFilterState extends State<CategoryFilter> {
   @override
   Widget build(BuildContext context) {
     var categories = context.watch<SearchProvider>().categories;
+    print(categories);
+    print(categories.length);
     return Row(
       children: [
         const Text(

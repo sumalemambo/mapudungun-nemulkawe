@@ -1,4 +1,4 @@
-import 'package:app/models/word_model.dart';
+import 'package:app/models/wordModel.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:app/database/database_helper.dart';
@@ -31,13 +31,12 @@ class _WordOfTheDayCardState extends State<WordOfTheDayCard> with AutomaticKeepA
   }
 
   Future<Map<String, dynamic>> _fetchWordOfTheDay() async {
-    final int nRows = await DatabaseHelper.count(Word.table);
+    final int nRows = await DatabaseHelper.count(WordModel.table);
     final int numberOfTheDay = Random(todayToInt()).nextInt(nRows);
 
-    var row = await DatabaseHelper.selectById(
-        Word.table,
-        WordFields.id,
-        [numberOfTheDay]
+    var row = await DatabaseHelper.selectByIndex(
+        WordModel.table,
+        numberOfTheDay,
     );
 
     return row.first;
@@ -50,7 +49,7 @@ class _WordOfTheDayCardState extends State<WordOfTheDayCard> with AutomaticKeepA
       future: _wordData,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          var data = Word.fromMap(snapshot.data!);
+          var word = WordModel.fromMap(snapshot.data!);
           return Card(
             elevation: 8,
             shape: RoundedRectangleBorder(
@@ -63,7 +62,7 @@ class _WordOfTheDayCardState extends State<WordOfTheDayCard> with AutomaticKeepA
                 children: <Widget>[
                   Image.asset('assets/day.png',height: 100,width: 100),
                   Text(
-                    data.word,
+                    word.mapudungun,
                     style: const TextStyle(
                       fontFamily: 'Avenir',
                       fontSize: 44,
@@ -74,7 +73,7 @@ class _WordOfTheDayCardState extends State<WordOfTheDayCard> with AutomaticKeepA
                   ),
                   const SizedBox(height: 4.0),
                   Text(
-                    data.theme,
+                    word.gramatica,
                     style: const TextStyle(
                       fontFamily: 'Avenir',
                       fontSize: 23,
@@ -85,7 +84,7 @@ class _WordOfTheDayCardState extends State<WordOfTheDayCard> with AutomaticKeepA
                   ),
                   const SizedBox(height: 4.0),
                   Text(
-                    'Significado: ' + data.translation,
+                    'Significado: ' + word.castellano,
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
@@ -103,7 +102,7 @@ class _WordOfTheDayCardState extends State<WordOfTheDayCard> with AutomaticKeepA
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => DetailScreen(word: data)
+                            builder: (context) => DetailScreen(word: word)
                         ),
                       );
                     },

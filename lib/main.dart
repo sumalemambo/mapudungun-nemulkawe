@@ -8,8 +8,6 @@ import 'package:app/providers/favorites_provider.dart';
 
 import 'package:app/database/database_helper.dart';
 
-import 'package:app/models/word_model.dart';
-
 import 'package:app/components/nav.dart';
 
 import 'models/wordModel.dart';
@@ -44,7 +42,9 @@ Future<void> main() async {
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
-  final wordList = Word.fromList(await DatabaseHelper.selectAll(Word.table));
+  final wordList = WordModel.fromList(
+      await DatabaseHelper.selectAll(WordModel.table)
+  );
 
   runApp(
     MultiProvider(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:app/models/word_model.dart';
+import 'package:app/models/wordModel.dart';
 import 'package:app/widgets/favorite_button.dart';
 
 // fontSize multiplier
@@ -8,7 +8,7 @@ const double fontMultiplier = 20.0;
 
 
 class DefinitionTab extends StatelessWidget {
-  final Word word;
+  final WordModel word;
 
   const DefinitionTab({Key? key, required this.word}) : super(key: key);
 
@@ -22,7 +22,7 @@ class DefinitionTab extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Text(
-          word.theme,
+          word.gramatica,
           style: const TextStyle(
               fontStyle: FontStyle.italic,
               color: Colors.grey
@@ -47,7 +47,7 @@ class DefinitionTab extends StatelessWidget {
         ),
         Flexible(
             child: Text(
-                word.translation,
+                word.castellano,
                 style: TextStyle(fontSize: fontMultiplier * height * 0.001)
             )
         ),
@@ -70,7 +70,7 @@ class DefinitionTab extends StatelessWidget {
         ),
         Flexible(
             child: Text(
-              word.examples,
+              word.ejemplo,
               style: TextStyle(fontSize: fontMultiplier * height * 0.001),
             )
         ),

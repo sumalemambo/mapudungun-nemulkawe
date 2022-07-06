@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:app/models/word_model.dart';
+import 'package:app/models/wordModel.dart';
 import 'package:app/screens/details_screen/main.dart';
 import 'favorite_button.dart';
 
 
 class WordTile extends StatelessWidget {
-  final Word word;
+  final WordModel word;
 
   const WordTile({Key? key, required this.word}) : super(key: key);
 
@@ -37,7 +37,7 @@ class WordTile extends StatelessWidget {
                       children: [
                         // Palabra
                         Text(
-                          word.word,
+                          word.mapudungun,
                           style: const TextStyle(
                             color: Colors.black,
                             fontSize: 17.0,
@@ -54,7 +54,7 @@ class WordTile extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 6.0),
                             child: Text(
-                              word.theme,
+                              word.gramatica,
                               style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 13.0,
@@ -67,7 +67,7 @@ class WordTile extends StatelessWidget {
                     ),
                     // Significado
                     Text(
-                        word.translation,
+                        word.castellano,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(

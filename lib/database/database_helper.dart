@@ -98,6 +98,11 @@ class DatabaseHelper {
     db.delete(table, where: '_id=$id');
   }
 
+  static Future<void> delete2(String table, String id) async {
+    final db = await instance.database;
+    db.delete(table, where: '_id=$id');
+  }
+
   /// Method to select the rows in [table] where the id column [columnId] is in
   /// [ids] list
   static Future<List<Map<String, dynamic>>> selectById(
@@ -116,6 +121,40 @@ class DatabaseHelper {
         whereArgs: ids
       );
       return rows;
+  }
+
+  static Future<List<Map<String, dynamic>>> selectById2(
+      String table,
+      String columnId,
+      List<String> ids
+      ) async {
+
+    // Get [database] instance
+    final db = await instance.database;
+    // Select all the rows in [table] where [columnId] is in [ids]
+    var rows = db.query(
+        table,
+        // Handle variable length of [ids] list (id1, id2, ...)
+        where: '$columnId IN (${List.filled(ids.length, '?').join(',')})',
+        whereArgs: ids
+    );
+    return rows;
+  }
+
+  static Future<List<Map<String, dynamic>>> selectByIndex(
+      String table,
+      int index
+      ) async {
+
+    // Get [database] instance
+    final db = await instance.database;
+    // Select all the rows in [table] where [columnId] is in [ids]
+    var rows = db.query(
+        table,
+        // Handle variable length of [ids] list (id1, id2, ...)
+        where: 'ROWID = $index',
+    );
+    return rows;
   }
 
   /// Method to select rows from [table] in the range [offset, limit]

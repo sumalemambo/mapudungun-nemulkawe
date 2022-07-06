@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'package:app/models/word_model.dart';
+import 'package:app/models/wordModel.dart';
 
 
 final persons = [
@@ -39,7 +39,7 @@ const double fontMultiplier = 20.0;
 
 
 class ConjugationTab extends StatefulWidget {
-  final Word word;
+  final WordModel word;
 
   const ConjugationTab({Key? key, required this.word}) : super(key: key);
 
@@ -54,7 +54,7 @@ class _ConjugationTabState extends State<ConjugationTab> {
   @override
   void initState() {
     super.initState();
-    _conjugations = conjugate(widget.word.word);
+    _conjugations = conjugate(widget.word.mapudungun);
   }
 
   List<List<String>> conjugate(String s) {

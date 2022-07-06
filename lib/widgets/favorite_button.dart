@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:app/models/word_model.dart';
+import 'package:app/models/wordModel.dart';
 import 'package:provider/provider.dart';
 import 'package:app/providers/favorites_provider.dart';
 
 class FavoriteButton extends StatelessWidget {
-  final Word word;
+  final WordModel word;
 
   const FavoriteButton({required this.word, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    /*
     var isInFavorites = context.select<FavoritesProvider, bool>(
             (favorites) => favorites.itemIds.contains(word.id)
     );
 
+     */
+
+    return Container();
+    /*
     return IconButton(
       padding: const EdgeInsets.all(4.0),
       onPressed: isInFavorites
@@ -37,5 +42,7 @@ class FavoriteButton extends StatelessWidget {
       )
           : const Icon(Icons.favorite, color: Colors.grey,),
     );
+
+     */
   }
 }

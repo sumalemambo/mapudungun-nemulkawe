@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:app/providers/favorites_provider.dart';
 
 import '../../database/database_helper.dart';
-import '../../models/word_model.dart';
+import '../../models/wordModel.dart';
 
 import 'components/favorites_header.dart';
 import 'components/favorites_list.dart';
@@ -18,7 +18,7 @@ class FavoritesScreen extends StatefulWidget {
 }
 
 class _FavoritesScreenState extends State<FavoritesScreen> {
-  late Future<List<Word>> _wordData;
+  late Future<List<WordModel>> _wordData;
 
   @override
   void initState() {
@@ -26,21 +26,21 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
     super.initState();
   }
 
-  Future<List<Word>> _fetchFavorites() async {
+  Future<List<WordModel>> _fetchFavorites() async {
     var favorites = context.read<FavoritesProvider>();
 
     final _ids = favorites.itemIds;
-    final rows = await DatabaseHelper.selectById(
-        Word.table,
-        WordFields.id,
+    final rows = await DatabaseHelper.selectById2(
+        WordModel.table,
+        WordModelFields.id,
         _ids);
 
-    return Word.fromList(rows);
+    return WordModel.fromList(rows);
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<Word>>(
+    return FutureBuilder<List<WordModel>>(
       future: _wordData,
       builder: (context, snapshot) {
         if (snapshot.hasData) {

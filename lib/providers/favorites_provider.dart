@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:app/models/word_model.dart';
+import 'package:app/models/wordModel.dart';
 import 'package:app/database/database_helper.dart';
 
 class FavoritesProvider extends ChangeNotifier {
@@ -7,20 +7,20 @@ class FavoritesProvider extends ChangeNotifier {
   static const String id = '_id';
 
 
-  List<int> _itemIds = [];
-  List<int> get itemIds => _itemIds;
+  List<String> _itemIds = [];
+  List<String> get itemIds => _itemIds;
 
-  List<Word> _item = [];
-  List<Word> get item => _item;
+  List<WordModel> _item = [];
+  List<WordModel> get item => _item;
 
-  void add(int id) {
+  void add(String id) {
     _itemIds.add(id);
     addFavorite(id);
 
     notifyListeners();
   }
 
-  void remove(int id) {
+  void remove(String id) {
     _itemIds.remove(id);
     removeFavorite(id);
 
@@ -30,44 +30,40 @@ class FavoritesProvider extends ChangeNotifier {
   Future<void> loadFavoriteIds() async {
     var _ids = await DatabaseHelper.selectAll(table);
 
-    _itemIds = (_ids.map((item) => item['_id']).toList()).cast<int>();
+    _itemIds = (_ids.map((item) => item['_id']).toList()).cast<String>();
   }
 
-  Future<void> removeFavorite(int id) async {
-    DatabaseHelper.delete(table, id);
+  Future<void> removeFavorite(String id) async {
+    DatabaseHelper.delete2(table, id);
   }
 
-  Future<void> addFavorite(int id) async {
+  Future<void> addFavorite(String id) async {
     Map<String, dynamic> map = {
-      WordFields.id: id,
+      WordModelFields.id: id,
     };
     DatabaseHelper.insert(table, map);
   }
   
   Future<void> selectFavorites() async {
     var _ids = await DatabaseHelper.selectAll(table);
-    List<int> _idsList = [];
+    List<String> _idsList = [];
     for (final e in _ids) {
       _idsList.add(e[id]);
     }
-    var dataList = await DatabaseHelper.selectById(
-        Word.table,
-        WordFields.id,
+    var dataList = await DatabaseHelper.selectById2(
+        WordModel.table,
+        WordModelFields.id,
         _idsList
     );
     _item = dataList
-        .map((item) => Word(
+        .map((item) => WordModel(
         id: item['_id'],
-        theme: item['theme'],
-        isUnderTheme: item['isUnderTheme'],
-        word: item['word'],
-        translation: item['translation'],
-        definition: item['definition'],
-        conjugation: item['conjugation'],
-        declensions: item['declensions'],
-        examples: item['examples'],
-        pronunciation: item['pronunciation']
-        )).toList();
+        mapudungun: item['mapudungun'],
+        gramatica: item['gramatica'],
+        castellano: item['castellano'],
+        ejemplo: item['ejemplo'],
+        )
+    ).toList();
     notifyListeners();
   }
 }

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:app/models/word_model.dart';
+import 'package:app/models/wordModel.dart';
 
 import 'package:app/widgets/word_tile.dart';
 
 
 class FavoritesList extends StatefulWidget {
-  final List<Word> favoritesList;
+  final List<WordModel> favoritesList;
   const FavoritesList({Key? key, required this.favoritesList}) : super(key: key);
 
   @override

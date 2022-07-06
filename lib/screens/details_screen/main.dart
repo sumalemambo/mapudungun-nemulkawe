@@ -4,7 +4,7 @@ import 'dart:typed_data';
 
 import 'package:audioplayers/audioplayers.dart';
 
-import 'package:app/models/word_model.dart';
+import 'package:app/models/wordModel.dart';
 
 import 'package:app/widgets/favorite_button.dart';
 import 'components/details_card.dart';
@@ -14,7 +14,7 @@ const double fontMultiplier = 20.0;
 
 
 class DetailScreen extends StatelessWidget {
-  final Word word;
+  final WordModel word;
 
   const DetailScreen({Key? key, required this.word}) : super(key: key);
 
@@ -75,7 +75,7 @@ class ImageAvatar extends StatelessWidget {
 }
 
 class TitleRow extends StatelessWidget {
-  final Word word;
+  final WordModel word;
 
   const TitleRow({Key? key, required this.word}) : super(key: key);
 
@@ -88,7 +88,7 @@ class TitleRow extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
-          word.word,
+          word.mapudungun,
           textAlign: TextAlign.center,
           style: TextStyle(
             fontFamily: 'Avenir',

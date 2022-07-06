@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'package:app/models/word_model.dart';
+import 'package:app/models/wordModel.dart';
 
 import 'conjugation_tab.dart';
 
@@ -11,7 +11,7 @@ const double fontMultiplier = 20.0;
 
 
 class DetailsCard extends StatelessWidget {
-  final Word word;
+  final WordModel word;
   final double height;
 
   const DetailsCard({
@@ -22,8 +22,8 @@ class DetailsCard extends StatelessWidget {
 
   List<Widget> _definitionList(BuildContext context) {
     late List<List<String>> examples;
-    if (word.examples != '') {
-      examples = word.examples.split(";").map((example) {
+    if (word.ejemplo != '') {
+      examples = word.ejemplo.split(";").map((example) {
         return example.split('‘').map((element) => element.substring(0, element.length-1).trim()).toList();
       }).toList();
     }
@@ -33,7 +33,7 @@ class DetailsCard extends StatelessWidget {
       Row(
         children: [
           Text(
-            word.theme,
+            word.gramatica,
             style: GoogleFonts.openSans(
               textStyle: TextStyle(
                 color: Colors.grey,
@@ -70,7 +70,7 @@ class DetailsCard extends StatelessWidget {
         children: [
           Expanded(
             child: Text(
-              word.translation,
+              word.castellano,
               style: GoogleFonts.openSans(
                 textStyle: TextStyle(
                   color: const Color(0xFF333333),
@@ -86,7 +86,7 @@ class DetailsCard extends StatelessWidget {
       ),
 
       // Ejemplos
-      (word.examples != '')
+      (word.ejemplo != '')
         ? Column(
             children: [
               Row(
@@ -112,7 +112,7 @@ class DetailsCard extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Text(
-                      word.examples,
+                      word.ejemplo,
                       style: GoogleFonts.openSans(
                         textStyle: TextStyle(
                             color: const Color(0xFF333333),
@@ -187,7 +187,7 @@ class DetailsCard extends StatelessWidget {
           children: [
             ..._definitionList(context),
             const SizedBox(height: 16.0),
-            (word.theme == 'Verbos') ? ConjugationTab(word: word) : Container(),
+            (word.gramatica == 'verbo') ? ConjugationTab(word: word) : Container(),
           ]
         ),
       )

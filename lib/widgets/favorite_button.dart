@@ -10,6 +10,9 @@ class FavoriteButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return Container();
+
+    /*
     var isInFavorites = context.select<FavoritesProvider, bool>(
             (favorites) => favorites.itemIds.contains(word.id)
     );
@@ -37,5 +40,6 @@ class FavoriteButton extends StatelessWidget {
       )
           : const Icon(Icons.favorite, color: Colors.grey,),
     );
+     */
   }
 }

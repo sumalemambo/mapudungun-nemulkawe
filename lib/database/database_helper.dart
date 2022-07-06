@@ -208,6 +208,22 @@ class DatabaseHelper {
     return 1;
   }
 
+  static Future <void> createFavorites() async {
+    const String tableName = 'FavoritesTable';
+    final db = await instance.database;
+
+    const idType = 'INT PRIMARY KEY';
+    const textType = 'TEXT';
+
+    await db.execute('''
+    CREATE TABLE $tableName (
+    id $idType,
+    wordId $textType,
+    FOREIGN KEY(wordId) REFERENCES ${WordModel.table}(${WordModelFields.id})
+    )
+    ''');
+  }
+
   static Future <void> deleteTable(String tableName) async {
     final db = await instance.database;
 

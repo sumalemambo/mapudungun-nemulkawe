@@ -38,9 +38,9 @@ class WordOfTheDayTitleBox extends StatelessWidget {
                 'Palabra del día',
                 style: TextStyle(
                   fontFamily: 'Avenir',
-                  fontSize: 24,
+                  fontSize: 20,
                   color: Colors.white,
-                  //fontWeight: FontWeight.w600,
+                  fontWeight: FontWeight.w300,
                 ),
               ),
             ],

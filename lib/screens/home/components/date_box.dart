@@ -36,8 +36,8 @@ class DateBox extends StatelessWidget {
             today,
             style: const TextStyle(
               color: Colors.black,
-              fontSize: 18.0,
-              fontWeight: FontWeight.w600,
+              fontSize: 20,
+              fontWeight: FontWeight.w500,
             ),
             textScaleFactor: 0.8,
           ),

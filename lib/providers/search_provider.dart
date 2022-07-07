@@ -29,7 +29,11 @@ class SearchProvider with ChangeNotifier {
   List<WordModel> get wordList => _wordList;
 
   // Obtener las categorías
-  List<String> get categories => _wordList.map((data) => data.gramatica).toSet().toList();
+  List<String> get categories {
+    var cat = _wordList.map((data) => data.gramatica).toSet().toList();
+    cat.remove('');
+    return cat;
+  }
 
   // Obtener filtro de pantallas
   List<WordModel> get filter {

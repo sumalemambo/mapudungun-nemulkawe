@@ -3,8 +3,8 @@ import 'package:app/models/wordModel.dart';
 import 'package:app/database/database_helper.dart';
 
 class FavoritesProvider extends ChangeNotifier {
-  static const String table = 'Favorites';
-  static const String id = '_id';
+  static const String table = 'FavoritesTable';
+  static const String id = 'wordId';
 
 
   List<String> _itemIds = [];
@@ -30,7 +30,7 @@ class FavoritesProvider extends ChangeNotifier {
   Future<void> loadFavoriteIds() async {
     var _ids = await DatabaseHelper.selectAll(table);
 
-    _itemIds = (_ids.map((item) => item['_id']).toList()).cast<String>();
+    _itemIds = (_ids.map((item) => item['wordId']).toList()).cast<String>();
   }
 
   Future<void> removeFavorite(String id) async {
@@ -57,7 +57,7 @@ class FavoritesProvider extends ChangeNotifier {
     );
     _item = dataList
         .map((item) => WordModel(
-        id: item['_id'],
+        id: item['id'],
         mapudungun: item['mapudungun'],
         gramatica: item['gramatica'],
         castellano: item['castellano'],

@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
-List images = ['assets/image-1.jpg','assets/image-2.jpg','assets/image-3.jpg','assets/image-4.jpg'];
+List images = [
+  'lib/assets/image-1.jpg',
+  'lib/assets/image-2.jpg',
+  'lib/assets/image-3.jpg',
+  'lib/assets/image-4.jpg',
+];
 
 class AboutDetails extends StatelessWidget {
   const AboutDetails({Key? key}) : super(key: key);
@@ -21,7 +26,7 @@ class AboutDetails extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Center(child: Image.asset('logo.jpg',height: 200)),
+                        Center(child: Image.asset('lib/assets/logo.jpg',height: 200)),
                         Container(height: 20),
                         const Text(
                           'FIWFIW ÑI DUNGUN',

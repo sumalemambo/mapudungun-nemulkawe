@@ -71,11 +71,7 @@ flutter:
     - assets/azum6.png
     - assets/sounds/
     - assets/day.png
-    - image-1.jpg
-    - image-2.jpg
-    - image-3.jpg
-    - image-4.jpg
-    - logo.jpg
+    - lib/assets/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

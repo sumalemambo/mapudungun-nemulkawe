@@ -26,6 +26,7 @@ void loadDict() async {
 
     await DatabaseHelper.insert_test(WordModel.table, word);
   }
+
 }
 
 

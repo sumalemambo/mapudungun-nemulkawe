@@ -31,15 +31,16 @@ class FavoritesProvider extends ChangeNotifier {
     var _ids = await DatabaseHelper.selectAll(table);
 
     _itemIds = (_ids.map((item) => item['wordId']).toList()).cast<String>();
+    _itemIds.remove('');
   }
 
   Future<void> removeFavorite(String id) async {
-    DatabaseHelper.delete2(table, id);
+    DatabaseHelper.deleteWhere(table, 'wordId', id);
   }
 
   Future<void> addFavorite(String id) async {
     Map<String, dynamic> map = {
-      WordModelFields.id: id,
+      'wordId': id,
     };
     DatabaseHelper.insert(table, map);
   }

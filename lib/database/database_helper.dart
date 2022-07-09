@@ -103,6 +103,11 @@ class DatabaseHelper {
     db.delete(table, where: '_id=$id');
   }
 
+  static Future<void> deleteWhere(String table,String where, String id) async {
+    final db = await instance.database;
+    db.delete(table, where: '$where=$id');
+  }
+
   /// Method to select the rows in [table] where the id column [columnId] is in
   /// [ids] list
   static Future<List<Map<String, dynamic>>> selectById(

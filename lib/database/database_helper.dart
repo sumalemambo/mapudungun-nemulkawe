@@ -1,12 +1,10 @@
 import 'dart:io';
 
 import 'package:app/models/abstract_model.dart';
-import 'package:app/models/word_model.dart';
 import 'package:flutter/services.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite/utils/utils.dart';
-import 'package:app/models/model.dart';
 import 'package:app/models/wordModel.dart';
 
 /// Helper class to handle database transactions
@@ -69,7 +67,7 @@ class DatabaseHelper {
     final db = await instance.database;
     // Check if [obj] implements toMap() method, Dart is strongly typed so
     // we can do this
-    if (obj is Model) {
+    if (obj is AbstractModel) {
       // Transform [obj] to dictionary
       obj = obj.toMap();
     }
@@ -197,44 +195,7 @@ class DatabaseHelper {
     return 0;
   }
 
-  /// Method to create the database, used for testing purposes
-  Future _createDB(Database db, int version) async {
-    const idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
-    const textType = 'TEXT';
-
-    await db.execute('''
-    CREATE TABLE ${Word.table} (
-    ${WordFields.id} $idType,
-    ${WordFields.theme} $textType,
-    ${WordFields.isUnderTheme} $textType,
-    ${WordFields.word} $textType,
-    ${WordFields.translation} $textType,
-    ${WordFields.definition} $textType,
-    ${WordFields.conjugation} $textType,
-    ${WordFields.declensions} $textType,
-    ${WordFields.examples} $textType,
-    ${WordFields.pronunciation} $textType)
-    ''');
-  }
-
-  static Future<void> insert_test(String table, dynamic obj) async {
-    // Get [database] instance
-    final db = await instance.database;
-    // Check if [obj] implements toMap() method, Dart is strongly typed so
-    // we can do this
-    if (obj is AbstractModel) {
-      // Transform [obj] to dictionary
-      obj = obj.toMap();
-    }
-    // Insert [obj] into [table]
-    await db.insert(
-        table,
-        obj,
-        conflictAlgorithm: ConflictAlgorithm.replace
-    );
-  }
-
-  static Future<int> createDB2() async {
+  static Future<int> createDB() async {
     final db = await instance.database;
 
     const idType = 'TEXT PRIMARY KEY';

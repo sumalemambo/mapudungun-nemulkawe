@@ -7,6 +7,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:app/models/wordModel.dart';
 
 import 'package:app/widgets/favorite_button.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'components/details_card.dart';
 
 // fontSize multiplier
@@ -35,7 +36,7 @@ class DetailScreen extends StatelessWidget {
              child: ListView(
                children: [
                  SizedBox(height: height * 0.055),
-                 const ImageAvatar(imageSrc: 'assets/azum6.png'),
+                 ImageAvatar(imageSrc: 'assets/images/${word.id}.png'),
                  SizedBox(height: height * 0.035),
                  TitleRow(word: word),
                  FavoriteButton(word: word),
@@ -54,6 +55,7 @@ class ImageAvatar extends StatelessWidget {
 
   const ImageAvatar({Key? key, required this.imageSrc}) : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -66,11 +68,13 @@ class ImageAvatar extends StatelessWidget {
         radius: 105,
         backgroundColor: Colors.white,
         child: CircleAvatar(
-          backgroundImage: AssetImage(imageSrc),
+          // backgroundImage: AssetImage(imageSrc),
           maxRadius: 100,
+          child: const Text('?'),
         ),
       ),
     );
+
   }
 }
 
@@ -83,6 +87,7 @@ class TitleRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final player = AudioPlayer();
     final height = MediaQuery.of(context).size.height;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -90,10 +95,11 @@ class TitleRow extends StatelessWidget {
         Text(
           word.mapudungun,
           textAlign: TextAlign.center,
-          style: TextStyle(
-            fontFamily: 'Avenir',
-            fontSize: fontMultiplier * height * 0.00205,
-            fontWeight: FontWeight.bold,
+          style: GoogleFonts.playfairDisplay(
+            textStyle: TextStyle(
+                color: const Color(0xFF333333),
+                fontSize: fontMultiplier * height * 0.00205,
+            ),
           ),
         ),
         TextButton(

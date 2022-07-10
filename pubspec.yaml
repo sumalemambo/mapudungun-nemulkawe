@@ -68,7 +68,6 @@ flutter:
   assets:
     - csv/
     - assets/db/database.db
-    - assets/azum6.png
     - assets/sounds/
     - assets/day.png
     - lib/assets/

@@ -108,7 +108,7 @@ class _ConjugationTabState extends State<ConjugationTab> {
           alignment: Alignment.centerLeft,
           child: Text(
             'Conjugaciones',
-            style: GoogleFonts.openSans(
+            style: GoogleFonts.playfairDisplay(
               textStyle: TextStyle(
                   color: const Color(0xFF333333),
                   fontSize: fontMultiplier * height * 0.0015,

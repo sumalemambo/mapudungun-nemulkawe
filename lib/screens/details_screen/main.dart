@@ -92,15 +92,18 @@ class TitleRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text(
-          word.mapudungun,
-          textAlign: TextAlign.center,
-          style: GoogleFonts.playfairDisplay(
-            textStyle: TextStyle(
-                color: const Color(0xFF333333),
-                fontSize: fontMultiplier * height * 0.00205,
+        Expanded(
+          child:
+            Text(
+              word.mapudungun,
+              textAlign: TextAlign.center,
+              style: GoogleFonts.playfairDisplay(
+                textStyle: TextStyle(
+                    color: const Color(0xFF333333),
+                    fontSize: fontMultiplier * height * 0.00205,
+                ),
+              ),
             ),
-          ),
         ),
         TextButton(
           onPressed: () async {

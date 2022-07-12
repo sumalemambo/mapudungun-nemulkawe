@@ -20,7 +20,7 @@ class WordTile extends StatelessWidget {
           ),
         );
       },
-      child: SizedBox(
+      child:  SizedBox(
         height: 60,
         child: Padding(
           padding: const EdgeInsets.only(left: 8.0),
@@ -36,14 +36,19 @@ class WordTile extends StatelessWidget {
                     Row(
                       children: [
                         // Palabra
-                        Text(
-                          word.mapudungun,
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 17.0,
-                            fontWeight: FontWeight.normal,
+                        Expanded(
+                          child:
+                            Text(
+                              word.mapudungun,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 17.0,
+                                fontWeight: FontWeight.normal,
+                              ),
+                            ),
                           ),
-                        ),
                         const SizedBox(width: 8.0),
                         // Categoría
                         Container(

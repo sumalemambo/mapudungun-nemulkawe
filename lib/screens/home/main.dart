@@ -15,17 +15,23 @@ class HomeScreen extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
-        children: const [
-          Align(
-            alignment: Alignment.centerRight,
-            child: DateBox(),
+        children: [
+          Flexible(
+            child:ListView(
+              children:[
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: DateBox(),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: WordOfTheDayTitleBox(),
+                ),
+                WordOfTheDayCard(),
+                AboutCard()
+              ]
+            ),
           ),
-          Padding(
-            padding: EdgeInsets.all(16.0),
-            child: WordOfTheDayTitleBox(),
-          ),
-          WordOfTheDayCard(),
-          AboutCard()
         ],
       ),
     );

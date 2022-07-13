@@ -18,7 +18,7 @@ class HomeScreen extends StatelessWidget {
         children: [
           Flexible(
             child:ListView(
-              children:[
+              children:const [
                 Align(
                   alignment: Alignment.centerRight,
                   child: DateBox(),

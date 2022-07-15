@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 
-const weekdays = [
-  'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'
-];
 const months = [
-  'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
-  'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
+  'ene', 'feb', 'mar', 'abr', 'may', 'jun',
+  'jul', 'ago', 'sep', 'oct', 'nov', 'dic'
 ];
 
 
@@ -15,8 +12,7 @@ class DateBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final now = DateTime.now();
-    final today = "${weekdays[now.weekday - 1]}, ${now.day} de ${months[now
-        .month - 1]} del ${now.year}";
+    final today = "${now.day} / ${months[now.month - 1]} / ${now.year}";
 
     return Container(
         decoration: BoxDecoration(

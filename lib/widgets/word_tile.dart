@@ -3,6 +3,13 @@ import 'package:app/models/wordModel.dart';
 import 'package:app/screens/details_screen/main.dart';
 import 'favorite_button.dart';
 
+const pastelColors = {
+  'sustantivo': Colors.lightBlue,
+  'verbo': Colors.amber,
+  'adjetivo': Colors.green,
+  'expresión': Colors.pink,
+};
+
 
 class WordTile extends StatelessWidget {
   final WordModel word;
@@ -53,7 +60,7 @@ class WordTile extends StatelessWidget {
                         // Categoría
                         Container(
                           decoration: BoxDecoration(
-                            color: Colors.orange[300],
+                            color: pastelColors[word.gramatica] ?? Colors.grey,
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Padding(

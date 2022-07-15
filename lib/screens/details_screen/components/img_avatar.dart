@@ -22,6 +22,12 @@ class _ImgAvatarState extends State<ImgAvatar> {
     }
   }
 
+  Widget avatar () {
+    return CircleAvatar(
+
+    );
+  }
+
   @override
   void initState() {
     img = getImageIfExists();
@@ -33,8 +39,20 @@ class _ImgAvatarState extends State<ImgAvatar> {
     return FutureBuilder<AssetImage?>(
       future: img,
       builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          return Container();
+        if (snapshot.connectionState == ConnectionState.done &&
+            snapshot.hasData) {
+          final double width = MediaQuery.of(context).size.width;
+
+          if (snapshot.data != null) {
+
+          }
+          return Container(
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.circle,
+              boxShadow: [BoxShadow(blurRadius: 5, color: Colors.black, spreadRadius: 1)],
+            ),
+          );
         }
         else {
           return const Center(child: CircularProgressIndicator());

@@ -5,6 +5,7 @@ import 'dart:typed_data';
 import 'package:audioplayers/audioplayers.dart';
 
 import 'package:app/models/wordModel.dart';
+import 'package:app/screens/details_screen/components/img_avatar.dart';
 
 import 'package:app/widgets/favorite_button.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -36,7 +37,7 @@ class DetailScreen extends StatelessWidget {
              child: ListView(
                children: [
                  SizedBox(height: height * 0.055),
-                 ImageAvatar(imageSrc: 'assets/images/${word.id}.png'),
+                 ImgAvatar(imgPath: 'assets/images/${word.id}.png'),
                  SizedBox(height: height * 0.035),
                  TitleRow(word: word),
                  FavoriteButton(word: word),

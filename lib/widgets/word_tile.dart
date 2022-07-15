@@ -36,7 +36,7 @@ class WordTile extends StatelessWidget {
                     Row(
                       children: [
                         // Palabra
-                        Expanded(
+                        Flexible(
                           child:
                             Text(
                               word.mapudungun,

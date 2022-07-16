@@ -37,7 +37,8 @@ class DetailScreen extends StatelessWidget {
              child: ListView(
                children: [
                  SizedBox(height: height * 0.055),
-                 ImgAvatar(imgPath: 'assets/images/${word.id}.png'),
+                 ImgAvatar(imgPath: 'assets/images/words/pudu.jpg'),
+                 //ImgAvatar(imgPath: 'assets/images/${word.id}.png'),
                  SizedBox(height: height * 0.035),
                  TitleRow(word: word),
                  FavoriteButton(word: word),
@@ -69,7 +70,7 @@ class ImageAvatar extends StatelessWidget {
         radius: 105,
         backgroundColor: Colors.white,
         child: CircleAvatar(
-          // backgroundImage: AssetImage(imageSrc),
+          backgroundImage: AssetImage(imageSrc),
           maxRadius: 100,
           child: const Text('?'),
         ),
@@ -93,7 +94,7 @@ class TitleRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Expanded(
+        Flexible(
           child:
             Text(
               word.mapudungun,

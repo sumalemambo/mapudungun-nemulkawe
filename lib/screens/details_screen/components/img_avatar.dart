@@ -1,3 +1,7 @@
+import 'dart:async';
+import 'dart:math';
+import 'dart:ui' as ui;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -15,16 +19,38 @@ class _ImgAvatarState extends State<ImgAvatar> {
 
   Future<AssetImage?> getImageIfExists() async {
     try {
+      /*
+      var image = Image.asset('assets/images/words/pudu.jpg');
+      Completer<ui.Image> completer = new Completer<ui.Image>();
+      image.image
+          .resolve(new ImageConfiguration())
+          .addListener(new ImageStreamListener((ImageInfo image, bool _) {
+        completer.complete(image.image);
+      }));
+      ui.Image info = await completer.future;
+      int width = info.width;
+      int height = info.height;
+      return completer.future;
+       */
       await rootBundle.load(widget.imgPath);
-      return AssetImage(widget.imgPath);
-    } catch(_) {
+      return AssetImage('assets/images/words/pudu.jpg');
+    }
+    catch (_) {
       return null;
     }
   }
 
-  Widget avatar () {
-    return CircleAvatar(
+  Widget avatar (AssetImage? img) {
+    final double width = MediaQuery.of(context).size.width;
+    double radius = width * 0.25;
 
+    return CircleAvatar(
+      radius: radius,
+      backgroundColor: Colors.white,
+      child: CircleAvatar(
+        backgroundImage: img,
+        maxRadius: radius - 5,
+      ),
     );
   }
 
@@ -39,19 +65,15 @@ class _ImgAvatarState extends State<ImgAvatar> {
     return FutureBuilder<AssetImage?>(
       future: img,
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done &&
-            snapshot.hasData) {
-          final double width = MediaQuery.of(context).size.width;
+        if (snapshot.connectionState == ConnectionState.done) {
 
-          if (snapshot.data != null) {
-
-          }
           return Container(
             decoration: const BoxDecoration(
               color: Colors.white,
               shape: BoxShape.circle,
               boxShadow: [BoxShadow(blurRadius: 5, color: Colors.black, spreadRadius: 1)],
             ),
+            child: avatar(snapshot.data),
           );
         }
         else {

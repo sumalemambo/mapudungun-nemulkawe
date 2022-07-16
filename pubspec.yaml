@@ -71,6 +71,7 @@ flutter:
     - assets/sounds/
     - assets/day.png
     - lib/assets/
+    - assets/images/words/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

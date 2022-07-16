@@ -53,7 +53,7 @@ class DetailsCard extends StatelessWidget {
         children: [
           Text(
             "Significado",
-            style: GoogleFonts.playfairDisplay(
+            style: GoogleFonts.openSans(
               textStyle: TextStyle(
                   color: const Color(0xFF333333),
                   fontSize: fontMultiplier * height * 0.0015,
@@ -93,7 +93,7 @@ class DetailsCard extends StatelessWidget {
                 children: [
                   Text(
                     "Ejemplos",
-                    style: GoogleFonts.playfairDisplay(
+                    style: GoogleFonts.openSans(
                       textStyle: TextStyle(
                         color: const Color(0xFF333333),
                         fontSize: fontMultiplier * height * 0.0015,

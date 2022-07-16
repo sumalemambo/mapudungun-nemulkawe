@@ -4,7 +4,7 @@ List images = [
   'lib/assets/image-1.jpg',
   'lib/assets/image-2.jpg',
   'lib/assets/image-3.jpg',
-  'lib/assets/image-4.jpg',
+  'lib/assets/logo.jpg',
 ];
 
 class AboutDetails extends StatelessWidget {
@@ -51,7 +51,7 @@ class AboutDetails extends StatelessWidget {
                         Divider(color: Colors.black38),
                         SizedBox(height: 32),
                         const Text(
-                          'Había una vez un niño llamado Ignacio Quintana, el cual tenía un complejo mental, este andaba de sapo cada vez que alguien le contaba algo, una vez este escuchó a su vecino del piso de arriba y este partió afuera de su departamento, grintandole [Oeeee ya po, sapo ctm quedate callado un rato], al paso del tiempo, este niño llamó a los pacos y a Ignacio Quintana se lo llevaron preso. Fin.',
+                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                           style: TextStyle(
                             fontFamily: 'Avenir',
                             fontSize: 20,

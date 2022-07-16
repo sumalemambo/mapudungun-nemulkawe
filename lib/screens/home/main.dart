@@ -23,7 +23,7 @@ class HomeScreen extends StatelessWidget {
             child:ListView(
               children:const [
                 Padding(
-                  padding: EdgeInsets.all(16.0),
+                  padding: EdgeInsets.all(18.0),
                   child: WordOfTheDayTitleBox(),
                 ),
                 WordOfTheDayCard(),

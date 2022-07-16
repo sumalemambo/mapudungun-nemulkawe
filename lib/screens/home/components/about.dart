@@ -1,39 +1,37 @@
 import 'package:flutter/material.dart';
 import 'details.dart';
 
-const double fontMultiplier = 20.0;
 
 class AboutCard extends StatelessWidget {
-  const AboutCard({Key? key}) : super(key: key);
-
+  AboutCard({Key? key}) : super (key: key);
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.of(context).size.width;
-    final double height = MediaQuery.of(context).size.height;
+    final Width = MediaQuery.of(context).size.width;
     return SizedBox(
       child: Column(
         children: <Widget>[
           Container(
-              width: width * 0.09,
-              height: height * 0.061,
-              child: ElevatedButton(
-                child: Center(
-                    child: Icon(Icons.question_mark_rounded ,size: width * fontMultiplier * 0.0025)),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                borderRadius: BorderRadius.circular(100),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 5,
+                    blurRadius: 7,
+                    offset: const Offset(0,3),
+                  )
+                ]
+              ),
+              width: Width * 0.1,
+              height: Width * 0.1,
+              child: IconButton(
+                icon: Icon(Icons.question_mark_rounded, size: Width * 0.05, color: Colors.white,),
                   onPressed: () {Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const AboutDetails(),
             ),
-          );},
-                style: ButtonStyle(
-                  elevation: MaterialStateProperty.all(15),
-                    shadowColor: MaterialStateProperty.all(Colors.blue),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(360),
-                        )
-                    )
-                ),
-              )),
+          );},)),
         ],
       ),
     );

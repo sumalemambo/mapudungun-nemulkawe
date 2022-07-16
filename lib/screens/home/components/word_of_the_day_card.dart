@@ -45,28 +45,30 @@ class _WordOfTheDayCardState extends State<WordOfTheDayCard> with AutomaticKeepA
   @override
   Widget build(BuildContext context) {
     super.build(context);
+    final ancho = MediaQuery.of(context).size.width;
     return FutureBuilder<Map<String, dynamic>>(
       future: _wordData,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           var word = WordModel.fromMap(snapshot.data!);
           return Card(
-            elevation: 8,
+            elevation: 10,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
             ),
             color: Colors.white,
             child: Padding(
-              padding: const EdgeInsets.all(32.0),
+              padding: EdgeInsets.all(ancho * 0.08),
               child: Column(
                 children: <Widget>[
-                  Image.asset('assets/day.png',height: 100,width: 100),
+
+                  Image.asset('assets/day.png',height: ancho * 0.3,width: ancho * 0.3),
                   Text(
                     word.mapudungun,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontFamily: 'Avenir',
-                      fontSize: 44,
-                      color: Color(0xff47455f),
+                      fontSize: ancho * 0.1,
+                      color: const Color(0xff47455f),
                       fontWeight: FontWeight.w900,
                     ),
                     textAlign: TextAlign.center,
@@ -74,9 +76,9 @@ class _WordOfTheDayCardState extends State<WordOfTheDayCard> with AutomaticKeepA
                   const SizedBox(height: 4.0),
                   Text(
                     word.gramatica,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontFamily: 'Avenir',
-                      fontSize: 23,
+                      fontSize: ancho * 0.06,
                       color: Colors.blue,
                       fontWeight: FontWeight.w500
                     ),
@@ -87,17 +89,28 @@ class _WordOfTheDayCardState extends State<WordOfTheDayCard> with AutomaticKeepA
                     'Significado: ' + word.castellano,
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
+                    style: TextStyle(
                         fontFamily: 'Avenir',
-                        fontSize: 16,
+                        fontSize: ancho * 0.04,
                         color: Colors.grey,
                         fontWeight: FontWeight.w500
                     ),
                     textAlign: TextAlign.center,
                   ),
-                  const SizedBox(height: 4.0),
+                  Container(height: ancho * 0.045),
                   ElevatedButton(
-                    child: const Text("Detalles..."),
+                    child: Text(
+                        "Detalles...",
+                    style: TextStyle(
+                      fontSize: ancho * 0.06
+                    )),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.blue,
+                        padding: EdgeInsets.all(ancho * 0.03),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        )
+                    ),
                     onPressed: () {
                       Navigator.push(
                         context,

@@ -15,9 +15,9 @@ class ImgAvatar extends StatefulWidget {
 }
 
 class _ImgAvatarState extends State<ImgAvatar> {
-  late Future<AssetImage?> img;
+  late Future<AssetImage> img;
 
-  Future<AssetImage?> getImageIfExists() async {
+  Future<AssetImage> getImageIfExists() async {
     try {
       /*
       var image = Image.asset('assets/images/words/pudu.jpg');
@@ -33,16 +33,16 @@ class _ImgAvatarState extends State<ImgAvatar> {
       return completer.future;
        */
       await rootBundle.load(widget.imgPath);
-      return AssetImage('assets/images/words/pudu.jpg');
+      return AssetImage(widget.imgPath);
     }
     catch (_) {
-      return null;
+      return const AssetImage('assets/images/words/default.jpg');
     }
   }
 
-  Widget avatar (AssetImage? img) {
+  Widget avatarWidget (AssetImage img) {
     final double width = MediaQuery.of(context).size.width;
-    double radius = width * 0.25;
+    double radius = width * 0.26;
 
     return CircleAvatar(
       radius: radius,
@@ -62,10 +62,13 @@ class _ImgAvatarState extends State<ImgAvatar> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<AssetImage?>(
+    return FutureBuilder<AssetImage>(
       future: img,
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
+        if (snapshot.connectionState == ConnectionState.done
+            && snapshot.hasData
+            && snapshot.data != null
+        ) {
 
           return Container(
             decoration: const BoxDecoration(
@@ -73,7 +76,7 @@ class _ImgAvatarState extends State<ImgAvatar> {
               shape: BoxShape.circle,
               boxShadow: [BoxShadow(blurRadius: 5, color: Colors.black, spreadRadius: 1)],
             ),
-            child: avatar(snapshot.data),
+            child: avatarWidget(snapshot.data!),
           );
         }
         else {

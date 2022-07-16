@@ -37,7 +37,7 @@ class DetailScreen extends StatelessWidget {
              child: ListView(
                children: [
                  SizedBox(height: height * 0.055),
-                 ImgAvatar(imgPath: 'assets/images/words/pudu.jpg'),
+                 ImgAvatar(imgPath: 'assets/images/words/${word.id}.jpg'),
                  //ImgAvatar(imgPath: 'assets/images/${word.id}.png'),
                  SizedBox(height: height * 0.035),
                  TitleRow(word: word),
@@ -52,34 +52,6 @@ class DetailScreen extends StatelessWidget {
   }
 }
 
-class ImageAvatar extends StatelessWidget {
-  final String imageSrc;
-
-  const ImageAvatar({Key? key, required this.imageSrc}) : super(key: key);
-
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        shape: BoxShape.circle,
-        boxShadow: [BoxShadow(blurRadius: 5, color: Colors.black, spreadRadius: 1)],
-      ),
-      child: CircleAvatar(
-        radius: 105,
-        backgroundColor: Colors.white,
-        child: CircleAvatar(
-          backgroundImage: AssetImage(imageSrc),
-          maxRadius: 100,
-          child: const Text('?'),
-        ),
-      ),
-    );
-
-  }
-}
-
 class TitleRow extends StatelessWidget {
   final WordModel word;
 
@@ -90,16 +62,15 @@ class TitleRow extends StatelessWidget {
     final player = AudioPlayer();
     final height = MediaQuery.of(context).size.height;
 
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        const Icon(Icons.volume_up, color: Colors.transparent),
         Flexible(
-          child:
-            Text(
+          child: Text(
               word.mapudungun,
-              textAlign: TextAlign.center,
-              style: GoogleFonts.playfairDisplay(
+              style: GoogleFonts.openSans(
                 textStyle: TextStyle(
                     color: const Color(0xFF333333),
                     fontSize: fontMultiplier * height * 0.00205,
@@ -108,14 +79,15 @@ class TitleRow extends StatelessWidget {
             ),
         ),
         TextButton(
-          onPressed: () async {
-            String audioasset = "assets/sounds/test.mp3";
-            ByteData bytes = await rootBundle.load(audioasset); //load audio from assets
-            Uint8List audiobytes = bytes.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes);
-            await player.playBytes(audiobytes);
-          },
-          child: const Icon(Icons.volume_up),
-        ),
+            onPressed: () async {
+              String audioasset = "assets/sounds/test.mp3";
+              ByteData bytes = await rootBundle.load(audioasset); //load audio from assets
+              Uint8List audiobytes = bytes.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes);
+              await player.playBytes(audiobytes);
+            },
+            child: const Icon(Icons.volume_up),
+          ),
+
       ],
     );
   }

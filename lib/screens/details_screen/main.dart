@@ -34,7 +34,7 @@ class DetailScreen extends StatelessWidget {
                  ImgAvatar(imgPath: 'assets/images/words/${word.id}.jpg'),
                  //ImgAvatar(imgPath: 'assets/images/${word.id}.png'),
                  SizedBox(height: height * 0.035),
-                 TitleRow(word: word,audioPath: 'sounds/${word.id}.mp3',),
+                 TitleRow(word: word,audioPath: 'sounds/words/${word.id}.mp3',),
                  FavoriteButton(word: word),
                  DetailsCard(word: word, height: height,)
                ],

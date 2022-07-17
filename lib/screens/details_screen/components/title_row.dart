@@ -53,10 +53,7 @@ class _TitleRowState extends State<TitleRow> {
                 child: const Icon(Icons.volume_up),
               );
             } else {
-              return TextButton(
-                onPressed: () {},
-                child: const Icon(Icons.volume_up, color: Colors.grey),
-              );
+              return Container();
             }
           }
           else {
@@ -79,10 +76,10 @@ class _TitleRowState extends State<TitleRow> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Icon(Icons.volume_up, color: Colors.transparent),
         Flexible(
           child: Text(
             widget.word.mapudungun,
+            textAlign: TextAlign.center,
             style: GoogleFonts.openSans(
               textStyle: TextStyle(
                   color: const Color(0xFF333333),

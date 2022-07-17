@@ -39,7 +39,7 @@ dependencies:
   sqflite:
   # path:
   csv: ^5.0.1
-  audioplayers: ^0.20.1
+  audioplayers: ^1.0.1
   expandable: ^5.0.1
 
 dev_dependencies:

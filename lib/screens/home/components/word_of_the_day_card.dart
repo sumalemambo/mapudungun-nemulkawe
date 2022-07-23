@@ -32,12 +32,18 @@ class _WordOfTheDayCardState extends State<WordOfTheDayCard> with AutomaticKeepA
 
   Future<Map<String, dynamic>> _fetchWordOfTheDay() async {
     final int nRows = await DatabaseHelper.count(WordModel.table);
-    final int numberOfTheDay = Random(todayToInt()).nextInt(nRows);
+    final Random numberOfTheDay = Random(todayToInt());
 
     var row = await DatabaseHelper.selectByIndex(
         WordModel.table,
-        numberOfTheDay,
+        numberOfTheDay.nextInt(nRows),
     );
+    while (row.isEmpty) {
+      row = await DatabaseHelper.selectByIndex(
+        WordModel.table,
+        numberOfTheDay.nextInt(nRows),
+      );
+    }
 
     return row.first;
   }

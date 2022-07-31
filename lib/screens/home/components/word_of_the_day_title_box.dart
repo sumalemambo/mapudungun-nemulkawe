@@ -6,7 +6,7 @@ class WordOfTheDayTitleBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Width = MediaQuery.of(context).size.width;
+    final width = MediaQuery.of(context).size.width;
     return Center(
       child: Container(
         decoration: BoxDecoration(
@@ -30,7 +30,7 @@ class WordOfTheDayTitleBox extends StatelessWidget {
                 'Fachiantüchi n\'emül',
                 style: TextStyle(
                   fontFamily: 'Avenir',
-                  fontSize: Width * 0.07,
+                  fontSize: width * 0.07,
                   color: Colors.white,
                   fontWeight: FontWeight.w900,
                 ),
@@ -39,7 +39,7 @@ class WordOfTheDayTitleBox extends StatelessWidget {
                 'Palabra del día',
                 style: TextStyle(
                   fontFamily: 'Avenir',
-                  fontSize: Width * 0.06,
+                  fontSize: width * 0.06,
                   color: Colors.white,
                   fontWeight: FontWeight.w300,
                 ),

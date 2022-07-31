@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:app/models/wordModel.dart';
 import 'package:app/screens/details_screen/main.dart';
+
+import 'word_category_box.dart';
 import 'favorite_button.dart';
 
-const pastelColors = {
-  'sustantivo': Colors.lightBlue,
-  'verbo': Colors.amber,
-  'adjetivo': Colors.green,
-  'expresión': Colors.pink,
-};
 
 
 class WordTile extends StatelessWidget {
@@ -58,23 +54,7 @@ class WordTile extends StatelessWidget {
                           ),
                         const SizedBox(width: 8.0),
                         // Categoría
-                        Container(
-                          decoration: BoxDecoration(
-                            color: pastelColors[word.gramatica] ?? Colors.grey,
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 6.0),
-                            child: Text(
-                              word.gramatica,
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 13.0,
-                                fontWeight: FontWeight.normal,
-                              ),
-                            ),
-                          ),
-                        ),
+                        WordCategoryBox(category: word.gramatica),
                       ],
                     ),
                     // Significado

@@ -48,8 +48,8 @@ class AboutDetails extends StatelessWidget {
                           ),
                           textAlign: TextAlign.left,
                         ),
-                        Divider(color: Colors.black38),
-                        SizedBox(height: 32),
+                        const Divider(color: Colors.black38),
+                        const SizedBox(height: 32),
                         const Text(
                           'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                           style: TextStyle(
@@ -59,8 +59,8 @@ class AboutDetails extends StatelessWidget {
                             fontWeight: FontWeight.w400,
                           ),
                         ),
-                        SizedBox(height: 32),
-                        Divider(color: Colors.black38),
+                        const SizedBox(height: 32),
+                        const Divider(color: Colors.black38),
                       ],
                     ),
                   ),
@@ -102,7 +102,7 @@ class AboutDetails extends StatelessWidget {
               ),
             ),
             IconButton(
-              icon: Icon(Icons.arrow_back_ios),
+              icon: const Icon(Icons.arrow_back_ios),
               onPressed: () {
                 Navigator.pop(context);
               },

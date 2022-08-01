@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'package:app/models/wordModel.dart';
 
+import 'package:app/widgets/word_category_box.dart';
+
 import 'conjugation_tab.dart';
 
 
@@ -30,19 +32,9 @@ class DetailsCard extends StatelessWidget {
 
     return [
       // Categoría
-      Row(
-        children: [
-          Text(
-            word.gramatica,
-            style: GoogleFonts.openSans(
-              textStyle: TextStyle(
-                color: Colors.grey,
-                fontStyle: FontStyle.italic,
-                fontSize: fontMultiplier * height * 0.001
-              ),
-            ),
-          ),
-        ],
+      Align(
+        alignment: Alignment.centerLeft,
+        child: WordCategoryBox(category: word.gramatica),
       ),
       SizedBox(
         height: height * 0.0165,

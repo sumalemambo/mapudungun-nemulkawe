@@ -17,8 +17,9 @@ class HomeScreen extends StatelessWidget {
       child: Column(
         children: [
           Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [AboutCard(),Spacer(),DateBox()]),
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: const [AboutCard(), Spacer(), DateBox()],
+          ),
           Flexible(
             child:ListView(
               children:const [

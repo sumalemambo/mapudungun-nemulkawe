@@ -3,10 +3,11 @@ import 'details.dart';
 
 
 class AboutCard extends StatelessWidget {
-  AboutCard({Key? key}) : super (key: key);
+  const AboutCard({Key? key}) : super (key: key);
+
   @override
   Widget build(BuildContext context) {
-    final Width = MediaQuery.of(context).size.width;
+    final width = MediaQuery.of(context).size.width;
     return SizedBox(
       child: Column(
         children: <Widget>[
@@ -23,10 +24,10 @@ class AboutCard extends StatelessWidget {
                   )
                 ]
               ),
-              width: Width * 0.1,
-              height: Width * 0.1,
+              width: width * 0.1,
+              height: width * 0.1,
               child: IconButton(
-                icon: Icon(Icons.question_mark_rounded, size: Width * 0.05, color: Colors.white,),
+                icon: Icon(Icons.question_mark_rounded, size: width * 0.05, color: Colors.white,),
                   onPressed: () {Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const AboutDetails(),

@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:app/models/abstract_model.dart';
+import 'package:app/providers/favorites_provider.dart';
+import 'package:csv/csv.dart';
 import 'package:flutter/services.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -42,23 +44,47 @@ class DatabaseHelper {
 
     if (!exists) {
       // Should happen only the first time you launch your application
-      // Make sure the parent directory exists
-      try {
-        await Directory(dirname(path)).create(recursive: true);
-      } catch (_) {}
-
-      // Copy from asset
-      ByteData data = await rootBundle.load(join("assets/db", "database.db"));
-      List<int> bytes =
-      data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
-
-      // Write and flush the bytes written
-      await File(path).writeAsBytes(bytes, flush: true);
-
+      return await openDatabase(path, version: 1, onCreate: _createDB, readOnly: false);
     }
 
     // Open the database
     return await openDatabase(path, readOnly: false);
+  }
+
+  /// Method to create the database and tables when the app executes
+  /// for the first time
+  Future _createDB(Database db, int version) async {
+    // Type for integers ids
+    const idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
+    // Type for strings
+    const textType = 'TEXT';
+
+    // Create [WordModel] table
+    await db.execute('''
+    CREATE TABLE ${WordModel.table} (
+    ${WordModelFields.id} $textType,
+    ${WordModelFields.mapudungun} $textType,
+    ${WordModelFields.gramatica} $textType,
+    ${WordModelFields.castellano} $textType,
+    ${WordModelFields.ejemplo} $textType)
+    ''');
+
+    // Create favorites table to keep liked [WordModel]
+    await db.execute('''
+    CREATE TABLE ${FavoritesProvider.table} (
+    id $idType,
+    wordId $textType)
+    ''');
+
+    String path = 'assets/csv/diccionario.csv';
+    final _rawData = await rootBundle.loadString(path);
+    List<List<String>> rowsAsListOfValues = const CsvToListConverter(shouldParseNumbers: false).convert(_rawData);
+    rowsAsListOfValues = rowsAsListOfValues.sublist(1, rowsAsListOfValues.length);
+    for (final e in rowsAsListOfValues) {
+      WordModel word = WordModel(id: e[0],mapudungun: e[1], gramatica: e[2], castellano: e[3], ejemplo: e[4]);
+      var mapword = word.toMap();
+      await db.insert(WordModel.table, mapword);
+    }
   }
 
   /// Method to insert [obj] on the [table] table in the database.

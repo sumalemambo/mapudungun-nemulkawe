@@ -64,6 +64,7 @@ class DatabaseHelper {
     CREATE TABLE ${WordModel.table} (
     ${WordModelFields.id} $textType,
     ${WordModelFields.mapudungun} $textType,
+    ${WordModelFields.raiz} $textType,
     ${WordModelFields.gramatica} $textType,
     ${WordModelFields.castellano} $textType,
     ${WordModelFields.ejemplo} $textType)
@@ -81,9 +82,9 @@ class DatabaseHelper {
     List<List<String>> rowsAsListOfValues = const CsvToListConverter(shouldParseNumbers: false).convert(_rawData);
     rowsAsListOfValues = rowsAsListOfValues.sublist(1, rowsAsListOfValues.length);
     for (final e in rowsAsListOfValues) {
-      WordModel word = WordModel(id: e[0],mapudungun: e[1], gramatica: e[2], castellano: e[3], ejemplo: e[4]);
-      var mapword = word.toMap();
-      await db.insert(WordModel.table, mapword);
+      WordModel word = WordModel(id: e[0],mapudungun: e[1], raiz: e[2], gramatica: e[3], castellano: e[4], ejemplo: e[5]);
+      var map_word = word.toMap();
+      await db.insert(WordModel.table, map_word);
     }
   }
 

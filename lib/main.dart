@@ -22,7 +22,7 @@ void loadDict() async {
   List<List<String>> rowsAsListOfValues = const CsvToListConverter(shouldParseNumbers: false).convert(_rawData);
   rowsAsListOfValues = rowsAsListOfValues.sublist(1, rowsAsListOfValues.length);
   for (final e in rowsAsListOfValues) {
-    WordModel word = WordModel(id: e[0],mapudungun: e[1], gramatica: e[2], castellano: e[3], ejemplo: e[4]);
+    WordModel word = WordModel(id: e[0],mapudungun: e[1], raiz: e[2], gramatica: e[3], castellano: e[4], ejemplo: e[5]);
 
     await DatabaseHelper.insert(WordModel.table, word);
   }

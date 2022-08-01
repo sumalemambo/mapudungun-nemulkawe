@@ -5,12 +5,13 @@ import 'package:app/models/abstract_model.dart';
 class WordModelFields {
   static final List<String> values = [
     // Add all fields
-    id, mapudungun, gramatica, castellano, ejemplo
+    id, mapudungun, raiz, gramatica, castellano, ejemplo
   ];
 
   // Each field is associated with its corresponding column name
   static const String id = 'id';
   static const String mapudungun = 'mapudungun';
+  static const String raiz = 'raiz';
   static const String gramatica = 'gramatica';
   static const String castellano = 'castellano';
   static const String ejemplo = 'ejemplo';
@@ -22,6 +23,7 @@ class WordModel extends AbstractModel {
   static String table = 'WordTable';
 
   final String mapudungun;
+  final String raiz;
   final String gramatica;
   final String castellano;
   final String ejemplo;
@@ -30,6 +32,7 @@ class WordModel extends AbstractModel {
   WordModel({
     String? id,
     required this.mapudungun,
+    required this.raiz,
     required this.gramatica,
     required this.castellano,
     required this.ejemplo,
@@ -40,6 +43,7 @@ class WordModel extends AbstractModel {
     return WordModel(
         id: map[WordModelFields.id] as String?,
         mapudungun: map[WordModelFields.mapudungun] as String,
+        raiz: map[WordModelFields.raiz] as String,
         gramatica: map[WordModelFields.gramatica] as String,
         castellano: map[WordModelFields.castellano] as String,
         ejemplo: map[WordModelFields.ejemplo] as String
@@ -51,6 +55,7 @@ class WordModel extends AbstractModel {
     return list.map((item) => WordModel(
         id: item[WordModelFields.id] as String?,
         mapudungun: item[WordModelFields.mapudungun] as String,
+        raiz: item[WordModelFields.raiz] as String,
         gramatica: item[WordModelFields.gramatica] as String,
         castellano: item[WordModelFields.castellano] as String,
         ejemplo: item[WordModelFields.ejemplo] as String
@@ -63,6 +68,7 @@ class WordModel extends AbstractModel {
     Map<String, dynamic> map = {
       WordModelFields.id: id,
       WordModelFields.mapudungun: mapudungun,
+      WordModelFields.raiz: raiz,
       WordModelFields.gramatica: gramatica,
       WordModelFields.castellano: castellano,
       WordModelFields.ejemplo: ejemplo,

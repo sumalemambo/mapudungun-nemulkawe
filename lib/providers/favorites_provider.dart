@@ -60,6 +60,7 @@ class FavoritesProvider extends ChangeNotifier {
         .map((item) => WordModel(
         id: item['id'],
         mapudungun: item['mapudungun'],
+        raiz: item['raiz'],
         gramatica: item['gramatica'],
         castellano: item['castellano'],
         ejemplo: item['ejemplo'],

@@ -8,7 +8,6 @@ import 'components/title_row.dart';
 // fontSize multiplier
 const double fontMultiplier = 20.0;
 
-
 class DetailScreen extends StatelessWidget {
   final WordModel word;
 
@@ -31,10 +30,10 @@ class DetailScreen extends StatelessWidget {
              child: ListView(
                children: [
                  SizedBox(height: height * 0.055),
-                 ImgAvatar(imgPath: 'assets/images/words/${word.id}.jpg'),
+                 ImgAvatar(imgPath: 'assets/imgs/${word.id}.png'),
                  //ImgAvatar(imgPath: 'assets/images/${word.id}.png'),
                  SizedBox(height: height * 0.035),
-                 TitleRow(word: word,audioPath: 'sounds/words/${word.id}.mp3',),
+                 TitleRow(word: word,audioPath: 'audios/${word.id}.mp3',),
                  FavoriteButton(word: word),
                  DetailsCard(word: word, height: height,)
                ],

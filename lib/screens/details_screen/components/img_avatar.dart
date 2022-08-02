@@ -36,7 +36,7 @@ class _ImgAvatarState extends State<ImgAvatar> {
       return AssetImage(widget.imgPath);
     }
     catch (_) {
-      return const AssetImage('assets/images/words/default.jpg');
+      return const AssetImage('assets/imgs/default.jpg');
     }
   }
 

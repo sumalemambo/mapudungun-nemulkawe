@@ -68,11 +68,10 @@ flutter:
   assets:
     - csv/
     - assets/csv/
-    - assets/db/database.db
-    - assets/sounds/
+    - assets/imgs/
+    - assets/audios/
     - assets/day.png
     - lib/assets/
-    - assets/images/words/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

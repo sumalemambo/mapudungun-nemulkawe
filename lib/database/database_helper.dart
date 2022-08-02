@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:app/models/abstract_model.dart';
 import 'package:app/providers/favorites_provider.dart';
 import 'package:csv/csv.dart';
@@ -54,6 +52,8 @@ class DatabaseHelper {
   /// Method to create the database and tables when the app executes
   /// for the first time
   Future _createDB(Database db, int version) async {
+    // Path for csv file
+    String path = 'assets/csv/diccionario.csv';
     // Type for integers ids
     const idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
     // Type for strings
@@ -77,7 +77,7 @@ class DatabaseHelper {
     wordId $textType)
     ''');
 
-    String path = 'assets/csv/diccionario.csv';
+    // Add words to newly created database
     final _rawData = await rootBundle.loadString(path);
     List<List<String>> rowsAsListOfValues = const CsvToListConverter(shouldParseNumbers: false).convert(_rawData);
     rowsAsListOfValues = rowsAsListOfValues.sublist(1, rowsAsListOfValues.length);

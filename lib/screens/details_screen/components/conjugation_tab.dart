@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'package:app/models/wordModel.dart';
-
 
 final persons = [
   "iñche", "iñchiw", "iñchiñ",
@@ -39,9 +37,9 @@ const double fontMultiplier = 20.0;
 
 
 class ConjugationTab extends StatefulWidget {
-  final WordModel word;
+  final String verb;
 
-  const ConjugationTab({Key? key, required this.word}) : super(key: key);
+  const ConjugationTab({Key? key, required this.verb}) : super(key: key);
 
   @override
   State createState() => _ConjugationTabState();
@@ -54,11 +52,11 @@ class _ConjugationTabState extends State<ConjugationTab> {
   @override
   void initState() {
     super.initState();
-    _conjugations = conjugate(widget.word.mapudungun);
+    _conjugations = conjugate(widget.verb);
   }
 
   List<List<String>> conjugate(String s) {
-    s = s.substring(0, s.length-1);
+    s = s.substring(0, s.lastIndexOf('–'));
 
     List<String> vowelsWithoutI = ['a', 'ü', 'e', 'o', 'u'];
     List<List<String>> endings;

@@ -24,13 +24,6 @@ class DetailsCard extends StatelessWidget {
   }) : super(key: key);
 
   List<Widget> _definitionList(BuildContext context) {
-    late List<List<String>> examples;
-    if (word.ejemplo != '') {
-      examples = word.ejemplo.split(";").map((example) {
-        return example.split('‘').map((element) => element.substring(0, element.length-1).trim()).toList();
-      }).toList();
-    }
-
     return [
       // Categoría
       Align(
@@ -119,7 +112,7 @@ class DetailsCard extends StatelessWidget {
           children: [
             ..._definitionList(context),
             const SizedBox(height: 16.0),
-            (word.gramatica == 'verbo') ? ConjugationTab(word: word) : Container(),
+            (word.gramatica == 'verbo') ? ConjugationTab(verb: word.raiz) : Container(),
           ]
         ),
       )

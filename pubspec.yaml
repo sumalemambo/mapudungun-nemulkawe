@@ -41,7 +41,6 @@ dependencies:
   csv: ^5.0.1
   audioplayers: ^1.0.1
   expandable: ^5.0.1
-  flutter_markdown:
 
 dev_dependencies:
   flutter_test:

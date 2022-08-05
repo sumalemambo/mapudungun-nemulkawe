@@ -1,35 +1,12 @@
-import 'package:csv/csv.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:provider/provider.dart';
 import 'package:app/providers/search_provider.dart';
 import 'package:app/providers/favorites_provider.dart';
-
 import 'package:app/database/database_helper.dart';
-
 import 'package:app/components/nav.dart';
-
 import 'models/wordModel.dart';
-
-void loadDict() async {
-
-  await DatabaseHelper.dropTable(WordModel.table);
-
-  await DatabaseHelper.createDB();
-  String path = 'csv/nuevo_diccionario2.csv';
-  final _rawData = await rootBundle.loadString(path);
-  List<List<String>> rowsAsListOfValues = const CsvToListConverter(shouldParseNumbers: false).convert(_rawData);
-  rowsAsListOfValues = rowsAsListOfValues.sublist(1, rowsAsListOfValues.length);
-  for (final e in rowsAsListOfValues) {
-    WordModel word = WordModel(id: e[0],mapudungun: e[1], raiz: e[2], gramatica: e[3], castellano: e[4], ejemplo: e[5]);
-
-    await DatabaseHelper.insert(WordModel.table, word);
-  }
-
-}
-
-
 
 // Este Bucket almacena la Scroll Position del Diccionario y los Favoritos
 final bucket = PageStorageBucket();
@@ -39,6 +16,7 @@ Future<void> main() async {
 
   // Ocultar la barra de estado superior
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+
   // La única orientación posible para la app es vertical, no horizontal
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);

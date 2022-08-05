@@ -6,6 +6,7 @@ import 'package:app/models/wordModel.dart';
 import 'package:app/widgets/word_category_box.dart';
 
 import 'conjugation_tab.dart';
+import 'examples.dart';
 
 
 // fontSize multiplier
@@ -99,67 +100,7 @@ class DetailsCard extends StatelessWidget {
               ),
 
               // Ejemplos
-              Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      word.ejemplo,
-                      style: GoogleFonts.openSans(
-                        textStyle: TextStyle(
-                            color: const Color(0xFF333333),
-                            fontSize: fontMultiplier * height * 0.001
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              /*
-              // TODO: Comentado hasta arreglar el formato de ejemplos
-              // Cada uno de los ejemplos
-              Column(
-                children: List.generate(examples.length, (i) {
-                  return Column(
-                    children: [
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              "• " + examples[i][0],
-                              style: GoogleFonts.openSans(
-                                textStyle: TextStyle(
-                                    color: const Color(0xFF333333),
-                                    fontSize: fontMultiplier * height * 0.001
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              examples[i][1],
-                              style: GoogleFonts.openSans(
-                                textStyle: TextStyle(
-                                    color: const Color(0xFF888888),
-                                    fontStyle: FontStyle.italic,
-                                    fontSize: fontMultiplier * height * 0.001
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 8.0),
-                    ]
-                  );
-
-                }),
-              ),
-              */
+              Examples(examples: word.ejemplo),
             ]
           )
         : Container(),

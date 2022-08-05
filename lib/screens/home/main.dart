@@ -21,8 +21,8 @@ class HomeScreen extends StatelessWidget {
             children: const [AboutCard(), Spacer(), DateBox()],
           ),
           Flexible(
-            child:ListView(
-              children:const [
+            child: ListView(
+              children: const [
                 Padding(
                   padding: EdgeInsets.all(18.0),
                   child: WordOfTheDayTitleBox(),

@@ -10,23 +10,28 @@ final pastelColors = {
 
 class WordCategoryBox extends StatelessWidget {
   final String category;
+  final double height;
 
-  const WordCategoryBox({Key? key, required this.category}) : super(key: key);
+  const WordCategoryBox({
+    Key? key,
+    required this.category,
+    required this.height,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         color: pastelColors[category] ?? Colors.grey,
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(height/2),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 6.0),
+        padding: EdgeInsets.symmetric(vertical: height/8, horizontal: height*3/8),
         child: Text(
           category,
-          style: const TextStyle(
+          style: TextStyle(
             color: Colors.white,
-            fontSize: 13.0,
+            fontSize: height*3/4,
             fontWeight: FontWeight.normal,
           ),
         ),

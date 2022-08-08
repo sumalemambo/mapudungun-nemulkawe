@@ -28,7 +28,7 @@ class DetailsCard extends StatelessWidget {
       // Categoría
       Align(
         alignment: Alignment.centerLeft,
-        child: WordCategoryBox(category: word.gramatica),
+        child: WordCategoryBox(category: word.gramatica, height: height * 0.03),
       ),
       SizedBox(
         height: height * 0.0165,

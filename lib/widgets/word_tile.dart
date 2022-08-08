@@ -54,7 +54,7 @@ class WordTile extends StatelessWidget {
                           ),
                         const SizedBox(width: 8.0),
                         // Categoría
-                        WordCategoryBox(category: word.gramatica),
+                        WordCategoryBox(category: word.gramatica, height: 16.0),
                       ],
                     ),
                     // Significado

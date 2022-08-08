@@ -66,25 +66,10 @@ class Examples extends StatelessWidget {
                 ),
               ),
             ),
+            SizedBox(height: height * 0.0065),
           ],
         );
       }).toList(),
-    );
-
-    return Row(
-      children: [
-        Expanded(
-          child: Text(
-            examples,
-            style: GoogleFonts.openSans(
-              textStyle: TextStyle(
-                color: const Color(0xFF333333),
-                fontSize: fontMultiplier * height * 0.001
-              ),
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

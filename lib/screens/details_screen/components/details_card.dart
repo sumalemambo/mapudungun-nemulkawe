@@ -94,9 +94,13 @@ class DetailsCard extends StatelessWidget {
 
               // Ejemplos
               Examples(examples: word.ejemplo),
+              SizedBox(
+                height: height * 0.0065,
+              ),
             ]
           )
         : Container(),
+      (word.gramatica == 'verbo') ? ConjugationTab(verb: word.raiz) : Container(),
     ];
   }
 
@@ -109,67 +113,9 @@ class DetailsCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          children: [
-            ..._definitionList(context),
-            const SizedBox(height: 16.0),
-            (word.gramatica == 'verbo') ? ConjugationTab(verb: word.raiz) : Container(),
-          ]
-        ),
-      )
-    );
-    /*
-    return Container(
-      constraints: BoxConstraints(
-          minHeight: height * 0.45,
-          minWidth: double.infinity,
-          maxHeight: double.infinity
-      ),
-      child: Card(
-        margin: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 16.0),
-        color: Colors.white,
-        elevation: 4.0,
-        child: DefaultTabController(
-          length: word.theme == 'Verbos' ? 3 : 2,
-          child: Column(
-            children: [
-              Container(
-                color: Colors.blue,
-                child: TabBar(
-                  tabs: word.theme == 'Verbos'
-                    ? const [
-                      Tab(text: 'Definición'),
-                      Tab(text: 'Conjugación'),
-                      Tab(text: 'Notas')
-                    ]
-                    : const [
-                      Tab(text: 'Definición'),
-                      Tab(text: 'Notas')
-                    ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: SizedBox(
-                  height: 300.0,
-                  child: TabBarView(
-                    children: word.theme == 'Verbos'
-                      ? [
-                        DefinitionTab(word: word),
-                        ConjugationTab(word: word),
-                        NotesTab(word: word),
-                      ]
-                      : [
-                        DefinitionTab(word: word),
-                        NotesTab(word: word),
-                      ],
-                  ),
-                ),
-              ),
-            ]
-          )
+          children: _definitionList(context),
         ),
       ),
     );
-     */
   }
 }

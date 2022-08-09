@@ -11,9 +11,11 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double height = MediaQuery.of(context).size.height;
+    final double width = MediaQuery.of(context).size.width;
 
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: EdgeInsets.all(height * 0.02),
       child: Column(
         children: [
           Row(
@@ -22,10 +24,10 @@ class HomeScreen extends StatelessWidget {
           ),
           Flexible(
             child: ListView(
-              children: const [
+              children: [
                 Padding(
-                  padding: EdgeInsets.all(18.0),
-                  child: WordOfTheDayTitleBox(),
+                  padding: EdgeInsets.all(height * 0.0225),
+                  child: WordOfTheDayTitleBox(height: height,),
                 ),
                 WordOfTheDayCard(),
               ]

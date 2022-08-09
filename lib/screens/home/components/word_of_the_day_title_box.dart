@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
 
+// fontSize multiplier
+const double fontMultiplier = 20.0;
 
 class WordOfTheDayTitleBox extends StatelessWidget {
-  const WordOfTheDayTitleBox({Key? key}) : super(key: key);
+  final double height;
+
+  const WordOfTheDayTitleBox({
+    Key? key,
+    required this.height,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
+
     return Center(
       child: Container(
         decoration: BoxDecoration(
           color: Colors.blue,
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(height * 0.01),
           boxShadow: const [
             BoxShadow(
               color: Colors.grey,
@@ -21,7 +28,7 @@ class WordOfTheDayTitleBox extends StatelessWidget {
           ],
         ),
         child: Padding(
-          padding: const EdgeInsets.all(18.0),
+          padding: EdgeInsets.all(height * 0.03),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -30,7 +37,7 @@ class WordOfTheDayTitleBox extends StatelessWidget {
                 'Fachiantüchi n\'emül',
                 style: TextStyle(
                   fontFamily: 'Avenir',
-                  fontSize: width * 0.07,
+                  fontSize: fontMultiplier * height * 0.0015,
                   color: Colors.white,
                   fontWeight: FontWeight.w900,
                 ),
@@ -39,7 +46,7 @@ class WordOfTheDayTitleBox extends StatelessWidget {
                 'Palabra del día',
                 style: TextStyle(
                   fontFamily: 'Avenir',
-                  fontSize: width * 0.06,
+                  fontSize: fontMultiplier * height * 0.0015,
                   color: Colors.white,
                   fontWeight: FontWeight.w300,
                 ),

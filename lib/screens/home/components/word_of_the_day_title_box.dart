@@ -13,9 +13,11 @@ class WordOfTheDayTitleBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
 
     return Center(
       child: Container(
+        width: width * 0.7,
         decoration: BoxDecoration(
           color: Colors.blue,
           borderRadius: BorderRadius.circular(height * 0.01),

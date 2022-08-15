@@ -85,8 +85,8 @@ class _ConjugationTabState extends State<ConjugationTab> {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
 
-    final tileHeight = height / 15;
-    final tileWidth = width / 5.4;
+    final tileHeight = 53.43;
+    final tileWidth = 72.72;
     const duration = Duration(milliseconds: 300);
 
     MaterialColor _materialColor;
@@ -109,7 +109,7 @@ class _ConjugationTabState extends State<ConjugationTab> {
             style: GoogleFonts.openSans(
               textStyle: TextStyle(
                   color: const Color(0xFF333333),
-                  fontSize: fontMultiplier * height * 0.0015,
+                  fontSize: 26,
                   fontWeight: FontWeight.bold
               ),
             ),
@@ -123,7 +123,7 @@ class _ConjugationTabState extends State<ConjugationTab> {
           style: GoogleFonts.openSans(
             textStyle: TextStyle(
                 color: const Color(0xFF333333),
-                fontSize: fontMultiplier * height * 0.0012,
+                fontSize: 23,
                 fontWeight: FontWeight.bold
             ),
           ),
@@ -153,12 +153,12 @@ class _ConjugationTabState extends State<ConjugationTab> {
                       textStyle: (_selectedIndex == 0)
                         ? TextStyle(
                             color: const Color(0xFFFFFFFF),
-                            fontSize: fontMultiplier * height * 0.001,
+                            fontSize: 16,
                             fontWeight: FontWeight.bold,
                           )
                         : TextStyle(
                             color: const Color(0xFF333333),
-                            fontSize: fontMultiplier * height * 0.001,
+                            fontSize: 16,
                           )
                     ),
                   ),
@@ -177,12 +177,12 @@ class _ConjugationTabState extends State<ConjugationTab> {
                         textStyle: (_selectedIndex == 1)
                             ? TextStyle(
                           color: const Color(0xFFFFFFFF),
-                          fontSize: fontMultiplier * height * 0.001,
+                          fontSize: 16,
                           fontWeight: FontWeight.bold,
                         )
                             : TextStyle(
                           color: const Color(0xFF333333),
-                          fontSize: fontMultiplier * height * 0.001,
+                          fontSize: 16,
                         )
                     ),
                   ),
@@ -201,12 +201,12 @@ class _ConjugationTabState extends State<ConjugationTab> {
                         textStyle: (_selectedIndex == 2)
                             ? TextStyle(
                           color: const Color(0xFFFFFFFF),
-                          fontSize: fontMultiplier * height * 0.001,
+                          fontSize :16,
                           fontWeight: FontWeight.bold,
                         )
                             : TextStyle(
                           color: const Color(0xFF333333),
-                          fontSize: fontMultiplier * height * 0.001,
+                          fontSize: 16,
                         )
                     ),
                   ),
@@ -253,7 +253,7 @@ class _ConjugationTabState extends State<ConjugationTab> {
                             style: GoogleFonts.openSans(
                               textStyle: TextStyle(
                                 color: const Color(0xFF333333),
-                                fontSize: fontMultiplier * height * 0.001,
+                                fontSize: 16,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -271,7 +271,7 @@ class _ConjugationTabState extends State<ConjugationTab> {
                             style: GoogleFonts.openSans(
                               textStyle: TextStyle(
                                 color: const Color(0xFF333333),
-                                fontSize: fontMultiplier * height * 0.001,
+                                fontSize: 16,
                               ),
                             ),
                           ),
@@ -288,7 +288,7 @@ class _ConjugationTabState extends State<ConjugationTab> {
                             style: GoogleFonts.openSans(
                               textStyle: TextStyle(
                                 color: const Color(0xFF333333),
-                                fontSize: fontMultiplier * height * 0.001,
+                                fontSize: 16,
                               ),
                             ),
                           ),
@@ -305,7 +305,7 @@ class _ConjugationTabState extends State<ConjugationTab> {
                             style: GoogleFonts.openSans(
                               textStyle: TextStyle(
                                 color: const Color(0xFF333333),
-                                fontSize: fontMultiplier * height * 0.001,
+                                fontSize: 16,
                               ),
                             ),
                           ),
@@ -328,7 +328,7 @@ class _ConjugationTabState extends State<ConjugationTab> {
                             style: GoogleFonts.openSans(
                               textStyle: TextStyle(
                                 color: const Color(0xFF333333),
-                                fontSize: fontMultiplier * height * 0.001,
+                                fontSize: 16,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -349,7 +349,7 @@ class _ConjugationTabState extends State<ConjugationTab> {
                                   style: GoogleFonts.openSans(
                                     textStyle: TextStyle(
                                       color: const Color(0xFF333333),
-                                      fontSize: fontMultiplier * height * 0.001,
+                                      fontSize: 16,
                                     ),
                                   ),
                                 ),
@@ -366,7 +366,7 @@ class _ConjugationTabState extends State<ConjugationTab> {
                                   style: GoogleFonts.openSans(
                                     textStyle: TextStyle(
                                       color: const Color(0xFF333333),
-                                      fontSize: fontMultiplier * height * 0.001,
+                                      fontSize: 16,
                                     ),
                                   ),
                                 ),
@@ -383,7 +383,7 @@ class _ConjugationTabState extends State<ConjugationTab> {
                                   style: GoogleFonts.openSans(
                                     textStyle: TextStyle(
                                       color: const Color(0xFF333333),
-                                      fontSize: fontMultiplier * height * 0.001,
+                                      fontSize: 16,
                                     ),
                                   ),
                                 ),
@@ -409,7 +409,7 @@ class _ConjugationTabState extends State<ConjugationTab> {
                               style: GoogleFonts.openSans(
                                 textStyle: TextStyle(
                                   color: const Color(0xFF333333),
-                                  fontSize: fontMultiplier * height * 0.001,
+                                  fontSize: 16,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -443,7 +443,7 @@ class _ConjugationTabState extends State<ConjugationTab> {
                                       style: GoogleFonts.openSans(
                                         textStyle: TextStyle(
                                           color: const Color(0xFF888888),
-                                          fontSize: fontMultiplier * height * 0.0007,
+                                          fontSize: 12,
                                         ),
                                       ),
                                     ),
@@ -452,7 +452,7 @@ class _ConjugationTabState extends State<ConjugationTab> {
                                       style: GoogleFonts.openSans(
                                         textStyle: TextStyle(
                                           color: const Color(0xFF333333),
-                                          fontSize: fontMultiplier * height * 0.001,
+                                          fontSize: 16,
                                         ),
                                       ),
                                     ),

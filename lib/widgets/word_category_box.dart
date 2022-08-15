@@ -23,15 +23,15 @@ class WordCategoryBox extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: pastelColors[category] ?? Colors.grey,
-        borderRadius: BorderRadius.circular(height/2),
+        borderRadius: BorderRadius.circular(9),
       ),
       child: Padding(
-        padding: EdgeInsets.symmetric(vertical: height/8, horizontal: height*3/8),
+        padding: EdgeInsets.symmetric(vertical: 2, horizontal: 6),
         child: Text(
           category,
           style: TextStyle(
             color: Colors.white,
-            fontSize: height*3/4,
+            fontSize: 16,
             fontWeight: FontWeight.normal,
           ),
         ),

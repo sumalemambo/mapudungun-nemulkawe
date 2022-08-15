@@ -29,7 +29,7 @@ class HomeScreen extends StatelessWidget {
                   padding: EdgeInsets.all(height * 0.0225),
                   child: WordOfTheDayTitleBox(height: height,),
                 ),
-                WordOfTheDayCard(),
+                WordOfTheDayCard(height: height,),
               ]
             ),
           ),

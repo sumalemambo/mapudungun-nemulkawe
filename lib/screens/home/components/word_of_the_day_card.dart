@@ -4,9 +4,15 @@ import 'dart:math';
 import 'package:app/database/database_helper.dart';
 import 'package:app/screens/details_screen/main.dart';
 
+// fontSize multiplier
+const double fontMultiplier = 20.0;
 
 class WordOfTheDayCard extends StatefulWidget {
-  const WordOfTheDayCard({Key? key}) : super(key: key);
+  final double height;
+  const WordOfTheDayCard({
+    Key? key,
+    required this.height,
+  }) : super(key: key);
 
   @override
   State createState() => _WordOfTheDayCardState();
@@ -73,7 +79,7 @@ class _WordOfTheDayCardState extends State<WordOfTheDayCard> with AutomaticKeepA
                     word.mapudungun,
                     style: TextStyle(
                       fontFamily: 'Avenir',
-                      fontSize: ancho * 0.1,
+                      fontSize: fontMultiplier * widget.height * 0.002, //0.1
                       color: const Color(0xff47455f),
                       fontWeight: FontWeight.w900,
                     ),
@@ -84,7 +90,7 @@ class _WordOfTheDayCardState extends State<WordOfTheDayCard> with AutomaticKeepA
                     word.gramatica,
                     style: TextStyle(
                       fontFamily: 'Avenir',
-                      fontSize: ancho * 0.06,
+                      fontSize: fontMultiplier * widget.height * 0.0015,
                       color: Colors.blue,
                       fontWeight: FontWeight.w500
                     ),
@@ -97,7 +103,7 @@ class _WordOfTheDayCardState extends State<WordOfTheDayCard> with AutomaticKeepA
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                         fontFamily: 'Avenir',
-                        fontSize: ancho * 0.04,
+                        fontSize: fontMultiplier * widget.height * 0.001,
                         color: Colors.grey,
                         fontWeight: FontWeight.w500
                     ),
@@ -108,7 +114,7 @@ class _WordOfTheDayCardState extends State<WordOfTheDayCard> with AutomaticKeepA
                     child: Text(
                         "Detalles...",
                     style: TextStyle(
-                      fontSize: ancho * 0.06
+                      fontSize: fontMultiplier * widget.height * 0.0015
                     )),
                     style: ElevatedButton.styleFrom(
                       primary: Colors.blue,

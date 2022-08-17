@@ -14,7 +14,6 @@ class DateBox extends StatelessWidget {
     final now = DateTime.now();
     final today = "${now.day} de ${months[now
         .month - 1]} del ${now.year}";
-    final width = MediaQuery.of(context).size.width;
     return Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -24,12 +23,11 @@ class DateBox extends StatelessWidget {
           padding: const EdgeInsets.all(12.0),
           child: Text(
             today,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.black,
-              fontSize: width * 0.05,
               fontWeight: FontWeight.w500,
             ),
-            textScaleFactor: 0.8,
+            textScaleFactor: 1.25,
           ),
         )
     );

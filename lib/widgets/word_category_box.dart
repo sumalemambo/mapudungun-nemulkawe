@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 final pastelColors = {
   'sustantivo': Colors.blue[200],
-  'verbo': Colors.amber[300],
+  'verbo': Colors.orange[200],
   'adjetivo': Colors.green[200],
   'expresión': Colors.pink[100],
 };

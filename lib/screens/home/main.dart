@@ -12,25 +12,26 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
-    final double width = MediaQuery.of(context).size.width;
 
     return Padding(
-      padding: EdgeInsets.all(height * 0.02),
+      padding: EdgeInsets.all(height * 0.025),
       child: Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: const [AboutCard(), Spacer(), DateBox()],
           ),
-          Flexible(
-            child: ListView(
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
                   padding: EdgeInsets.all(height * 0.0225),
                   child: WordOfTheDayTitleBox(height: height,),
                 ),
                 WordOfTheDayCard(height: height,),
-              ]
+              ],
             ),
           ),
         ],

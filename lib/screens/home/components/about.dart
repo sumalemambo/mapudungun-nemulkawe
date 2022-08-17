@@ -7,7 +7,6 @@ class AboutCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
     return SizedBox(
       child: Column(
         children: <Widget>[
@@ -24,15 +23,21 @@ class AboutCard extends StatelessWidget {
                   )
                 ]
               ),
-              width: width * 0.1,
-              height: width * 0.1,
+              width: 40.0,
+              height: 40.0,
               child: IconButton(
-                icon: Icon(Icons.question_mark_rounded, size: width * 0.05, color: Colors.white,),
-                  onPressed: () {Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const AboutDetails(),
-            ),
-          );},)),
+                icon: const Icon(
+                  Icons.question_mark_rounded,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const AboutDetails()),
+                  );
+                },
+              ),
+          ),
         ],
       ),
     );

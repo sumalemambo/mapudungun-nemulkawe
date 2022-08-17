@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:app/database/database_helper.dart';
 import 'package:app/screens/details_screen/main.dart';
+import 'package:app/widgets/word_category_box.dart';
 
 // fontSize multiplier
 const double fontMultiplier = 20.0;
@@ -57,7 +58,8 @@ class _WordOfTheDayCardState extends State<WordOfTheDayCard> with AutomaticKeepA
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    final ancho = MediaQuery.of(context).size.width;
+    final height = widget.height;
+    final width = MediaQuery.of(context).size.width;
     return FutureBuilder<Map<String, dynamic>>(
       future: _wordData,
       builder: (context, snapshot) {
@@ -70,55 +72,52 @@ class _WordOfTheDayCardState extends State<WordOfTheDayCard> with AutomaticKeepA
             ),
             color: Colors.white,
             child: Padding(
-              padding: EdgeInsets.all(ancho * 0.08),
+              padding: EdgeInsets.all(height * 0.05),
               child: Column(
                 children: <Widget>[
-
-                  Image.asset('assets/day.png',height: ancho * 0.3,width: ancho * 0.3),
-                  Text(
-                    word.mapudungun,
-                    style: TextStyle(
-                      fontFamily: 'Avenir',
-                      fontSize: fontMultiplier * widget.height * 0.002, //0.1
-                      color: const Color(0xff47455f),
-                      fontWeight: FontWeight.w900,
+                  Image.asset('assets/day.png', height: height * 0.2, width: height * 0.2),
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: height * 0.02),
+                    child: Column(
+                      children: [
+                        Text(
+                          word.mapudungun,
+                          style: const TextStyle(
+                            fontFamily: 'Avenir',
+                            fontSize: 36.0, //0.1
+                            color: Color(0xff47455f),
+                            fontWeight: FontWeight.w900,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                        const SizedBox(height: 4.0),
+                        WordCategoryBox(category: word.gramatica, height: 24.0),
+                        const SizedBox(height: 12.0),
+                        Text(
+                          'Significado: ' + word.castellano,
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                              fontFamily: 'Avenir',
+                              fontSize: 16.0,
+                              color: Colors.grey,
+                              fontWeight: FontWeight.w500
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
                     ),
-                    textAlign: TextAlign.center,
                   ),
-                  const SizedBox(height: 4.0),
-                  Text(
-                    word.gramatica,
-                    style: TextStyle(
-                      fontFamily: 'Avenir',
-                      fontSize: fontMultiplier * widget.height * 0.0015,
-                      color: Colors.blue,
-                      fontWeight: FontWeight.w500
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 4.0),
-                  Text(
-                    'Significado: ' + word.castellano,
-                    maxLines: 3,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                        fontFamily: 'Avenir',
-                        fontSize: fontMultiplier * widget.height * 0.001,
-                        color: Colors.grey,
-                        fontWeight: FontWeight.w500
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  Container(height: ancho * 0.045),
                   ElevatedButton(
-                    child: Text(
-                        "Detalles...",
-                    style: TextStyle(
-                      fontSize: fontMultiplier * widget.height * 0.0015
-                    )),
+                    child: const Text(
+                      "Detalles...",
+                      style: TextStyle(
+                        fontSize: 24.0,
+                      ),
+                    ),
                     style: ElevatedButton.styleFrom(
                       primary: Colors.blue,
-                        padding: EdgeInsets.all(ancho * 0.03),
+                        padding: const EdgeInsets.all(16.0),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15),
                         )

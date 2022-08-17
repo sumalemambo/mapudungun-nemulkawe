@@ -42,7 +42,7 @@ class DetailsCard extends StatelessWidget {
             style: GoogleFonts.openSans(
               textStyle: TextStyle(
                   color: const Color(0xFF333333),
-                  fontSize: fontMultiplier * height * 0.0015,
+                  fontSize: 26,
                   fontWeight: FontWeight.bold
               ),
             ),
@@ -60,7 +60,7 @@ class DetailsCard extends StatelessWidget {
               style: GoogleFonts.openSans(
                 textStyle: TextStyle(
                   color: const Color(0xFF333333),
-                  fontSize: fontMultiplier * height * 0.001,
+                  fontSize: 16,
                 ),
               ),
             ),
@@ -81,7 +81,7 @@ class DetailsCard extends StatelessWidget {
                     style: GoogleFonts.openSans(
                       textStyle: TextStyle(
                         color: const Color(0xFF333333),
-                        fontSize: fontMultiplier * height * 0.0015,
+                        fontSize: 26,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

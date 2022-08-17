@@ -48,7 +48,7 @@ class Examples extends StatelessWidget {
                 '• ' + example[0],
                 style: GoogleFonts.openSans(
                   textStyle: TextStyle(
-                    fontSize: fontMultiplier * height * 0.001,
+                    fontSize: 16,
                   ),
                 ),
               ),
@@ -61,7 +61,7 @@ class Examples extends StatelessWidget {
                   textStyle: TextStyle(
                     color: Colors.grey,
                     fontStyle: FontStyle.italic,
-                    fontSize: fontMultiplier * height * 0.001
+                    fontSize: 16
                   ),
                 ),
               ),

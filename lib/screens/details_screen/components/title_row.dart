@@ -83,7 +83,7 @@ class _TitleRowState extends State<TitleRow> {
             style: GoogleFonts.openSans(
               textStyle: TextStyle(
                   color: const Color(0xFF333333),
-                  fontSize: fontMultiplier * height * 0.0023,
+                  fontSize: 26,
                   fontWeight: FontWeight.bold
               ),
             ),

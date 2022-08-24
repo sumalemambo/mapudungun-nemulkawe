@@ -4,7 +4,7 @@ import 'dart:math';
 import 'package:app/database/database_helper.dart';
 import 'package:app/screens/details_screen/main.dart';
 import 'package:app/widgets/word_category_box.dart';
-import 'package:app/screens/details_screen/components/img_avatar.dart';
+import 'package:app/widgets/img_avatar.dart';
 
 // fontSize multiplier
 const double fontMultiplier = 20.0;

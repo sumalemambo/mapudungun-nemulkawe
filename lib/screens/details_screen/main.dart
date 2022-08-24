@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:app/models/wordModel.dart';
-import 'package:app/screens/details_screen/components/img_avatar.dart';
+import 'package:app/widgets/img_avatar.dart';
 import 'package:app/widgets/favorite_button.dart';
 import 'components/details_card.dart';
 import 'components/title_row.dart';

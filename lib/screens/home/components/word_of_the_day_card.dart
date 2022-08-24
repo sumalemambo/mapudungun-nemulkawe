@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:app/database/database_helper.dart';
 import 'package:app/screens/details_screen/main.dart';
 import 'package:app/widgets/word_category_box.dart';
+import 'package:app/screens/details_screen/components/img_avatar.dart';
 
 // fontSize multiplier
 const double fontMultiplier = 20.0;
@@ -75,7 +76,7 @@ class _WordOfTheDayCardState extends State<WordOfTheDayCard> with AutomaticKeepA
               padding: EdgeInsets.all(height * 0.05),
               child: Column(
                 children: <Widget>[
-                  Image.asset('assets/day.png', height: height * 0.2, width: height * 0.2),
+                  ImgAvatar(imgPath: 'assets/imgs/${word.id}.png'),
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: height * 0.02),
                     child: Column(

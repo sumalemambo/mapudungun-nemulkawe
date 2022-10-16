@@ -42,7 +42,7 @@ class _ImgAvatarState extends State<ImgAvatar> {
 
   Widget avatarWidget (AssetImage img) {
     final double width = MediaQuery.of(context).size.width;
-    double radius = width * 0.26;
+    double radius = width * 0.22;
 
     return CircleAvatar(
       radius: radius,

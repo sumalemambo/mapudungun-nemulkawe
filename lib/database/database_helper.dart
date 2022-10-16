@@ -184,7 +184,6 @@ class DatabaseHelper {
         // Handle variable length of [ids] list (id1, id2, ...)
         where: 'ROWID = $index',
     );
-    print("hola");
     return rows;
   }
 

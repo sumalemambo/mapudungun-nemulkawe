@@ -1,7 +1,4 @@
 import 'dart:async';
-import 'dart:math';
-import 'dart:ui' as ui;
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -36,7 +33,7 @@ class _ImgAvatarState extends State<ImgAvatar> {
       return AssetImage(widget.imgPath);
     }
     catch (_) {
-      return const AssetImage('assets/imgs/default.jpg');
+      return const AssetImage('assets/imgs/default.png');
     }
   }
 

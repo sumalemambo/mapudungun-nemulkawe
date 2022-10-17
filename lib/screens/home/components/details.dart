@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
 List images = [
-  'lib/assets/image-1.jpg',
+  'lib/assets/image-1.png',
   'lib/assets/image-2.jpg',
-  'lib/assets/image-3.jpg',
-  'lib/assets/logo.jpg',
+  'lib/assets/image-3.png',
 ];
 
 class AboutDetails extends StatelessWidget {
@@ -49,9 +48,9 @@ class AboutDetails extends StatelessWidget {
                           textAlign: TextAlign.left,
                         ),
                         const Divider(color: Colors.black38),
-                        const SizedBox(height: 32),
+                        const SizedBox(height: 16),
                         const Text(
-                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                          'Fiw-Fiw ñi Dungun es una asociación sin fines de lucro que trabaja por la revitalización del mapuzugun, a través de su promoción y enseñanza en jóvenes y adultos. Desde su creación, realiza cursos e internados de mapuzugun en las regiones del Biobío, además de cooperar en la enseñanza de la lengua en otros internados levantados por otras organizaciones mapuche.',
                           style: TextStyle(
                             fontFamily: 'Avenir',
                             fontSize: 20,
@@ -59,7 +58,7 @@ class AboutDetails extends StatelessWidget {
                             fontWeight: FontWeight.w400,
                           ),
                         ),
-                        const SizedBox(height: 32),
+                        const SizedBox(height: 16),
                         const Divider(color: Colors.black38),
                       ],
                     ),
@@ -78,8 +77,8 @@ class AboutDetails extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    height: 250,
-                    padding: const EdgeInsets.only(left: 32.0),
+                    height: 280,
+                    padding: const EdgeInsets.only(left: 32.0, right: 32.0, top: 16.0, bottom: 32.0),
                     child: ListView.builder(
                         itemCount: images.length,
                         scrollDirection: Axis.horizontal,

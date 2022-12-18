@@ -14,9 +14,6 @@ final bucket = PageStorageBucket();
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Ocultar la barra de estado superior
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-
   // La única orientación posible para la app es vertical, no horizontal
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);

@@ -39,20 +39,24 @@ class App extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: FutureBuilder(
-        // Here we load the favorites ids into the provider
-        future: Provider.of<FavoritesProvider>(context, listen: false).
-        loadFavoriteIds(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            return const Nav();
-          }
-          else {
-            return const Center(child: CircularProgressIndicator());
-          }
-        }
+      home: Scaffold(
+        body: SafeArea(
+          child: FutureBuilder(
+            // Here we load the favorites ids into the provider
+              future: Provider.of<FavoritesProvider>(context, listen: false)
+              .loadFavoriteIds(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  return const Nav();
+                }
+                else {
+                  return const Center(child: CircularProgressIndicator());
+                }
+              }
+          ),
+        ),
       ),
     );
   }

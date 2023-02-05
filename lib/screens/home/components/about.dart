@@ -1,4 +1,3 @@
-import 'package:app/screens/about/components/about.dart';
 import 'package:flutter/material.dart';
 import 'details.dart';
 
@@ -34,7 +33,7 @@ class AboutCard extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Abb()),
+                    MaterialPageRoute(builder: (context) => const AboutDetails()),
                   );
                 },
               ),
